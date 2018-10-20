@@ -47,9 +47,6 @@ def make_ring_group_graph(m, k, p, q):
                 if random_number < q:
                     ring_group_graph[v].add(u)
                     ring_group_graph[u].add(v)
-
-    print("pass the group check",num_pass)
-    print("went for q",num_fail)
     return ring_group_graph
 
 
@@ -114,7 +111,7 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
     plt.clf()
 
     # plot degree distribution
-    plt.xlabel('In-Degree')
+    plt.xlabel('Degree')
     plt.ylabel('Normalized Rate')
     plt.title('Degree Distribution of ' + plot_name)
     plt.plot(xdata, ydata, marker='.', linestyle='None', color='b')
@@ -123,7 +120,7 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 
 for i in range(1,25,5):
     p = round(0.25 + i/100, 2)
-    q = round(0.25 - i/100,2)
+    q = round(0.25 - i/100, 2)
     m = 100
     k = 10
     print(m,k,p,q)
