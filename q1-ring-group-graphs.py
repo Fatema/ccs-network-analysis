@@ -125,10 +125,10 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 for i in range(1,25,5):
     p = 0.25 + i/100
     q = 0.25 - i/100
-    m = random.randint(i, i*5)
-    k = random.randint(i, i*2)
+    m = 100
+    k = 10
     print(m,k,p,q)
     mGreater = average_normalized_degree_distribution(100, m, k, p, q)
     create_degree_distribution_plot(mGreater, 'q1-' + str(m) + '-' + str(k) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
     kGreater = average_normalized_degree_distribution(100, k, m, p, q)
-    create_degree_distribution_plot(mGreater, 'q1-' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
+    create_degree_distribution_plot(kGreater, 'q1-' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
