@@ -86,19 +86,18 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
     """finds the average degree distribution of a random ring group graph on 2000 nodes
     in group of 100 of size 20 with edge probabilities 0.35 and 0.15 by taking k trials for each data point"""
     cumulative_dist = {}
-    dist_range = math.ceil(m * k * q)
-    lower = max(dist_range - (m + k),0)
-    upper = dist_range + (m + k)
-    for deg in range(lower, upper): cumulative_dist[deg] = 0
+    num_nodes = m * k
     for i in range(t):
         graph = make_ring_group_graph(m, k, p ,q)
         #find the distribution
-        dist = normalized_degree_distribution(graph, m * k)
-        for deg in range(lower, upper):
-            if deg in dist:
+        dist = normalized_degree_distribution(graph, num_nodes)
+        for deg in dist:
+            if deg in cumulative_dist:
                 cumulative_dist[deg] += dist[deg]
+            else:
+                cumulative_dist[deg] = dist[deg]
     average_dist = {}
-    for deg in range(lower, upper):
+    for deg in cumulative_dist:
         average_dist[deg] = cumulative_dist[deg] / t
     return average_dist
 
@@ -123,8 +122,8 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 
 
 for i in range(1,25,5):
-    p = 0.25 + i/100
-    q = 0.25 - i/100
+    p = round(0.25 + i/100, 2)
+    q = round(0.25 - i/100,2)
     m = 100
     k = 10
     print(m,k,p,q)
