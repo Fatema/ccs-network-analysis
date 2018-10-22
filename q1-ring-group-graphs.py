@@ -148,7 +148,7 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
 
 def make_p_diameter(t,m,k,q):
     p_diameter = {}
-    for i in range(5, int(round(100 - q*100)), 5):
+    for i in range(5, int(round(100 - q*100)) + 5, 5):
         p = round(q + i / 100, 2)
         p_diameter[p] = average_ring_group_graph_diameter(t,m,k,p,q)
         print(p,p_diameter[p])
@@ -186,8 +186,8 @@ def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
 #     create_degree_distribution_plot(kGreater, 'q1/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
 
 
-m = 50
-k = 5
+m = 10
+k = 40
 q = 0.15
 
 mGreater = make_p_diameter(100, m, k, q)
