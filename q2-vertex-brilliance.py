@@ -1,3 +1,5 @@
+import random
+
 import matplotlib.pyplot as plt
 
 
@@ -14,6 +16,8 @@ def load_graph(file):
     vertices_dict = {}
 
     answer_graph = {}
+
+    edges = 0
 
     for line in graph:
         if read_vertices and line != '' and 'Edges' not in line:
@@ -32,6 +36,7 @@ def load_graph(file):
                 answer_graph[node_u].add(node_v)
             else:
                 answer_graph[node_u] = {node_v}
+            edges+=1
 
         if 'Vertices' in line:
             read_vertices = True
@@ -43,8 +48,44 @@ def load_graph(file):
             print('starting to read edges')
 
     print("Loaded graph with", len(answer_graph.keys()), "nodes")
+    print('number of edges', edges)
 
     return vertices_dict, answer_graph
+
+
+def make_ring_group_graph(m, k, p, q):
+    """
+    Returns a dictionary to a ring group graph with the specified number of nodes (m * k nodes)
+    and edge probabilities.  The nodes of the graph are numbered 0 to
+    m * k - 1.  For every pair of nodes, v and u, the pair is considered
+    once: an edge (v,u) and an edge (u,v) with probability p if v and u are in the same group
+    or if v and u are in adjacent groups (the labels for the nodes are 1 mod m apart),
+    for all other cases the edges will be added with probability q.
+    """
+    num_vertices = m * k
+
+    ## initialize the graph
+    ring_group_graph = {}
+
+    for i in range(num_vertices): ring_group_graph[i] = set()
+
+    for v in range(num_vertices):
+        v_group = v // k
+
+        for u in range(v + 1, num_vertices):
+            u_group = u // k
+            random_number = random.random()
+            if v_group == u_group or (abs(v_group - u_group) % m) == 1:
+                if random_number < p:
+                    ring_group_graph[v].add(u)
+                    ring_group_graph[u].add(v)
+            else:
+                # it seems that it is more likely that this condition will be selected making this a random graph
+                # with size m*k and probability q if m >> k
+                if random_number < q:
+                    ring_group_graph[v].add(u)
+                    ring_group_graph[u].add(v)
+    return ring_group_graph
 
 
 def vertex_brilliance(graph, source):
