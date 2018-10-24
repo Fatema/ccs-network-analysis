@@ -67,6 +67,10 @@ def make_ring_group_graph(m, k, p, q):
     ## initialize the graph
     ring_group_graph = {}
 
+    edges = 0
+    pedges = 0
+    qedges = 0
+
     for i in range(num_vertices): ring_group_graph[i] = set()
 
     for v in range(num_vertices):
@@ -77,14 +81,19 @@ def make_ring_group_graph(m, k, p, q):
             random_number = random.random()
             if v_group == u_group or (abs(v_group - u_group) % m) == 1:
                 if random_number < p:
+                    edges += 1
+                    pedges +=1
                     ring_group_graph[v].add(u)
                     ring_group_graph[u].add(v)
             else:
                 # it seems that it is more likely that this condition will be selected making this a random graph
                 # with size m*k and probability q if m >> k
                 if random_number < q:
+                    edges += 1
+                    qedges += 1
                     ring_group_graph[v].add(u)
                     ring_group_graph[u].add(v)
+    print(edges,'p',pedges,'q',qedges)
     return ring_group_graph
 
 
@@ -121,7 +130,7 @@ def vertex_brilliance_distribution(graph):
     brilliance = {}
     for v in graph:
         brilliance[v] = vertex_brilliance(graph, v)
-
+    print('brilliance', brilliance)
     # initialize dictionary for degree distribution
     brilliance_distribution = {}
     # consider each vertex
@@ -165,10 +174,12 @@ def create_vertex_brilliance_distribution_plot(brilliance_distribution, plot_fil
     plt.savefig('distributions/q2/' + plot_file_name + '.png')
 
 
-# graph = {1: {3,2}, 2: {3,1}, 3: {1,2,4,6}, 4: {3,5}, 5: {4,7,6}, 6: {3,7,5,8}, 7: {6,5,8,9}, 8: {6,7}, 9: {7}}
-#
-# print(vertex_brilliance_distribution(graph))
+graph = {1: {3,2}, 2: {3,1}, 3: {1,2,4,6}, 4: {3,5}, 5: {4,7,6}, 6: {3,7,5,8}, 7: {6,5,8,9}, 8: {6,7}, 9: {7}}
+
+print(vertex_brilliance_distribution(graph))
 
 vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+
 vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph, len(coauthorship_graph.keys()))
 create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,'coauthorship-vertex-brilliance','coauthorship')
+
