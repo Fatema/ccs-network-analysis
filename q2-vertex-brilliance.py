@@ -1,5 +1,5 @@
 import random
-
+import networkx as nx
 import matplotlib.pyplot as plt
 
 
@@ -97,6 +97,32 @@ def make_ring_group_graph(m, k, p, q):
     return ring_group_graph
 
 
+# This code is based on networkx implementation and lecture3 implementation of directed PA graph
+def make_pa_graph(total_nodes, num_nodes):
+    repeated_nodes = []
+
+    PA_graph = {}
+
+    for vertex in range(total_nodes):
+        PA_graph[vertex] = set()
+
+    for v in range(num_nodes):
+        for u in range(v + 1, num_nodes):
+            PA_graph[v].add(u)
+            PA_graph[u].add(v)
+            repeated_nodes += [v,u]
+
+    for v in range(num_nodes, total_nodes):
+        for dummy_idx in range(num_nodes):
+            node = random.choice(repeated_nodes)
+            PA_graph[v].add(node)
+            PA_graph[node].add(v)
+        repeated_nodes.extend(list(PA_graph[v]))
+        repeated_nodes.extend([v] * len(PA_graph[v]))
+
+    return PA_graph
+
+
 def vertex_brilliance(graph, source):
     """finds the distance (the length of the shortest path) from the source to
     every other vertex in the same component using breadth-first search, and
@@ -167,19 +193,102 @@ def create_vertex_brilliance_distribution_plot(brilliance_distribution, plot_fil
     plt.clf()
 
     # plot vertex distribution
-    plt.xlabel('vertex brilliance')
+    plt.xlabel('Vertex Brilliance')
     plt.ylabel('Normalized Rate')
     plt.title('Vertex Brilliance Distribution of ' + plot_name)
     plt.plot(xdata, ydata, marker='.', linestyle='None', color='b')
     plt.savefig('distributions/q2/' + plot_file_name + '.png')
 
 
-graph = {1: {3,2}, 2: {3,1}, 3: {1,2,4,6}, 4: {3,5}, 5: {4,7,6}, 6: {3,7,5,8}, 7: {6,5,8,9}, 8: {6,7}, 9: {7}}
+def compute_degrees(graph):
+    """Takes a directed graph and computes the in-degrees for the nodes in the
+    graph. Returns a dictionary with the same set of keys (nodes) and the
+    values are the in-degrees."""
+    #initialize in-degrees dictionary with zero values for all vertices
+    degree = {}
+    for vertex in graph:
+        degree[vertex] = 0
+    #consider each vertex
+    for vertex in graph:
+        #amend degree[w] for each outgoing edge from v to w
+        for neighbour in graph[vertex]:
+            degree[neighbour] += 1
+    return degree
 
-print(vertex_brilliance_distribution(graph))
 
-vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+def degree_distribution(graph):
+    """Takes a directed graph and computes the unnormalized distribution of the
+    in-degrees of the graph.  Returns a dictionary whose keys correspond to
+    in-degrees of nodes in the graph and values are the number of nodes with
+    that in-degree. In-degrees with no corresponding nodes in the graph are not
+    included in the dictionary."""
+    #find in_degrees
+    degree = compute_degrees(graph)
+    #initialize dictionary for degree distribution
+    degree_distribution = {}
+    #consider each vertex
+    for vertex in degree:
+        #update degree_distribution
+        if degree[vertex] in degree_distribution:
+            degree_distribution[degree[vertex]] += 1
+        else:
+            degree_distribution[degree[vertex]] = 1
+    return degree_distribution
 
-vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph, len(coauthorship_graph.keys()))
-create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,'coauthorship-vertex-brilliance','coauthorship')
 
+def normalized_degree_distribution(graph, num_nodes):
+    """Takes a graph and computes the normalized distribution of the degrees of the graph.
+    Returns a dictionary whose keys correspond to in-degrees of nodes in the graph and values are the
+    fraction of nodes with that in-degree.
+    Degrees with no corresponding nodes in the graph are not included in the dictionary."""
+    unnormalized_dist = degree_distribution(graph)
+    normalized_dist = {}
+    for degree in unnormalized_dist:
+        normalized_dist[degree] = 1.0 * unnormalized_dist[degree] / num_nodes
+    return normalized_dist
+
+
+def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_name):
+    # create arrays for plotting
+    xdata = []
+    ydata = []
+    for degree in degree_distribution:
+        xdata += [degree]
+        ydata += [degree_distribution[degree]]
+
+    # clears plot
+    plt.clf()
+
+    # plot degree distribution
+    plt.xlabel('Degree')
+    plt.ylabel('Normalized Rate')
+    plt.title('Degree Distribution of ' + plot_name)
+    plt.plot(xdata, ydata, marker='.', linestyle='None', color='b')
+    plt.savefig('distributions/q2/' + plot_file_name + '.png')
+
+
+# graph = {1: {3,2}, 2: {3,1}, 3: {1,2,4,6}, 4: {3,5}, 5: {4,7,6}, 6: {3,7,5,8}, 7: {6,5,8,9}, 8: {6,7}, 9: {7}}
+#
+# print(vertex_brilliance_distribution(graph))
+#
+# vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+#
+# vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph, len(coauthorship_graph.keys()))
+# create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,'coauthorship-vertex-brilliance','coauthorship')
+#
+
+
+n = 27770
+m = 13
+
+pa_graph = make_pa_graph(n,m)
+pa_graph_dd = normalized_degree_distribution(pa_graph, n)
+create_degree_distribution_plot(pa_graph_dd, 'pa_graph-' + str(n) + '-' + str(m) + '-degree', 'PA Graph')
+pa_graph_vb = normalized_vertex_brilliance_distribution(pa_graph,n)
+create_vertex_brilliance_distribution_plot(pa_graph_vb, 'pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph')
+
+pa_graph_nx = nx.to_dict_of_lists(nx.barabasi_albert_graph(n,m))
+pa_graph_dd_nx = normalized_degree_distribution(pa_graph_nx, n)
+create_degree_distribution_plot(pa_graph_dd_nx, 'nx-pa_graph-' + str(n) + '-' + str(m), 'PA Graph nx')
+pa_graph_nx_vb = normalized_vertex_brilliance_distribution(pa_graph_nx,n)
+create_vertex_brilliance_distribution_plot(pa_graph_nx_vb, 'nx-pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph')
