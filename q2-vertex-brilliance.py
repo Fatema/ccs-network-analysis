@@ -68,6 +68,7 @@ def make_ring_group_graph(m, k, p, q):
     ring_group_graph = {}
 
     edges = 0
+
     pedges = 0
     qedges = 0
 
@@ -156,7 +157,6 @@ def vertex_brilliance_distribution(graph):
     brilliance = {}
     for v in graph:
         brilliance[v] = vertex_brilliance(graph, v)
-    print('brilliance', brilliance)
     # initialize dictionary for degree distribution
     brilliance_distribution = {}
     # consider each vertex
@@ -271,14 +271,15 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 #
 # print(vertex_brilliance_distribution(graph))
 #
-# vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+
+vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
 #
 # vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph, len(coauthorship_graph.keys()))
 # create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,'coauthorship-vertex-brilliance','coauthorship')
 #
 
-
-n = 27770
+# TODO find the right m so that the number of edges match coauthorship example
+n = 1559
 m = 13
 
 pa_graph = make_pa_graph(n,m)
@@ -291,4 +292,7 @@ pa_graph_nx = nx.to_dict_of_lists(nx.barabasi_albert_graph(n,m))
 pa_graph_dd_nx = normalized_degree_distribution(pa_graph_nx, n)
 create_degree_distribution_plot(pa_graph_dd_nx, 'nx-pa_graph-' + str(n) + '-' + str(m), 'PA Graph nx')
 pa_graph_nx_vb = normalized_vertex_brilliance_distribution(pa_graph_nx,n)
-create_vertex_brilliance_distribution_plot(pa_graph_nx_vb, 'nx-pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph')
+create_vertex_brilliance_distribution_plot(pa_graph_nx_vb, 'nx-pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph nx')
+
+# TODO find the right m and k so that the number of nodes is 1559 or close and p and q so that the number of edges is close to 43617
+# ring_group_graph = make_ring_group_graph(m, k, p, q)
