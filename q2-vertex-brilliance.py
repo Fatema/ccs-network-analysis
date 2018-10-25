@@ -28,15 +28,10 @@ def load_graph(file):
             node_v, node_u, weight = line.strip().split(' ')
             if node_v == node_u:
                 continue
-            if node_v in answer_graph:
-                answer_graph[node_v].add(node_u)
-            else:
-                answer_graph[node_v] = {node_u}
-            if node_u in answer_graph:
-                answer_graph[node_u].add(node_v)
-            else:
-                answer_graph[node_u] = {node_v}
-            edges+=1
+            answer_graph[node_v].add(node_u)
+            answer_graph[node_u].add(node_v)
+
+            edges += 1
 
         if 'Vertices' in line:
             read_vertices = True
@@ -45,6 +40,8 @@ def load_graph(file):
         if 'Edges' in line:
             read_vertices = False
             read_edges = True
+            for v in vertices_dict:
+                answer_graph[v] = set()
             print('starting to read edges')
 
     print("Loaded graph with", len(answer_graph.keys()), "nodes")
@@ -104,6 +101,8 @@ def make_pa_graph(total_nodes, num_nodes):
 
     PA_graph = {}
 
+    edges = 0
+
     for vertex in range(total_nodes):
         PA_graph[vertex] = set()
 
@@ -120,7 +119,8 @@ def make_pa_graph(total_nodes, num_nodes):
             PA_graph[node].add(v)
         repeated_nodes.extend(list(PA_graph[v]))
         repeated_nodes.extend([v] * len(PA_graph[v]))
-
+        edges += len(PA_graph[v])
+    print('edges for pa', edges)
     return PA_graph
 
 
@@ -270,29 +270,44 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 # graph = {1: {3,2}, 2: {3,1}, 3: {1,2,4,6}, 4: {3,5}, 5: {4,7,6}, 6: {3,7,5,8}, 7: {6,5,8,9}, 8: {6,7}, 9: {7}}
 #
 # print(vertex_brilliance_distribution(graph))
+
+
+# vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+# vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph,
+# len(coauthorship_graph.keys()))
+# create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,
+# 'coauthorship-vertex-brilliance','coauthorship')
 #
 
-vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
-#
-# vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph, len(coauthorship_graph.keys()))
-# create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,'coauthorship-vertex-brilliance','coauthorship')
-#
+# n = 1559
+# m = 30
 
-# TODO find the right m so that the number of edges match coauthorship example
-n = 1559
-m = 13
+# TODO setup a number of trails to compute the brilliance for randomly generated graphs (average normalized
+# brilliance distribution)
+# pa_graph = make_pa_graph(n,m)
+# pa_graph_dd = normalized_degree_distribution(pa_graph, n)
+# create_degree_distribution_plot(pa_graph_dd, 'pa_graph-' + str(n) + '-' + str(m) + '-degree', 'PA Graph')
+# pa_graph_vb = normalized_vertex_brilliance_distribution(pa_graph,n)
+# create_vertex_brilliance_distribution_plot(pa_graph_vb, 'pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph')
 
-pa_graph = make_pa_graph(n,m)
-pa_graph_dd = normalized_degree_distribution(pa_graph, n)
-create_degree_distribution_plot(pa_graph_dd, 'pa_graph-' + str(n) + '-' + str(m) + '-degree', 'PA Graph')
-pa_graph_vb = normalized_vertex_brilliance_distribution(pa_graph,n)
-create_vertex_brilliance_distribution_plot(pa_graph_vb, 'pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph')
+# pa_graph_nx = nx.to_dict_of_lists(nx.barabasi_albert_graph(n,m))
+# pa_graph_dd_nx = normalized_degree_distribution(pa_graph_nx, n)
+# create_degree_distribution_plot(pa_graph_dd_nx, 'nx-pa_graph-' + str(n) + '-' + str(m), 'PA Graph nx')
+# pa_graph_nx_vb = normalized_vertex_brilliance_distribution(pa_graph_nx,n)
+# create_vertex_brilliance_distribution_plot(pa_graph_nx_vb, 'nx-pa_graph-' + str(n) + '-' + str(m) +
+# '-brilliance', 'PA Graph nx')
 
-pa_graph_nx = nx.to_dict_of_lists(nx.barabasi_albert_graph(n,m))
-pa_graph_dd_nx = normalized_degree_distribution(pa_graph_nx, n)
-create_degree_distribution_plot(pa_graph_dd_nx, 'nx-pa_graph-' + str(n) + '-' + str(m), 'PA Graph nx')
-pa_graph_nx_vb = normalized_vertex_brilliance_distribution(pa_graph_nx,n)
-create_vertex_brilliance_distribution_plot(pa_graph_nx_vb, 'nx-pa_graph-' + str(n) + '-' + str(m) + '-brilliance', 'PA Graph nx')
+# TODO find the right m and k so that the number of nodes is 1559 or close and p and q so that the number of edges
+# is close to 43617
 
-# TODO find the right m and k so that the number of nodes is 1559 or close and p and q so that the number of edges is close to 43617
-# ring_group_graph = make_ring_group_graph(m, k, p, q)
+m = 60
+k = 26
+p = 0.2
+q = 0.03
+
+ring_group_graph = make_ring_group_graph(m, k, p, q)
+ring_group_graph_vb = normalized_vertex_brilliance_distribution(ring_group_graph, m * k)
+create_vertex_brilliance_distribution_plot(ring_group_graph_vb,
+                                           'ring_group_graph-' + str(m) + '-' + str(k) + '-'
+                                           + str(p) + '-' + str(q) + '-brilliance',
+                                           'Ring Group Graph')
