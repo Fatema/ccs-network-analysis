@@ -36,7 +36,9 @@ def make_ring_group_graph(m, k, p, q):
         for u in range(v + 1, num_vertices):
             u_group = u // k
             random_number = random.random()
-            if v_group == u_group or (abs(v_group - u_group) % (m-1)) == 1:
+            print(v_group,u_group)
+            if v_group == u_group or (abs(v_group - u_group) % m ) == 1 or (abs(v_group - u_group) % m ) == (m - 1):
+                print('neighbours or in the same group', v,v_group,u,u_group)
                 if random_number < p:
                     ring_group_graph[v].add(u)
                     ring_group_graph[u].add(v)
@@ -188,8 +190,8 @@ def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
 #     create_degree_distribution_plot(kGreater, 'q1/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
 
 
-m = 10
-k = 5
+m = 5
+k = 10
 q = 0.15
 
 # mGreater = make_p_diameter(100, m, k, q)
