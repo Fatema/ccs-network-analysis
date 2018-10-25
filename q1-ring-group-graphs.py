@@ -11,6 +11,8 @@ The functions degree_distribution, normalized_degree_distribution and average_no
 - average_normalized_degree_distribution: it was modified to fit with the ring group graph
 """
 
+# TODO redo the graphs for ring_group
+
 
 def make_ring_group_graph(m, k, p, q):
     """
@@ -34,7 +36,7 @@ def make_ring_group_graph(m, k, p, q):
         for u in range(v + 1, num_vertices):
             u_group = u // k
             random_number = random.random()
-            if v_group == u_group or (abs(v_group - u_group) % m) == 1:
+            if v_group == u_group or (abs(v_group - u_group) % (m-1)) == 1:
                 if random_number < p:
                     ring_group_graph[v].add(u)
                     ring_group_graph[u].add(v)
@@ -127,7 +129,7 @@ def make_nx_ring_group_graph(m, k, p, q):
         for u in range(v + 1, num_vertices):
             u_group = u // k
             random_number = random.random()
-            if v_group == u_group or (abs(v_group - u_group) % m) == 1:
+            if v_group == u_group or (abs(v_group - u_group) % (m-1)) == 1:
                 if random_number < p:
                     ring_group_graph.add_edge(v,u)
             else:
@@ -187,17 +189,17 @@ def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
 
 
 m = 10
-k = 40
+k = 5
 q = 0.15
 
-mGreater = make_p_diameter(100, m, k, q)
-create_diameter_p_plot(mGreater, 'q1/diameter-' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
-kGreater = make_p_diameter(100, k, m, q)
-create_diameter_p_plot(kGreater, 'q1/diameter-' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
-#
-# for i in range(10, int(round(100 - q * 100)), 10):
-#     p = round(q + i / 100, 2)
-#     mGreater = average_normalized_degree_distribution(100, m, k, p, q)
-#     create_degree_distribution_plot(mGreater, 'q1/prob-p/' + str(m) + '-' + str(k) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
-#     kGreater = average_normalized_degree_distribution(100, k, m, p, q)
-#     create_degree_distribution_plot(kGreater, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
+# mGreater = make_p_diameter(100, m, k, q)
+# create_diameter_p_plot(mGreater, 'q1/diameter-' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
+# kGreater = make_p_diameter(100, k, m, q)
+# create_diameter_p_plot(kGreater, 'q1/diameter-' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+
+for i in range(10, int(round(100 - q * 100)), 10):
+    p = round(q + i / 100, 2)
+    mGreater = average_normalized_degree_distribution(100, m, k, p, q)
+    create_degree_distribution_plot(mGreater, 'q1/prob-p/' + str(m) + '-' + str(k) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
+    kGreater = average_normalized_degree_distribution(100, k, m, p, q)
+    create_degree_distribution_plot(kGreater, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
