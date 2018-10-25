@@ -38,7 +38,6 @@ def make_ring_group_graph(m, k, p, q):
             random_number = random.random()
             print(v_group,u_group)
             if v_group == u_group or (abs(v_group - u_group) % m ) == 1 or (abs(v_group - u_group) % m ) == (m - 1):
-                print('neighbours or in the same group', v,v_group,u,u_group)
                 if random_number < p:
                     ring_group_graph[v].add(u)
                     ring_group_graph[u].add(v)
@@ -195,9 +194,9 @@ k = 10
 q = 0.15
 
 # mGreater = make_p_diameter(100, m, k, q)
-# create_diameter_p_plot(mGreater, 'q1/diameter-' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
+# create_diameter_p_plot(mGreater, 'q1/diameter/' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
 # kGreater = make_p_diameter(100, k, m, q)
-# create_diameter_p_plot(kGreater, 'q1/diameter-' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+# create_diameter_p_plot(kGreater, 'q1/diameter/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
 
 for i in range(10, int(round(100 - q * 100)), 10):
     p = round(q + i / 100, 2)
