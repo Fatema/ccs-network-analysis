@@ -77,7 +77,7 @@ def make_ring_group_graph(m, k, p, q):
         for u in range(v + 1, num_vertices):
             u_group = u // k
             random_number = random.random()
-            if v_group == u_group or (abs(v_group - u_group) % (m-1)) == 1:
+            if v_group == u_group or (abs(v_group - u_group) % m ) == 1 or (abs(v_group - u_group) % m ) == (m - 1):
                 if random_number < p:
                     edges += 1
                     pedges +=1
