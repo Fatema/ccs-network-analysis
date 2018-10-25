@@ -111,7 +111,7 @@ def make_pa_graph(total_nodes, num_nodes):
             PA_graph[v].add(u)
             PA_graph[u].add(v)
             repeated_nodes += [v,u]
-
+    print('repeated edges for complete graph', repeated_nodes.sort())
     for v in range(num_nodes, total_nodes):
         for dummy_idx in range(num_nodes):
             node = random.choice(repeated_nodes)
@@ -131,6 +131,7 @@ def vertex_brilliance(graph, source):
     kstar = {}
     for v in graph[source]:
         kstar[v] = 0
+    if not kstar.values(): return 0
     while True:
         for v in kstar:
             for u in graph[v]:
@@ -248,6 +249,22 @@ def normalized_degree_distribution(graph, num_nodes):
     return normalized_dist
 
 
+def average_normalized_distribution(distributions):
+    """finds the average distribution of a list of distributions"""
+    cumulative_dist = {}
+
+    for dist in distributions:
+        for deg in dist:
+            if deg in cumulative_dist:
+                cumulative_dist[deg] += dist[deg]
+            else:
+                cumulative_dist[deg] = dist[deg]
+    average_dist = {}
+    for deg in cumulative_dist:
+        average_dist[deg] = cumulative_dist[deg] / len(distributions)
+    return average_dist
+
+
 def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_name):
     # create arrays for plotting
     xdata = []
@@ -272,11 +289,11 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 # print(vertex_brilliance_distribution(graph))
 
 
-# vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
-# vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph,
-# len(coauthorship_graph.keys()))
-# create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,
-# 'coauthorship-vertex-brilliance','coauthorship')
+vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph,
+                                                                                            len(coauthorship_graph.keys()))
+create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,
+                                                'coauthorship-vertex-brilliance','coauthorship')
 #
 
 # n = 1559
@@ -300,14 +317,44 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 # TODO find the right m and k so that the number of nodes is 1559 or close and p and q so that the number of edges
 # is close to 43617
 
-m = 60
-k = 26
-p = 0.2
-q = 0.03
+# (60,26,0.22,0.03), (39,40,0.17,0.03), (120,13,0.26,0.04) give almost the same numbers of nodes and edges as coauthorhip graph
 
-ring_group_graph = make_ring_group_graph(m, k, p, q)
-ring_group_graph_vb = normalized_vertex_brilliance_distribution(ring_group_graph, m * k)
-create_vertex_brilliance_distribution_plot(ring_group_graph_vb,
-                                           'ring_group_graph-' + str(m) + '-' + str(k) + '-'
-                                           + str(p) + '-' + str(q) + '-brilliance',
-                                           'Ring Group Graph')
+# m = 120
+# k = 13
+# p = 0.26
+# q = 0.04
+#
+# t = 100
+#
+# degree_distributions = []
+# brilliance_distributions = []
+#
+# for i in range(t):
+#     print(i)
+#     ring_group_graph = make_ring_group_graph(m, k, p, q)
+#     degree_distributions += [normalized_degree_distribution(ring_group_graph, m * k)]
+#     brilliance_distributions += [normalized_vertex_brilliance_distribution(ring_group_graph, m * k)]
+# ring_group_graph_dd = average_normalized_distribution(degree_distributions)
+# create_degree_distribution_plot(ring_group_graph_dd,
+#                                            'ring_group_graph-' + str(m) + '-' + str(k) + '-'
+#                                            + str(p) + '-' + str(q) + '-degree',
+#                                            'Ring Group Graph')
+# ring_group_graph_vb = average_normalized_distribution(brilliance_distributions)
+# create_vertex_brilliance_distribution_plot(ring_group_graph_vb,
+#                                            'ring_group_graph-' + str(m) + '-' + str(k) + '-'
+#                                            + str(p) + '-' + str(q) + '-brilliance',
+#                                            'Ring Group Graph')
+
+# ring_group_graph = make_ring_group_graph(m, k, p, q)
+# ring_group_graph = make_ring_group_graph(k, m, p, q)
+
+# ring_group_graph_dd = normalized_degree_distribution(ring_group_graph, m * k)
+# create_degree_distribution_plot(ring_group_graph_dd,
+#                                            'ring_group_graph-' + str(k) + '-' + str(m) + '-'
+#                                            + str(p) + '-' + str(q) + '-degree',
+#                                            'Ring Group Graph')
+# ring_group_graph_vb = normalized_vertex_brilliance_distribution(ring_group_graph, k * m)
+# create_vertex_brilliance_distribution_plot(ring_group_graph_vb,
+#                                            'ring_group_graph-' + str(k) + '-' + str(m) + '-'
+#                                            + str(p) + '-' + str(q) + '-brilliance',
+#                                            'Ring Group Graph')
