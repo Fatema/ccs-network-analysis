@@ -69,8 +69,11 @@ def search_random_graph(graph, total_nodes, prob, start_vertex, target_vertex):
     search_time = 0
     average_neighbour_num = total_nodes * prob # Todo look into how you can possibly use this to improve the search time
     found_target = False
+    random_move = 0
     while not found_target:
         moved = False
+        print('current search time',search_time,'for', start_vertex,target_vertex)
+        if start_vertex == target_vertex: break
         neighbours_num = len(graph[start_vertex])
         neighbours = list(graph[start_vertex])
         random.shuffle(neighbours)
@@ -83,11 +86,32 @@ def search_random_graph(graph, total_nodes, prob, start_vertex, target_vertex):
             if random.random() < 0.05:
                 start_vertex = neighbour
                 moved = True
+                random_move += 1
+                print('random move', start_vertex, target_vertex, 'at', search_time)
                 break
         if not moved and not found_target:
             start_vertex = random.choice(neighbours)
+    print('total time taken to find target', search_time)
+    print('number of random moves', random_move)
     return search_time
 
+n = 1000
+p = 0.1
+
+graph = make_random_graph(n,p)
+
+search_time = {}
+avg_search_time = 0
+start_v = random.randint(0,n - 1)
+target_u = random.randint(0,n - 1)
+
+for i in range(100):
+    search_time[(start_v,target_u, i)]= search_random_graph(graph,n,p,start_v,target_u)
+    avg_search_time += search_random_graph(graph,n,p,start_v,target_u)
+
+print(graph)
+print(search_time)
+print(avg_search_time / 100)
 
 
 
