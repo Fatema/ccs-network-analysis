@@ -166,8 +166,6 @@ def search_ring_group_graph(graph, m, k, p, q, v, t):
         adjacent_neighbour = -1
         closest_not_adjacent_v = -1
 
-        print(v,t,num_iterations)
-
         for i in range(num_iterations):
             u = neighbours[i]
             u_group = u // k
@@ -223,14 +221,109 @@ def search_ring_group_graph(graph, m, k, p, q, v, t):
     return search_time
 
 
+def search_ring_group_graph_v2(graph, m, k, p, q, v, t):
+    search_time = 0
+
+    t_group = t // k
+
+    max_num_edges_p = k**2 * m + k*(k-1)*m / 2
+    max_num_edges = m*k * (m*k - 1) / 2
+
+    avg_num_edges_p = max_num_edges_p * p
+    avg_num_edges_q = (max_num_edges - max_num_edges_p) * q
+
+    while True:
+        # find the group label of the vertex
+        v_group = v // k
+
+        # reset moved flag
+        moved = False
+
+        # if the vertex id equals the target id stop
+        if v == t: break
+
+        # set d(v) for the vertex (number of neighbours)
+        neighbours_num = len(graph[v])
+
+        # set the neighbours array and shuffle it
+        neighbours = list(graph[v])
+        random.shuffle(neighbours)
+
+        adjacent_groups = False
+
+        # set the number of iterations and the adjacent flag
+        if v_group == t_group or abs(v_group - t_group) == 0 or abs(v_group-t_group) == m - 1:
+            num_iterations = max(int(round(neighbours_num * avg_num_edges_p / (avg_num_edges_p + avg_num_edges_q))),1)
+            adjacent_groups = True
+        else:
+            num_iterations = max(int(round(neighbours_num * avg_num_edges_q / (avg_num_edges_p + avg_num_edges_q))),1)
+
+        # keep track of adjacent neighbours
+        adjacent_neighbour = -1
+        closest_not_adjacent_v = -1
+
+        for i in range(num_iterations):
+            u = neighbours[i]
+            u_group = u // k
+
+            search_time += 1
+
+            if t == u:
+                v = u
+                moved = True
+                break
+
+            # check if t is adjacent to one of the neighbours
+            elif u_group == t_group or abs(u_group - t_group) == 0 or abs(u_group-t_group) == m - 1:
+                # if v is not in adjacent group, u could be connected to t with probability p
+                if not adjacent_groups:
+                    v = u
+                    moved = True
+                    break
+                else:
+                    # v is adjacent so there is a chance that t is connected to v
+                    # so record u and look at other neighbours
+                    adjacent_neighbour = u
+            # if t is not adjacent to u and v, see if u is closer to t than v in terms of groups
+            else:
+                abs_u_t = abs(t_group - u_group)
+                abs_v_t = abs(t_group - v_group)
+
+                diff_u_t = min(abs_u_t, m - abs_u_t)
+                diff_v_t = min(abs_v_t, m - abs_v_t)
+
+                # as this is a ring both sides must be considered
+                if diff_u_t < diff_v_t:
+                    closest_not_adjacent_v = u
+                    if random.random() < q:
+                        v = u
+                        moved = True
+                        break
+                # u is not closer to t than v and there hasn't been a vertex found to be close
+                elif closest_not_adjacent_v == -1:
+                    # if u and v are in the same group
+                    if diff_v_t == diff_u_t:
+                        closest_not_adjacent_v = u
+                    # if non of the neighbours are close to t or in the same group as v
+                    elif adjacent_neighbour == -1:
+                        closest_not_adjacent_v = u
+        if not moved:
+            # no adjacent neighbour to t is found in terms of group
+            if adjacent_neighbour == -1:
+                v = closest_not_adjacent_v
+            else:
+                v = adjacent_neighbour
+    return search_time
+
+
 def run_search_ring_group_graph():
-    m = 5
-    k = 10
+    m = 50
+    k = 20
     p = 0.15
     q = 0.05
 
-    t1 = 1
-    t2 = 1
+    t1 = 100
+    t2 = 1000
 
     graph = make_ring_group_graph(m,k,p,q)
     print(graph)
@@ -241,20 +334,24 @@ def run_search_ring_group_graph():
             return
 
     search_time = {}
+    search_time_v2 = {}
 
     for i in range(t1):
         print(i)
-        start_v = 32  # random.randint(0, m * k - 1)
-        target_u = 16  # random.randint(0, m * k - 1)
+        start_v = random.randint(0, m * k - 1)
+        target_u = random.randint(0, m * k - 1)
 
         avg_search_time = 0
+        avg_search_time_v2 = 0
 
         for j in range(t2):
             avg_search_time += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
+            avg_search_time_v2 += search_ring_group_graph_v2(graph,m,k,p,q,start_v,target_u)
 
         search_time[(start_v,target_u,i)] = avg_search_time / t2
+        search_time_v2[(start_v,target_u,i)] = avg_search_time_v2 / t2
 
-    return search_time, sum(search_time.values())/ t1
+    return search_time, sum(search_time.values())/ t1, search_time_v2, sum(search_time_v2.values())/ t1
 
 
 run_search_ring_group_graph()
