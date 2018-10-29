@@ -65,14 +65,49 @@ def make_ring_group_graph(m, k, p, q):
     return ring_group_graph
 
 
-def search_random_graph(graph, total_nodes, prob, start_vertex, target_vertex):
+def search_random_graph(graph, total_nodes, prob, s, t):
+    search_time = 0
+    average_neighbour_num = total_nodes * prob
+    random_move = 0
+
+    while True:
+        moved = False
+
+        if s == t: break
+
+        neighbours_num = len(graph[s])
+        neighbours = list(graph[s])
+        random.shuffle(neighbours)
+
+        # at max iterate until the average number of neighbours
+        num_iterations = max(average_neighbour_num, neighbours_num)
+
+        for i in range(num_iterations):
+            u = neighbours[i]
+            search_time += 1
+            if t == u:
+                s = u
+                moved = True
+                break
+            # probability that an edge might exist between u and t
+            if random.random() < p:
+                s = u
+                moved = True
+                random_move += 1
+                break
+
+        if not moved:
+            s = random.choice(neighbours)
+    # print('total time taken to find target', search_time)
+    # print('number of random moves', random_move)
+    return search_time
+
+
+def search_random_graph_v2(graph, total_nodes, prob, start_vertex, target_vertex):
     search_time = 0
     average_neighbour_num = total_nodes * prob # Todo look into how you can possibly use this to improve the search time
     found_target = False
-    random_move = 0
     while not found_target:
-        moved = False
-        print('current search time',search_time,'for', start_vertex,target_vertex)
         if start_vertex == target_vertex: break
         neighbours_num = len(graph[start_vertex])
         neighbours = list(graph[start_vertex])
@@ -83,35 +118,174 @@ def search_random_graph(graph, total_nodes, prob, start_vertex, target_vertex):
             if target_vertex == neighbour:
                 found_target = True
                 break
-            if random.random() < 0.05:
+            else:
                 start_vertex = neighbour
-                moved = True
-                random_move += 1
-                print('random move', start_vertex, target_vertex, 'at', search_time)
                 break
-        if not moved and not found_target:
-            start_vertex = random.choice(neighbours)
-    print('total time taken to find target', search_time)
-    print('number of random moves', random_move)
+    # print('total time taken to find target', search_time)
     return search_time
 
-n = 1000
-p = 0.1
 
-graph = make_random_graph(n,p)
+def search_ring_group_graph(graph, m, k, p, q, v, t):
+    search_time = 0
 
-search_time = {}
-avg_search_time = 0
-start_v = random.randint(0,n - 1)
-target_u = random.randint(0,n - 1)
+    t_group = t // k
 
-for i in range(100):
-    search_time[(start_v,target_u, i)]= search_random_graph(graph,n,p,start_v,target_u)
-    avg_search_time += search_random_graph(graph,n,p,start_v,target_u)
+    max_num_edges_p = k**2 * m + k*(k-1)*m / 2
+    max_num_edges = m*k * (m*k - 1) / 2
 
-print(graph)
-print(search_time)
-print(avg_search_time / 100)
+    avg_num_edges_p = max_num_edges_p * p
+    avg_num_edges_q = (max_num_edges - max_num_edges_p) * q
+
+    while True:
+        # find the group label of the vertex
+        v_group = v // k
+
+        # reset moved flag
+        moved = False
+
+        # if the vertex id equals the target id stop
+        if v == t: break
+
+        # set d(v) for the vertex (number of neighbours)
+        neighbours_num = len(graph[v])
+
+        # set the neighbours array and shuffle it
+        neighbours = list(graph[v])
+        random.shuffle(neighbours)
+
+        adjacent_groups = False
+
+        # set the number of iterations and the adjacent flag
+        if v_group == t_group or abs(v_group - t_group) == 0 or abs(v_group-t_group) == m - 1:
+            num_iterations = max(int(round(neighbours_num * avg_num_edges_p / (avg_num_edges_p + avg_num_edges_q))),1)
+            adjacent_groups = True
+        else:
+            num_iterations = max(int(round(neighbours_num * avg_num_edges_q / (avg_num_edges_p + avg_num_edges_q))),1)
+
+        # keep track of adjacent neighbours
+        adjacent_neighbour = -1
+        closest_not_adjacent_v = -1
+
+        print(v,t,num_iterations)
+
+        for i in range(num_iterations):
+            u = neighbours[i]
+            u_group = u // k
+
+            search_time += 1
+
+            if t == u:
+                v = u
+                moved = True
+                break
+
+            # check if t is adjacent to one of the neighbours
+            elif u_group == t_group or abs(u_group - t_group) == 0 or abs(u_group-t_group) == m - 1:
+                # if v is not in adjacent group, u could be connected to t with probability p
+                if not adjacent_groups and random.random() < p:
+                    v = u
+                    moved = True
+                    break
+                else:
+                    # v is adjacent so there is a chance that t is connected to v
+                    # so record u and look at other neighbours
+                    adjacent_neighbour = u
+
+            # if t is not adjacent to u and v, see if u is closer to t than v in terms of groups
+            else:
+                abs_u_t = abs(t_group - u_group)
+                abs_v_t = abs(t_group - v_group)
+
+                diff_u_t = min(abs_u_t, m - abs_u_t)
+                diff_v_t = min(abs_v_t, m - abs_v_t)
+
+                # as this is a ring both sides must be considered
+                if diff_u_t < diff_v_t:
+                    closest_not_adjacent_v = u
+                    if random.random() < q:
+                        v = u
+                        moved = True
+                        break
+                # u is not closer to t than v and there hasn't been a vertex found to be close
+                elif closest_not_adjacent_v == -1:
+                    # if u and v are in the same group
+                    if diff_v_t == diff_u_t:
+                        closest_not_adjacent_v = u
+                    # if non of the neighbours are close to t or in the same group as v
+                    elif adjacent_neighbour == -1:
+                        closest_not_adjacent_v = u
+        if not moved:
+            # no adjacent neighbour to t is found in terms of group
+            if adjacent_neighbour == -1:
+                v = closest_not_adjacent_v
+            else:
+                v = adjacent_neighbour
+    return search_time
+
+
+def run_search_ring_group_graph():
+    m = 5
+    k = 10
+    p = 0.15
+    q = 0.05
+
+    t1 = 1
+    t2 = 1
+
+    graph = make_ring_group_graph(m,k,p,q)
+    print(graph)
+
+    for v in graph:
+        if not graph[v]:
+            print('not connected', v)
+            return
+
+    search_time = {}
+
+    for i in range(t1):
+        print(i)
+        start_v = 32  # random.randint(0, m * k - 1)
+        target_u = 16  # random.randint(0, m * k - 1)
+
+        avg_search_time = 0
+
+        for j in range(t2):
+            avg_search_time += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
+
+        search_time[(start_v,target_u,i)] = avg_search_time / t2
+
+    return search_time, sum(search_time.values())/ t1
+
+
+run_search_ring_group_graph()
+
+# n = 1000
+# p = 0.1
+#
+# graph = make_random_graph(n,p)
+#
+# search_time = {}
+# avg_search_time = 0
+# search_time_v2 = {}
+# avg_search_time_v2 = 0
+# start_v = random.randint(0,n - 1)
+# target_u = random.choice(list(graph[start_v]))
+#
+# for i in range(1000):
+#     print(i)
+#     search_time[(start_v,target_u, i)] = search_random_graph(graph,n,p,start_v,target_u)
+#     search_time_v2[(start_v,target_u, i)] = search_random_graph_v2(graph,n,p,start_v,target_u)
+#     avg_search_time += search_time[(start_v,target_u, i)]
+#     avg_search_time_v2 += search_time_v2[(start_v,target_u, i)]
+#
+# print(graph)
+# print(search_time)
+# print(avg_search_time / 1000)
+# print(search_time_v2)
+# print(avg_search_time_v2 / 1000)
+
+
+
 
 
 
