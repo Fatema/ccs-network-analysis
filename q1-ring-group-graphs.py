@@ -25,7 +25,7 @@ def make_ring_group_graph(m, k, p, q):
     """
     num_vertices = m * k
 
-    ## initialize the graph
+    # initialize the graph
     ring_group_graph = {}
 
     for i in range(num_vertices): ring_group_graph[i] = set()
@@ -36,7 +36,6 @@ def make_ring_group_graph(m, k, p, q):
         for u in range(v + 1, num_vertices):
             u_group = u // k
             random_number = random.random()
-            print(v_group,u_group)
             if v_group == u_group or (abs(v_group - u_group) % m ) == 1 or (abs(v_group - u_group) % m ) == (m - 1):
                 if random_number < p:
                     ring_group_graph[v].add(u)
@@ -189,18 +188,32 @@ def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
 #     create_degree_distribution_plot(kGreater, 'q1/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
 
 
-m = 5
+
+def rgg(m,k,p,q):
+    p_exp = p * (3 * k - 1)
+    q_exp = q * k * (m - 3)
+    total_exp = p_exp + q_exp
+    return total_exp, p_exp, q_exp
+
+
+m = 50
 k = 10
-q = 0.15
+q = 0.05
 
 # mGreater = make_p_diameter(100, m, k, q)
 # create_diameter_p_plot(mGreater, 'q1/diameter/' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
 # kGreater = make_p_diameter(100, k, m, q)
 # create_diameter_p_plot(kGreater, 'q1/diameter/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
 
-for i in range(10, int(round(100 - q * 100)), 10):
+rgg_dict = {}
+
+for i in range(10, int(round(100 - q  * 100)), 10):
     p = round(q + i / 100, 2)
+    rgg_dict[(m,k,p,q)] = rgg(m,k,p,q)
     mGreater = average_normalized_degree_distribution(100, m, k, p, q)
     create_degree_distribution_plot(mGreater, 'q1/prob-p/' + str(m) + '-' + str(k) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
+    rgg_dict[(k,m,p,q)] = rgg(k,m,p,q)
     kGreater = average_normalized_degree_distribution(100, k, m, p, q)
     create_degree_distribution_plot(kGreater, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
+
+print(rgg_dict)
