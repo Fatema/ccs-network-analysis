@@ -169,7 +169,7 @@ def make_p_diameter(t,m,k,q):
         val = average_ring_group_graph_diameter(t,m,k,p,q)
         if val is not -1:
             p_diameter[p] = val
-        print(p,p_diameter[p])
+            print(p,p_diameter[p])
         p *= 1.2
     return p_diameter
 
