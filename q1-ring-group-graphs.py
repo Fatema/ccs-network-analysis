@@ -98,7 +98,7 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
             else:
                 cumulative_dist[deg] = dist[deg]
 
-    if num_instances == 0: return - 1
+    if num_instances == 0: return -1
 
     average_dist = {}
     for deg in cumulative_dist:
@@ -158,7 +158,7 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
             print('not connected')
             continue
         diameter += nx.diameter(graph)
-    if num_instances == 0: return - 1
+    if num_instances == 0: return -1
     return round(diameter/num_instances,2)
 
 
