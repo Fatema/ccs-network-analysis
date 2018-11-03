@@ -99,12 +99,10 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
 
 
 def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_name):
-    # create arrays for plotting
-    xdata = []
-    ydata = []
-    for degree in degree_distribution:
-        xdata += [degree]
-        ydata += [degree_distribution[degree]]
+    colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+
+    i = 0
+    num_colours = len(colours)
 
     # clears plot
     plt.clf()
@@ -113,7 +111,9 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
     plt.xlabel('Degree')
     plt.ylabel('Normalized Rate')
     plt.title('Degree Distribution of ' + plot_name)
-    plt.plot(xdata, ydata, marker='.', linestyle='None', color='b')
+    for dist in degree_distribution:
+        plt.plot(list(dist.keys()), list(dist.values()), marker='.', linestyle='None', color=colours[i % num_colours])
+        i += 1
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
@@ -144,53 +144,46 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
     diameter = 0
     for i in range(t):
         graph = make_nx_ring_group_graph(m,k,p,q)
+        if not nx.is_connected(graph):
+            print('not connected')
+            continue
         diameter += nx.diameter(graph)
     return round(diameter/t,2)
 
 
 def make_p_diameter(t,m,k,q):
     p_diameter = {}
-    for i in range(5, int(round(100 - q*100)) + 5, 5):
-        p = round(q + i / 100, 2)
+    p = round(q + 5 / 100, 5)
+    while p < 1:
         p_diameter[p] = average_ring_group_graph_diameter(t,m,k,p,q)
         print(p,p_diameter[p])
+        p *= 1.2
     return p_diameter
 
 
 def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
-    # create arrays for plotting
-    xdata = []
-    ydata = []
-    for p in p_diameter:
-        xdata += [p]
-        ydata += [p_diameter[p]]
-
     # clears plot
     plt.clf()
+
+    colours = ['b','g','r','c','m','y','k']
+
+    i = 0
+    num_colours = len(colours)
 
     # plot degree distribution
     plt.xlabel('probability p')
     plt.ylabel('diameter')
-    plt.title('Diameter vs p probability of ' + plot_name)
-    plt.plot(xdata, ydata, marker='.', linestyle='None', color='b')
+    plt.title('Diameter vs p probability for ' + plot_name)
+    for dist in p_diameter:
+        plt.plot(list(dist.keys()), list(dist.values()), marker='.', linestyle='None', color=colours[i % num_colours])
+        i += 1
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
-# for i in range(1,25,5):
-#     p = round(0.25 + i/100, 2)
-#     q = round(0.25 - i/100, 2)
-#     m = 100
-#     k = 10
-#     print(m,k,p,q)
-#     mGreater = average_normalized_degree_distribution(100, m, k, p, q)
-#     create_degree_distribution_plot(mGreater, 'q1/' + str(m) + '-' + str(k) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
-#     kGreater = average_normalized_degree_distribution(100, k, m, p, q)
-#     create_degree_distribution_plot(kGreater, 'q1/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
-
-
-
 def rgg(m,k,p,q):
+    # the group itself, left and right groups then minus the vertex itself
     p_exp = p * (3 * k - 1)
+    # the totak m*k - 3*k from above
     q_exp = q * k * (m - 3)
     total_exp = p_exp + q_exp
     return total_exp, p_exp, q_exp
@@ -198,22 +191,26 @@ def rgg(m,k,p,q):
 
 m = 50
 k = 10
-q = 0.05
+q = 0.001
 
-# mGreater = make_p_diameter(100, m, k, q)
-# create_diameter_p_plot(mGreater, 'q1/diameter/' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
-# kGreater = make_p_diameter(100, k, m, q)
-# create_diameter_p_plot(kGreater, 'q1/diameter/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+mGreater_dia = []
+kGreater_dia = []
 
-rgg_dict = {}
+for i in range(3):
+    mGreater_dia += [make_p_diameter(100, m, k, q)]
+    kGreater_dia += [make_p_diameter(100, m, k, q)]
+    q *= 10
 
-for i in range(10, int(round(100 - q  * 100)), 10):
-    p = round(q + i / 100, 2)
-    rgg_dict[(m,k,p,q)] = rgg(m,k,p,q)
-    mGreater = average_normalized_degree_distribution(100, m, k, p, q)
-    create_degree_distribution_plot(mGreater, 'q1/prob-p/' + str(m) + '-' + str(k) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
-    rgg_dict[(k,m,p,q)] = rgg(k,m,p,q)
-    kGreater = average_normalized_degree_distribution(100, k, m, p, q)
-    create_degree_distribution_plot(kGreater, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(p) + '-' + str(q), 'Ring Group Graph')
+    # rgg_dict = {}
+    mGreater_dd = []
+    kGreater_dd = []
 
-print(rgg_dict)
+    for j in range(5, int(round(100 - q*100)) + 5, 5):
+        p = round(q + j / 100, 5)
+        mGreater_dd += [average_normalized_degree_distribution(100, m, k, p, q)]
+        kGreater_dd += [average_normalized_degree_distribution(100, k, m, p, q)]
+
+    create_degree_distribution_plot(kGreater_dd, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+
+create_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')
+create_diameter_p_plot(kGreater_dia, 'q1/diameter/' + str(k) + '-' + str(m), 'Ring Group Graph')

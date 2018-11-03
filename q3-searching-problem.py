@@ -346,9 +346,6 @@ def search_ring_group_graph_v3(graph, m, k, p, q, v, t):
     t_group = t // k
 
     while True:
-        # find the group label of the vertex
-        v_group = v // k
-
         # reset moved flag
         moved = False
 
@@ -406,14 +403,17 @@ def search_ring_group_graph_v3(graph, m, k, p, q, v, t):
 
 
 def run_search_ring_group_graph():
-    m = 5
-    k = 10
+    m = 10
+    k = 50
     p = 0.25
     q = 0.05
 
+    # sample of 100 pair of vertices
     t1 = 100
+    # number of iterations for searching in one pair of vertices
     t2 = 1000
-    t3 = 10
+    # number of graph instances
+    t3 = 20
 
     avg_search_time = {}
 
@@ -445,7 +445,7 @@ def run_search_ring_group_graph():
             # search_time[(start_v,target_u,i)] = avg_search_time / t2
             search_time_v3[(start_v,target_u,i)] = avg_search_time_v3 / t2
 
-        avg_search_time[l] = sum(search_time_v3.values())/ t1
+        avg_search_time[l] = int(round(sum(search_time_v3.values())/ t1))
 
     return avg_search_time
 
