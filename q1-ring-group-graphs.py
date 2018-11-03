@@ -106,7 +106,7 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
     return average_dist
 
 
-def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_name):
+def create_degree_distribution_plot(degree_distributions, plot_file_name, plot_name):
     colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
 
     i = 0
@@ -119,8 +119,13 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
     plt.xlabel('Degree')
     plt.ylabel('Normalized Rate')
     plt.title('Degree Distribution of ' + plot_name)
-    for dist in degree_distribution:
-        plt.plot(list(dist.keys()), list(dist.values()), marker='.', linestyle='None', color=colours[i % num_colours])
+    for dist in degree_distributions:
+        xdata = []
+        ydata = []
+        for deg in dist:
+            xdata += [deg]
+            ydata += [dist[deg]]
+        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours])
         i += 1
     plt.savefig('distributions/' + plot_file_name + '.png')
 
@@ -174,7 +179,7 @@ def make_p_diameter(t,m,k,q):
     return p_diameter
 
 
-def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
+def create_diameter_p_plot(p_diameter_dists, plot_file_name, plot_name):
     # clears plot
     plt.clf()
 
@@ -187,8 +192,13 @@ def create_diameter_p_plot(p_diameter, plot_file_name, plot_name):
     plt.xlabel('probability p')
     plt.ylabel('diameter')
     plt.title('Diameter vs p probability for ' + plot_name)
-    for dist in p_diameter:
-        plt.plot(list(dist.keys()), list(dist.values()), marker='.', linestyle='None', color=colours[i % num_colours])
+    for p_diameter in p_diameter_dists:
+        xdata = []
+        ydata = []
+        for p in p_diameter:
+            xdata += [p]
+            ydata += [p_diameter[p]]
+        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours])
         i += 1
     plt.savefig('distributions/' + plot_file_name + '.png')
 
