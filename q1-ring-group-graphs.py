@@ -97,6 +97,9 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
                 cumulative_dist[deg] += dist[deg]
             else:
                 cumulative_dist[deg] = dist[deg]
+
+    if num_instances == 0: return - 1
+
     average_dist = {}
     for deg in cumulative_dist:
         average_dist[deg] = cumulative_dist[deg] / num_instances
@@ -155,6 +158,7 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
             print('not connected')
             continue
         diameter += nx.diameter(graph)
+    if num_instances == 0: return - 1
     return round(diameter/num_instances,2)
 
 
@@ -162,7 +166,9 @@ def make_p_diameter(t,m,k,q):
     p_diameter = {}
     p = round(q + 5 / 100, 5)
     while p < 1:
-        p_diameter[p] = average_ring_group_graph_diameter(t,m,k,p,q)
+        val = average_ring_group_graph_diameter(t,m,k,p,q)
+        if val is not -1:
+            p_diameter[p] = val
         print(p,p_diameter[p])
         p *= 1.2
     return p_diameter
@@ -214,8 +220,12 @@ for i in range(3):
 
     for j in range(5, int(round(100 - q*100)) + 5, 5):
         p = round(q + j / 100, 5)
-        mGreater_dd += [average_normalized_degree_distribution(100, m, k, p, q)]
-        kGreater_dd += [average_normalized_degree_distribution(100, k, m, p, q)]
+        val1 = average_normalized_degree_distribution(100, m, k, p, q)
+        if val1 is not -1:
+            mGreater_dd += [val1]
+        val2 = average_normalized_degree_distribution(100, k, m, p, q)
+        if val2 is not -1:
+            kGreater_dd += [val2]
 
     create_degree_distribution_plot(kGreater_dd, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
 
