@@ -83,8 +83,13 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
     in group of 100 of size 20 with edge probabilities 0.35 and 0.15 by taking k trials for each data point"""
     cumulative_dist = {}
     num_nodes = m * k
+    num_instances = t
     for i in range(t):
-        graph = make_ring_group_graph(m, k, p ,q)
+        graph = make_nx_ring_group_graph(m, k, p, q)
+        if not nx.is_connected(graph):
+            num_instances -= 1
+            print('not connected')
+            continue
         #find the distribution
         dist = normalized_degree_distribution(graph, num_nodes)
         for deg in dist:
@@ -94,7 +99,7 @@ def average_normalized_degree_distribution(t, m, k, p ,q):
                 cumulative_dist[deg] = dist[deg]
     average_dist = {}
     for deg in cumulative_dist:
-        average_dist[deg] = cumulative_dist[deg] / t
+        average_dist[deg] = cumulative_dist[deg] / num_instances
     return average_dist
 
 
@@ -142,13 +147,15 @@ def make_nx_ring_group_graph(m, k, p, q):
 
 def average_ring_group_graph_diameter(t,m,k,p,q):
     diameter = 0
+    num_instances = t
     for i in range(t):
         graph = make_nx_ring_group_graph(m,k,p,q)
         if not nx.is_connected(graph):
+            num_instances -= 1
             print('not connected')
             continue
         diameter += nx.diameter(graph)
-    return round(diameter/t,2)
+    return round(diameter/num_instances,2)
 
 
 def make_p_diameter(t,m,k,q):
