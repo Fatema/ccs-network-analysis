@@ -195,7 +195,7 @@ def create_vertex_brilliance_distribution_plot(brilliance_distribution, plot_fil
     plt.xlabel('Vertex Brilliance')
     plt.ylabel('Normalized Rate')
     plt.title('Vertex Brilliance Distribution of ' + plot_name)
-    plt.plot(xdata, ydata, marker='.', linestyle='None', color='b')
+    plt.plot(xdata, ydata, marker='.', linestyle='None', color='r')
     plt.savefig('distributions/q2/' + plot_file_name + '.png')
 
 
@@ -286,14 +286,14 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 #
 # print(vertex_brilliance_distribution(graph))
 
-
-# vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
-# vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph,
-#                                                                                             len(coauthorship_graph.keys()))
-# create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,
-#                                                 'coauthorship-vertex-brilliance','coauthorship')
-
-
+# def main_coauthorship_graph():
+#     vertices_dict, coauthorship_graph = load_graph("coauthorship.txt")
+#     vertex_brilliance_distribution_coauthorship = normalized_vertex_brilliance_distribution(coauthorship_graph,
+#                                                                                                 len(coauthorship_graph.keys()))
+#     create_vertex_brilliance_distribution_plot(vertex_brilliance_distribution_coauthorship,
+#                                                     'coauthorship-vertex-brilliance','coauthorship')
+#
+#
 # n = 1559
 # m = 30
 #
@@ -328,31 +328,31 @@ def create_degree_distribution_plot(degree_distribution, plot_file_name, plot_na
 
 # (60,26,0.22,0.03), (39,40,0.17,0.03), (120,13,0.26,0.04) give almost the same numbers of nodes and edges as coauthorhip graph
 
-# m = 120
-# k = 13
-# p = 0.26
-# q = 0.04
-#
-# t = 100
-#
-# degree_distributions = []
-# brilliance_distributions = []
-#
-# for i in range(t):
-#     print(i)
-#     ring_group_graph = make_ring_group_graph(m, k, p, q)
-#     degree_distributions += [normalized_degree_distribution(ring_group_graph, m * k)]
-#     brilliance_distributions += [normalized_vertex_brilliance_distribution(ring_group_graph, m * k)]
-# ring_group_graph_dd = average_normalized_distribution(degree_distributions)
-# create_degree_distribution_plot(ring_group_graph_dd,
-#                                            'ring_group_graph-' + str(m) + '-' + str(k) + '-'
-#                                            + str(p) + '-' + str(q) + '-degree',
-#                                            'Ring Group Graph')
-# ring_group_graph_vb = average_normalized_distribution(brilliance_distributions)
-# create_vertex_brilliance_distribution_plot(ring_group_graph_vb,
-#                                            'ring_group_graph-' + str(m) + '-' + str(k) + '-'
-#                                            + str(p) + '-' + str(q) + '-brilliance',
-#                                            'Ring Group Graph')
+m = 60
+k = 26
+p = 0.22
+q = 0.03
+
+t = 100
+
+degree_distributions = []
+brilliance_distributions = []
+
+for i in range(t):
+    print(i)
+    ring_group_graph = make_ring_group_graph(m, k, p, q)
+    degree_distributions += [normalized_degree_distribution(ring_group_graph, m * k)]
+    brilliance_distributions += [normalized_vertex_brilliance_distribution(ring_group_graph, m * k)]
+ring_group_graph_dd = average_normalized_distribution(degree_distributions)
+create_degree_distribution_plot(ring_group_graph_dd,
+                                           'ring_group_graph-' + str(m) + '-' + str(k) + '-'
+                                           + str(p) + '-' + str(q) + '-degree',
+                                           'Ring Group Graph')
+ring_group_graph_vb = average_normalized_distribution(brilliance_distributions)
+create_vertex_brilliance_distribution_plot(ring_group_graph_vb,
+                                           'ring_group_graph-' + str(m) + '-' + str(k) + '-'
+                                           + str(p) + '-' + str(q) + '-brilliance',
+                                           'Ring Group Graph')
 
 # ring_group_graph = make_ring_group_graph(m, k, p, q)
 # ring_group_graph = make_ring_group_graph(k, m, p, q)

@@ -251,9 +251,11 @@ def search_ring_group_graph(graph, m, k, p, q, v, t):
                     break
 
         if not moved:
-            # no adjacent neighbour to t is found in terms of group
             if adjacent_neighbour == -1:
-                v = closest_not_adjacent_v
+                if closest_not_adjacent_v == -1:
+                    v = neighbours[neighbours_num - 1]
+                else:
+                    v = closest_not_adjacent_v
             else:
                 v = adjacent_neighbour
     return search_time
@@ -358,9 +360,54 @@ def plot_search_time_num_instances(search_time_ins, plot_file_name, plot_name):
 
     # plot degree distribution
     plt.xlabel('search time')
-    plt.ylabel('normalized number of instances')
+    plt.ylabel('number of instances')
     plt.title('Search time for ' + plot_name)
     plt.plot(xdata, ydata, marker='.', linestyle='None', color='g')
+    plt.savefig('distributions/q3/' + plot_file_name + '.png')
+
+
+def plot_search_time_q(search_time_ins, plot_file_name, plot_name):
+    # clears plot
+    plt.clf()
+
+    xdata = []
+    ydata = []
+
+    for search_time in search_time_ins:
+        xdata += [search_time]
+        ydata += [search_time_ins[search_time]]
+
+    # plot degree distribution
+    plt.xlabel('q')
+    plt.ylabel('search time')
+    plt.title('Search time vs q for ' + plot_name)
+    plt.plot(xdata, ydata, marker='.', linestyle='None', color='g')
+    plt.savefig('distributions/q3/' + plot_file_name + '.png')
+
+
+def plot_n_search_time_p(p_search_time_dists, plot_file_name, plot_name):
+    # clears plot
+    plt.clf()
+
+    colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+
+    i = 0
+    num_colours = len(colours)
+
+    # plot degree distribution
+    plt.xlabel('p')
+    plt.ylabel('search time')
+    plt.title('Search time vs p for ' + plot_name)
+    for dist in p_search_time_dists:
+        q, p_search_time = dist
+        xdata = []
+        ydata = []
+        for p in p_search_time:
+            xdata += [p]
+            ydata += [p_search_time[p]]
+        plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = ' + q)
+        i += 1
+    plt.legend(loc='upper right')
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
 
 
@@ -375,7 +422,7 @@ def plot_n_search_time_num_instances(all_times, plot_file_name, plot_name):
 
     # plot degree distribution
     plt.xlabel('search time')
-    plt.ylabel('normalized number of instances')
+    plt.ylabel('number of instances')
     plt.title('Search time for ' + plot_name)
     for time in all_times:
         param, search_time_ins = time
@@ -386,7 +433,7 @@ def plot_n_search_time_num_instances(all_times, plot_file_name, plot_name):
             ydata += [search_time_ins[search_time]]
         plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label= 'params = ' + str(param))
         i += 1
-    plt.legend(loc='upper left')
+    plt.legend(loc='upper right')
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
 
 
@@ -401,6 +448,7 @@ def run_search_ring_group_graph():
     t3 = 50
 
     all_times = []
+    search_time_q = {}
 
     for param in params:
         m, k, p, q = param
@@ -418,48 +466,112 @@ def run_search_ring_group_graph():
 
             print(graph)
 
-            # search_time = {}
-            search_time_v3 = {}
+            search_time_v1 = {}
+            # search_time_v3 = {}
 
             for i in range(t1):
                 start_v = random.randint(0, m * k - 1)
                 target_u = random.randint(0, m * k - 1)
                 print(l,i, start_v, target_u)
-                # avg_search_time = 0
-                avg_search_time_v3 = 0
+                avg_search_time_v1 = 0
+                # avg_search_time_v3 = 0
 
                 for j in range(t2):
-                    # avg_search_time += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
-                    avg_search_time_v3 += search_ring_group_graph_v3(graph,m,k,p,q,start_v,target_u)
+                    avg_search_time_v1 += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
+                    # avg_search_time_v3 += search_ring_group_graph_v3(graph,m,k,p,q,start_v,target_u)
 
-                # search_time[(start_v,target_u,i)] = avg_search_time / t2
-                search_time_v3[(start_v,target_u,i)] = avg_search_time_v3 / t2
+                search_time_v1[(start_v,target_u,i)] = avg_search_time_v1 / t2
+                # search_time_v3[(start_v,target_u,i)] = avg_search_time_v3 / t2
 
-            avg_search_time[l] = int(round(sum(search_time_v3.values())/ t1))
+            # avg_search_time[l] = int(round(sum(search_time_v3.values())/ t1))
+            avg_search_time[l] = int(round(sum(search_time_v1.values())/ t1))
 
         search_time_dist = search_time_distribution(avg_search_time)
 
         plot_search_time_num_instances(search_time_dist, 'ring_group_graph-' + str(m) + '-'
-                                   + str(k) + '-' + str(p)+ '-' + str(q) + '-search_time', 'Ring Group Graph')
+                                   + str(k) + '-' + str(p)+ '-' + str(q) + '-search_time_v1', 'Ring Group Graph')
 
         all_times += [(param, search_time_dist)]
+        search_time_q[q] = sum(avg_search_time.values()) / t3
 
-    plot_n_search_time_num_instances(all_times, 'ring_group_graph-search_time', 'Ring Group Graph')
+    plot_n_search_time_num_instances(all_times, 'ring_group_graph-search_time_v1', 'Ring Group Graph')
+    plot_search_time_q(search_time_q, 'ring_group_graph-search_time-q_v1', 'Ring Group Graph')
+    return all_times
+
+
+def run_search_ring_group_graph_p():
+    params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+
+    # sample of 50 pair of vertices
+    t1 = 50
+    # number of iterations for searching in one pair of vertices
+    t2 = 10
+    # number of graph instances
+    t3 = 20
+
+    all_times = []
+    search_time_p_dists = []
+
+    for param in params:
+        m, k, q = param
+
+        search_time_p = {}
+
+        p = round(q + 1 / 10, 7)
+
+        print(m, k, p, q)
+
+        while p < 1:
+
+            avg_search_time = {}
+
+            for l in range(t3):
+                graph = make_nx_ring_group_graph(m,k,p,q)
+
+                if not nx.is_connected(graph):
+                    print('not connected')
+                    continue
+
+                graph = nx.to_dict_of_lists(graph)
+
+                search_time_v1 = {}
+
+                for i in range(t1):
+                    start_v = random.randint(0, m * k - 1)
+                    target_u = random.randint(0, m * k - 1)
+
+                    avg_search_time_v1 = 0
+
+                    for j in range(t2):
+                        avg_search_time_v1 += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
+
+                    search_time_v1[(start_v,target_u,i)] = avg_search_time_v1 / t2
+
+                avg_search_time[l] = int(round(sum(search_time_v1.values())/ t1))
+
+            if avg_search_time.values() is not {}:
+                search_time_p[p] = sum(avg_search_time.values()) / t3
+                print(p, search_time_p[p])
+
+            p = round(p * 1.2, 7)
+
+        search_time_p_dists += [(q,search_time_p)]
+
+    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p', 'Ring Group Graph')
+
     return all_times
 
 
 def run_search_random_graph():
-    params = [(1000, 0.1), (10000, 0.1), (100, 0.1)]
-
     n = 1000
     p = 0.1
 
-    # sample of 100 pair of vertices
+    # sample of 50 pair of vertices
     t1 = 50
     # number of iterations for searching in one pair of vertices
-    t2 = 50
+    t2 = 10
     # number of graph instances
-    t3 = 50
+    t3 = 20
 
     ins_avg_search_time = {}
     ins_avg_search_time_v3 = {}
@@ -472,8 +584,6 @@ def run_search_random_graph():
             continue
 
         graph = nx.to_dict_of_lists(graph)
-
-        print(graph)
 
         search_time = {}
         search_time_v3 = {}
@@ -506,7 +616,7 @@ def run_search_random_graph():
     return ins_avg_search_time, ins_avg_search_time_v3
 
 
-run_search_ring_group_graph()
+run_search_ring_group_graph_p()
 
 
 

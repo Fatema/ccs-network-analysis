@@ -203,7 +203,7 @@ def create_n_diameter_p_plot(p_diameter_dists, plot_file_name, plot_name):
             ydata += [p_diameter[p]]
         plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = '+q)
         i += 1
-    plt.legend(loc='upper left')
+    plt.legend(loc='upper right')
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
