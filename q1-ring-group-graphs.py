@@ -229,7 +229,7 @@ def main():
 
     for i in range(4):
         mGreater_dia += [(q, make_p_diameter(25, m, k, q))]
-        kGreater_dia += [(q, make_p_diameter(25, m, k, q))]
+        kGreater_dia += [(q, make_p_diameter(25, k, m, q))]
         q *= 10
 
     create_n_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')

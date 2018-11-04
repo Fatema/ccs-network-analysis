@@ -261,6 +261,89 @@ def search_ring_group_graph(graph, m, k, p, q, v, t):
     return search_time
 
 
+def search_ring_group_graph_v2(graph, m, k, p, q, v, t):
+    search_time = 0
+
+    t_group = t // k
+
+    # make it less likely to more to a node if p is more 0.5 as the graph is more connected
+    if p > 0.5:
+        p = 1 - p
+
+    while True:
+        # find the group label of the vertex
+        v_group = v // k
+
+        # reset moved flag
+        moved = False
+
+        # if the vertex id equals the target id stop
+        if v == t: break
+
+        # set d(v) for the vertex (number of neighbours)
+        neighbours_num = len(graph[v])
+
+        # set the neighbours array and shuffle it
+        neighbours = list(graph[v])
+        random.shuffle(neighbours)
+
+        adjacent_groups = False
+
+        # keep track of adjacent neighbours
+        adjacent_neighbour = -1
+        closest_not_adjacent_v = -1
+
+        for i in range(neighbours_num):
+            u = neighbours[i]
+            u_group = u // k
+
+            search_time += 1
+
+            if t == u:
+                v = u
+                moved = True
+                break
+
+            # check if t is adjacent to one of the neighbours
+            elif u_group == t_group or abs(u_group - t_group) == 0 or abs(u_group-t_group) == m - 1:
+                # if v is not in adjacent group, u could be connected to t with probability p
+                if not adjacent_groups and random.random() < p:
+                    v = u
+                    moved = True
+                    break
+                else:
+                    # v is adjacent so there is a chance that t is connected to v
+                    # so record u and look at other neighbours
+                    adjacent_neighbour = u
+
+            # if t is not adjacent to u and v, see if u is closer to t than v in terms of groups
+            else:
+                abs_u_t = abs(t_group - u_group)
+                abs_v_t = abs(t_group - v_group)
+
+                diff_u_t = min(abs_u_t, m - abs_u_t)
+                diff_v_t = min(abs_v_t, m - abs_v_t)
+
+                # as this is a ring both sides must be considered
+                if diff_u_t < diff_v_t:
+                    closest_not_adjacent_v = u
+
+                if random.random() < q:
+                    v = u
+                    moved = True
+                    break
+
+        if not moved:
+            if adjacent_neighbour == -1:
+                if closest_not_adjacent_v == -1:
+                    v = neighbours[neighbours_num - 1]
+                else:
+                    v = closest_not_adjacent_v
+            else:
+                v = adjacent_neighbour
+    return search_time
+
+
 def search_ring_group_graph_v3(graph, m, k, p, q, v, t):
     search_time = 0
 
@@ -321,6 +404,7 @@ def search_ring_group_graph_v3(graph, m, k, p, q, v, t):
             else:
                 v = adjacent_neighbour
     return search_time
+
 
 def search_time_distribution(search_time_instances):
     search_distribution = {}
@@ -500,8 +584,8 @@ def run_search_ring_group_graph():
 
 
 def run_search_ring_group_graph_p():
-    params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
-    # params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
+    # params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+    params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
@@ -527,6 +611,8 @@ def run_search_ring_group_graph_p():
             avg_search_time = {}
 
             for l in range(t3):
+                print(l)
+
                 graph = make_nx_ring_group_graph(m,k,p,q)
 
                 if not nx.is_connected(graph):
@@ -544,7 +630,7 @@ def run_search_ring_group_graph_p():
                     avg_search_time_v1 = 0
 
                     for j in range(t2):
-                        avg_search_time_v1 += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
+                        avg_search_time_v1 += search_ring_group_graph_v2(graph,m,k,p,q,start_v,target_u)
 
                     search_time_v1[(start_v,target_u,i)] = avg_search_time_v1 / t2
 
@@ -558,9 +644,9 @@ def run_search_ring_group_graph_p():
 
         search_time_p_dists += [(q,search_time_p)]
 
-    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p-kGreater', 'Ring Group Graph')
+    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time_v2-p-mGreater', 'Ring Group Graph')
 
-    return all_times
+    return search_time_p_dists
 
 
 def run_search_random_graph():
