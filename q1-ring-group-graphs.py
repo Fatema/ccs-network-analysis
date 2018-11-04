@@ -166,7 +166,9 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
             num_instances -= 1
             print('not connected')
             continue
-        diameter += nx.diameter(graph)
+        temp = nx.diameter(graph)
+        print(temp)
+        diameter += temp
     if num_instances == 0: return -1
     return round(diameter/num_instances,2)
 

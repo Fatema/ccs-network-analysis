@@ -500,8 +500,8 @@ def run_search_ring_group_graph():
 
 
 def run_search_ring_group_graph_p():
-    # params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
-    params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
+    params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+    # params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
@@ -558,7 +558,7 @@ def run_search_ring_group_graph_p():
 
         search_time_p_dists += [(q,search_time_p)]
 
-    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p-mGreater', 'Ring Group Graph')
+    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p-kGreater', 'Ring Group Graph')
 
     return all_times
 
