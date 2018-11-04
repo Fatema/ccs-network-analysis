@@ -228,8 +228,8 @@ def main():
     kGreater_dia = []
 
     for i in range(4):
-        mGreater_dia += [(q, make_p_diameter(100, m, k, q))]
-        kGreater_dia += [(q, make_p_diameter(100, m, k, q))]
+        mGreater_dia += [(q, make_p_diameter(25, m, k, q))]
+        kGreater_dia += [(q, make_p_diameter(25, m, k, q))]
         q *= 10
 
     create_n_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')
@@ -244,10 +244,10 @@ def main():
 
         for j in range(5, int(round(100 - q*100)), 10):
             p = round(q + j / 100, 7)
-            val1 = average_normalized_degree_distribution(100, m, k, p, q)
+            val1 = average_normalized_degree_distribution(25, m, k, p, q)
             if val1 is not -1:
                 mGreater_dd += [(m,k,p,q,val1)]
-            val2 = average_normalized_degree_distribution(100, k, m, p, q)
+            val2 = average_normalized_degree_distribution(25, k, m, p, q)
             if val2 is not -1:
                 kGreater_dd += [(m,k,p,q,val2)]
             print(i,j,p)
@@ -268,10 +268,10 @@ def main():
         temp_q = q
 
         while p > temp_q:
-            val1 = average_normalized_degree_distribution(100, m, k, p, temp_q)
+            val1 = average_normalized_degree_distribution(25, m, k, p, temp_q)
             if val1 is not -1:
                 mGreater_dd += [(m, k, p, temp_q, val1)]
-            val2 = average_normalized_degree_distribution(100, k, m, p, temp_q)
+            val2 = average_normalized_degree_distribution(25, k, m, p, temp_q)
             if val2 is not -1:
                 kGreater_dd += [(m, k, p, temp_q, val2)]
 
