@@ -405,7 +405,7 @@ def plot_n_search_time_p(p_search_time_dists, plot_file_name, plot_name):
         for p in p_search_time:
             xdata += [p]
             ydata += [p_search_time[p]]
-        plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = ' + q)
+        plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = ' + str(q))
         i += 1
     plt.legend(loc='upper right')
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
@@ -500,7 +500,8 @@ def run_search_ring_group_graph():
 
 
 def run_search_ring_group_graph_p():
-    params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+    # params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+    params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
@@ -557,7 +558,7 @@ def run_search_ring_group_graph_p():
 
         search_time_p_dists += [(q,search_time_p)]
 
-    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p', 'Ring Group Graph')
+    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p-mGreater', 'Ring Group Graph')
 
     return all_times
 
