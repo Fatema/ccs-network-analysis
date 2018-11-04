@@ -171,7 +171,7 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
 
 def make_p_diameter(t,m,k,q):
     p_diameter = {}
-    p = round(q + 5 / 100, 7)
+    p = round(q + 1 / 10, 7)
     while p < 1:
         val = average_ring_group_graph_diameter(t,m,k,p,q)
         if val is not -1:
@@ -218,12 +218,12 @@ def rgg(m,k,p,q):
 def main():
     m = 50
     k = 20
-    q = 0.00001
+    q = 0.0001
 
     mGreater_dia = []
     kGreater_dia = []
 
-    for i in range(5):
+    for i in range(4):
         mGreater_dia += [(q, make_p_diameter(100, m, k, q))]
         kGreater_dia += [(q, make_p_diameter(100, m, k, q))]
         q *= 10
@@ -231,14 +231,14 @@ def main():
     create_n_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')
     create_n_diameter_p_plot(kGreater_dia, 'q1/diameter/' + str(k) + '-' + str(m), 'Ring Group Graph')
 
-    q = 0.00001
+    q = 0.0001
 
-    for i in range(5):
+    for i in range(4):
         # rgg_dict = {}
         mGreater_dd = []
         kGreater_dd = []
 
-        for j in range(5, int(round(100 - q*100)) + 5, 10):
+        for j in range(5, int(round(100 - q*100)), 10):
             p = round(q + j / 100, 7)
             val1 = average_normalized_degree_distribution(100, m, k, p, q)
             if val1 is not -1:
@@ -246,6 +246,7 @@ def main():
             val2 = average_normalized_degree_distribution(100, k, m, p, q)
             if val2 is not -1:
                 kGreater_dd += [(m,k,p,q,val2)]
+            print(i,j,p)
 
         create_n_degree_distribution_plot(mGreater_dd, 'q1/prob-p/' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
         create_n_degree_distribution_plot(kGreater_dd, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
@@ -272,6 +273,7 @@ def main():
 
             temp_q += 0.05
             p = 0.5 - temp_q
+            print(i,p,temp_q)
 
         create_n_degree_distribution_plot(kGreater_dd, 'q1/' + str(k) + '-' + str(m), 'Ring Group Graph')
         create_n_degree_distribution_plot(mGreater_dd, 'q1/' + str(m) + '-' + str(k), 'Ring Group Graph')
