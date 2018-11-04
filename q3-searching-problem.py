@@ -360,7 +360,7 @@ def plot_search_time_num_instances(search_time_ins, plot_file_name, plot_name):
     plt.xlabel('search time')
     plt.ylabel('normalized number of instances')
     plt.title('Search time for ' + plot_name)
-    plt.plot(xdata, ydata, marker='.', linestyle='-', color='g')
+    plt.plot(xdata, ydata, marker='.', linestyle='None', color='g')
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
 
 
@@ -384,14 +384,14 @@ def plot_n_search_time_num_instances(all_times, plot_file_name, plot_name):
         for search_time in search_time_ins:
             xdata += [search_time]
             ydata += [search_time_ins[search_time]]
-        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label= 'graph param = ' + str(param))
+        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label= 'params = ' + str(param))
         i += 1
     plt.legend(loc='upper left')
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
 
 
 def run_search_ring_group_graph():
-    params = [(20,50,0.45,0.001), (20,50,0.45,0.0001), (20,50,0.45,0.01)]
+    params = [(20,50,0.45,0.01), (20,50,0.45,0.001), (20,50,0.45,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
