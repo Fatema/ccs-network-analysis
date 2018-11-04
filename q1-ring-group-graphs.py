@@ -126,9 +126,10 @@ def create_n_degree_distribution_plot(degree_distributions, plot_file_name, plot
         for deg in dd:
             xdata += [deg]
             ydata += [dist[deg]]
-        plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='p = ' + str(p) + ', q = ' + str(q))
+        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label='p = ' + str(p)
+                                                                                                + ', q = ' + str(q))
         i += 1
-    plt.legend(loc='upper left')
+    plt.legend(loc='upper right')
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
