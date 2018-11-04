@@ -159,6 +159,7 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
     diameter = 0
     num_instances = t
     for i in range(t):
+        print('diameter calculations', i, p, q)
         graph = make_nx_ring_group_graph(m,k,p,q)
         if not nx.is_connected(graph):
             num_instances -= 1
