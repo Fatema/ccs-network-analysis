@@ -1,6 +1,8 @@
 \documentclass[11pt,a4paper,notitlepage]{article}
 
     \usepackage[margin=1in]{geometry}
+    \usepackage{algorithm}
+    \usepackage{algpseudocode}
 
     \title{CCS - Network Analysis Assignment}
     \author{Fatema Alkhanaizi}
@@ -55,6 +57,17 @@ Note that the array of neighbours of a vertex should not be considered ordered. 
 
 \subsection*{Search Random Graph}
 for Random Graphs, each vertex is labelled with a unique integer between 1 and n.
+\subsubsection*{Algorithm}
+
+\begin{algorithmic}
+    \If {$i\geq maxval$}
+        \State $i\gets 0$
+    \Else
+        \If {$i+k\leq maxval$}
+            \State $i\gets i+k$
+        \EndIf
+    \EndIf
+\end{algorithmic}
 
 \subsection*{Search Ring Group Graph}
 for Ring Group Graphs, each vertex is assigned a unique integer and the label of its group (see

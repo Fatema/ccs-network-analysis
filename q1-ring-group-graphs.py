@@ -120,13 +120,15 @@ def create_degree_distribution_plot(degree_distributions, plot_file_name, plot_n
     plt.ylabel('Normalized Rate')
     plt.title('Degree Distribution of ' + plot_name)
     for dist in degree_distributions:
+        m, k, p, q, dd = dist
         xdata = []
         ydata = []
-        for deg in dist:
+        for deg in dd:
             xdata += [deg]
             ydata += [dist[deg]]
-        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours])
+        plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='p = ' + p)
         i += 1
+    plt.legend(loc='upper left')
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
@@ -169,17 +171,17 @@ def average_ring_group_graph_diameter(t,m,k,p,q):
 
 def make_p_diameter(t,m,k,q):
     p_diameter = {}
-    p = round(q + 5 / 100, 5)
+    p = round(q + 5 / 100, 7)
     while p < 1:
         val = average_ring_group_graph_diameter(t,m,k,p,q)
         if val is not -1:
             p_diameter[p] = val
             print(p,p_diameter[p])
-        p *= 1.2
+        p = round(p * 1.2,7)
     return p_diameter
 
 
-def create_diameter_p_plot(p_diameter_dists, plot_file_name, plot_name):
+def create_n_diameter_p_plot(p_diameter_dists, plot_file_name, plot_name):
     # clears plot
     plt.clf()
 
@@ -192,14 +194,16 @@ def create_diameter_p_plot(p_diameter_dists, plot_file_name, plot_name):
     plt.xlabel('probability p')
     plt.ylabel('diameter')
     plt.title('Diameter vs p probability for ' + plot_name)
-    for p_diameter in p_diameter_dists:
+    for dist in p_diameter_dists:
+        q, p_diameter = dist
         xdata = []
         ydata = []
         for p in p_diameter:
             xdata += [p]
             ydata += [p_diameter[p]]
-        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours])
+        plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = '+q)
         i += 1
+    plt.legend(loc='upper left')
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
@@ -211,33 +215,42 @@ def rgg(m,k,p,q):
     total_exp = p_exp + q_exp
     return total_exp, p_exp, q_exp
 
+def main():
+    m = 50
+    k = 10
+    q = 0.00001
 
-m = 50
-k = 10
-q = 0.001
+    mGreater_dia = []
+    kGreater_dia = []
 
-mGreater_dia = []
-kGreater_dia = []
+    for i in range(5):
+        mGreater_dia += [(q, make_p_diameter(100, m, k, q))]
+        kGreater_dia += [(q, make_p_diameter(100, m, k, q))]
+        q *= 10
 
-for i in range(3):
-    mGreater_dia += [make_p_diameter(100, m, k, q)]
-    kGreater_dia += [make_p_diameter(100, m, k, q)]
-    q *= 10
+    create_n_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')
+    create_n_diameter_p_plot(kGreater_dia, 'q1/diameter/' + str(k) + '-' + str(m), 'Ring Group Graph')
 
-    # rgg_dict = {}
-    mGreater_dd = []
-    kGreater_dd = []
+    q = 0.00001
 
-    for j in range(5, int(round(100 - q*100)) + 5, 5):
-        p = round(q + j / 100, 5)
-        val1 = average_normalized_degree_distribution(100, m, k, p, q)
-        if val1 is not -1:
-            mGreater_dd += [val1]
-        val2 = average_normalized_degree_distribution(100, k, m, p, q)
-        if val2 is not -1:
-            kGreater_dd += [val2]
+    for i in range(5):
+        # rgg_dict = {}
+        mGreater_dd = []
+        kGreater_dd = []
 
-    create_degree_distribution_plot(kGreater_dd, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+        for j in range(5, int(round(100 - q*100)) + 5, 10):
+            p = round(q + j / 100, 7)
+            val1 = average_normalized_degree_distribution(100, m, k, p, q)
+            if val1 is not -1:
+                mGreater_dd += [(m,k,p,q,val1)]
+            val2 = average_normalized_degree_distribution(100, k, m, p, q)
+            if val2 is not -1:
+                kGreater_dd += [(m,k,p,q,val2)]
 
-create_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')
-create_diameter_p_plot(kGreater_dia, 'q1/diameter/' + str(k) + '-' + str(m), 'Ring Group Graph')
+        create_degree_distribution_plot(kGreater_dd, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+        create_degree_distribution_plot(kGreater_dd, 'q1/prob-p/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+
+        q *= 10
+
+
+main()
