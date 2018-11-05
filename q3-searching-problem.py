@@ -602,7 +602,7 @@ def run_search_ring_group_graph_p():
 
         search_time_p = {}
 
-        p = round(q + 1 / 10, 7)
+        p = round(q + 20 / 100, 7)
 
         print(m, k, p, q)
 
