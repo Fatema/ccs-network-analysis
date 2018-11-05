@@ -3,6 +3,8 @@
     \usepackage[margin=1in]{geometry}
     \usepackage{algorithm}
     \usepackage{algpseudocode}
+    \usepackage{graphicx}
+    \graphicspath{ {./distributions/} }
 
     \title{CCS - Network Analysis Assignment}
     \author{Fatema Alkhanaizi}
@@ -41,6 +43,23 @@ Clearly document what you have done. For each question you should report on what
     \end{itemize}
     create examples with approximately the same number of vertices and edges as the graph from coauthorship.txt and investigate the distribution of vertex brilliance. Comment on what you find.
 \end{itemize}
+The vertex brilliance was caluculated based on a similar approach to calculate the diameter by using breadth-first search but by only checking the neighbours of the vertex's neighbours. The algorithm simplified:
+     1. create an empty dictionary < this dictionary will hold the weight vertices for the k-star of the current vertex 
+     2. populate the dictionary with v's neighbours and give each vertex in the dictionary a weight of 0 to begin with < this weight will be used to determine which vertex to exclude to get the maximum k-star, the weight corresponds to how many v's neighbours the vertex is connected to
+     3. repeat until maximum k-star is found
+            - for each vertex in the k-star dictionary go through its neighbours. If one of the vertex neighbour is a key in the k-star dictionary substract 1 from the weight of the vertex (I gave it negative value as just a notion that this is undesired vertex thus a negative affect but it can be calculated with the same manner by adding 1 but then the rest of the code will be modified so it get the maximum value from the k-star values instead of the minimum)
+            - find the minimum weight (value) of the k-star dictionary 
+            - if the minimum value is 0 then stop as this indicates that non of the vertices in the dictionary are adjacent thus it is the maximum k-star set of vertices (ther can be more than one set but we only care about the length so the actual vertices of the maximum set don't have any actual value for us in this case) so stop the loop
+            - else find the vertex with the minumum weight and remove it from the dictionary (this vertex is the most influential as it connects to the most number of vertices and by removing it the rest of vertices will be less adjacent, only the first found vertix will be removed) and reset all the other vertices values to 0 
+    4. return the length of the dictionary 
+This is essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
+\subsubsection*{Co-authorship Graph}
+\includegraphics{q2/coauthorship-vertex-brilliance}
+
+\subsubsection*{PA Graph}
+\includegraphics{q2/pa_graph-1559-30-vertex-brilliance}
+\subsubsection*{Ring Group Graph}
+\includegraphics{q2/ring_group_graph-60-26-0.22-0.03-brilliance}
 
 \section*{Question 3}
 The search time for a given start and target is the total number of queries made in reaching the target from the start (the number of intermediate vertices is not counted). The search time for a graph is the average search time over all pairs of start and target vertices. Clearly these times depend on the algorithm used for deciding when to query, when to move to a new vertex and how to decide which vertex to move to. The aim is that the search time is as small as possible.\\ \\
