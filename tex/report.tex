@@ -4,6 +4,9 @@
     \usepackage{algorithm}
     \usepackage{algpseudocode}
     \usepackage{graphicx}
+    \usepackage{subcaption}
+    \usepackage{mwe}
+    \usepackage{float}
 
     \title{CCS - Network Analysis Assignment}
     \author{Fatema Alkhanaizi}
@@ -35,6 +38,7 @@ Clearly document what you have done. For each question you should report on what
 
 \section*{Question 2}
 \subsection*{Distribution of Vertex Brilliance}
+\subsubsection*{Calculating Vertex Brilliance}
 \begin{itemize}
     \item Construct the undirected graph defined in coauthorship.txt. Ignore edge weights.
     \item For the graph from coauthorship.txt, investigate the distribution of vertex brilliance. 
@@ -55,15 +59,62 @@ The vertex brilliance was caluculated based on a similar approach to calculate t
             - else find the vertex with the minumum weight and remove it from the dictionary (this vertex is the most influential as it connects to the most number of vertices and by removing it the rest of vertices will be less adjacent, only the first found vertix will be removed) and reset all the other vertices values to 0 
     4. return the length of the dictionary 
 This is essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
+\subsubsection*{Creating Vertex Brilliance Distribution}
+
+\subsection*{Vertex Brilliance Results}
 \subsubsection*{Co-authorship Graph}
-\includegraphics[width=14.5cm]{coauthorship-vertex-brilliance.png}
+I loaded the graph following the code from the lectures  
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{coauthorship-vertex-degree.png}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{coauthorship-vertex-brilliance.png}
+    \end{minipage} \hfill
+    \caption{Loaded Co-authorship Graph including vertices with no edges}
+\end{figure}
+
 \subsubsection*{PA Graph}
-\includegraphics[width=14.5cm]{pa_graph-1559-30-brilliance.png}
+As the implementation of the PA Graph that we used in the lectures was directed, I modified networkx implementation and matched it to the PA Graph specifications provided in lecture:
+\begin{itemize}
+    \item I made the first 1 to m vertices fully connected and repeated each vertex m times in a list for selecting the new edges for the remaining vertices
+    \item For remaining m + 1 to n vertices, I randomly picked a vertices from the previous list m times. Then, I added the new vertex m times in the selection list and all of its neighbours 
+\end{itemize} 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{pa_graph-1559-30-degree.png}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{pa_graph-1559-30-brilliance.png}
+    \end{minipage} \hfill
+    \caption{PA Graph parameters: m = 1559, m = 30}
+\end{figure}
+Both distributions has been averaged over 100 instances of the PA graph. 
+
 \subsubsection*{Ring Group Graph}
-\includegraphics[width=14.5cm]{{ring_group_graph-60-26-0.22-0.03-brilliance}.png}
+To get approximately the same number of edges and nodes as the co-authorship graph, the 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-60-26-0.22-0.03-degree}.png}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-60-26-0.22-0.03-brilliance}.png}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: m = 60, k = 26, p = 0.22, q = 0.03}
+\end{figure}
 
 \section*{Question 3}
-The search time for a given start and target is the total number of queries made in reaching the target from the start (the number of intermediate vertices is not counted). The search time for a graph is the average search time over all pairs of start and target vertices. Clearly these times depend on the algorithm used for deciding when to query, when to move to a new vertex and how to decide which vertex to move to. The aim is that the search time is as small as possible.\\ \\
+The search time for a given start and target is the total number of queries made in reaching the target from the start (the number of intermediate vertices is not counted). The search time for a graph is the average search time over all pairs of start and target vertices. Clearly these times depend on the algorithm used for deciding when to query, when to move to a new vertex and how to decide which vertex to move to. The aim is that the search time is as small as possible.
+\\
 \noindent
 Note that the array of neighbours of a vertex should not be considered ordered. If you create graphs in such a way that the neighbours are ordered, then either randomize the ordering or, when querying the array of neighbours, choose a random member of the array (from amongst those not already queried).
 

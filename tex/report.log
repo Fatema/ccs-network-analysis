@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  5 NOV 2018 18:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  5 NOV 2018 21:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -101,21 +101,69 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
-) (./report.aux)
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen113
+\captionmargin@=\dimen114
+\captionwidth=\dimen115
+\caption@tempdima=\dimen116
+\caption@indent=\dimen117
+\caption@parindent=\dimen118
+\caption@hangindent=\dimen119
+)
+\c@ContinuedFloat=\count100
+Package caption Info: float package is loaded.
+)
+\c@subfigure=\count101
+\c@subtable=\count102
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/mwe/mwe.sty
+Package: mwe 2012/05/15 v0.3 Package to support minimal working examples (MWE)
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.sty
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count103
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count104
+\c@Blindtext=\count105
+\c@blind@countparstart=\count106
+\blind@countxx=\count107
+\blindtext@numBlindtext=\count108
+\blind@countyy=\count109
+\c@blindlist=\count110
+\c@blindlistlevel=\count111
+\c@blindlist@level=\count112
+\blind@listitem=\count113
+\c@blind@listcount=\count114
+\c@blind@levelcount=\count115
+\blind@mathformula=\count116
+\blind@Mathformula=\count117
+\c@blind@randomcount=\count118
+\c@blind@randommax=\count119
+\c@blind@pangramcount=\count120
+\c@blind@pangrammax=\count121
+)) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -153,16 +201,16 @@ LaTeX Font Info:    ... okay on input line 12.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
-\scratchdimen=\dimen113
+\scratchcounter=\count122
+\scratchdimen=\dimen120
 \scratchbox=\box28
-\nofMPsegments=\count101
-\nofMParguments=\count102
+\nofMPsegments=\count123
+\nofMParguments=\count124
 \everyMPshowfont=\toks19
-\MPscratchCnt=\count103
-\MPscratchDim=\dimen114
-\MPnumerator=\count104
-\makeMPintoPDFobject=\count105
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen121
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
 \everyMPtoPDFconversion=\toks20
 ) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO)
@@ -192,68 +240,79 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 16.
+(Font)              <12> on input line 19.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 16.
+(Font)              <8> on input line 19.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 16.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 24.
+(Font)              <6> on input line 19.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
  [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <../distributions/q2/coauthorship-vertex-brilliance.png, id=13, 462.528pt x 346.896pt>
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <../distributions/q2/coauthorship-vertex-degree.png, id=13, 462.528pt x 346.896pt>
+File: ../distributions/q2/coauthorship-vertex-degree.png Graphic file (type png)
+ <use ../distributions/q2/coauthorship-vertex-degree.png>
+Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-degree.png used on input line 71.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 72.
+ <../distributions/q2/coauthorship-vertex-brilliance.png, id=15, 462.528pt x 346.896pt>
 File: ../distributions/q2/coauthorship-vertex-brilliance.png Graphic file (type png)
  <use ../distributions/q2/coauthorship-vertex-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 59.
-(pdftex.def)             Requested size: 412.56496pt x 309.44044pt.
- <../distributions/q2/pa_graph-1559-30-brilliance.png, id=15, 462.528pt x 346.896pt>
+Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 75.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q2/pa_graph-1559-30-degree.png, id=16, 462.528pt x 346.896pt>
+File: ../distributions/q2/pa_graph-1559-30-degree.png Graphic file (type png)
+ <use ../distributions/q2/pa_graph-1559-30-degree.png>
+Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-degree.png used on input line 90.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q2/pa_graph-1559-30-brilliance.png, id=17, 462.528pt x 346.896pt>
 File: ../distributions/q2/pa_graph-1559-30-brilliance.png Graphic file (type png)
  <use ../distributions/q2/pa_graph-1559-30-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-brilliance.png used on input line 61.
-(pdftex.def)             Requested size: 412.56496pt x 309.44044pt.
- [2 <../distributions/q2/coauthorship-vertex-brilliance.png>] <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png, id=20, 462.528pt x 346.896pt>
+Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-brilliance.png used on input line 94.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ [2 <../distributions/q2/coauthorship-vertex-degree.png> <../distributions/q2/coauthorship-vertex-brilliance.png>] <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png, id=23, 462.528pt x 346.896pt>
+File: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png Graphic file (type png)
+ <use ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png>
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png used on input line 106.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png, id=24, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png used on input line 63.
-(pdftex.def)             Requested size: 412.56496pt x 309.44044pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 66--69
-
- []
-
-[3 <../distributions/q2/pa_graph-1559-30-brilliance.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png>]
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png used on input line 110.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 83.
- [4] (./report.aux) ) 
+ [3 <../distributions/q2/pa_graph-1559-30-degree.png> <../distributions/q2/pa_graph-1559-30-brilliance.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png>] [4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2616 strings out of 493014
- 38849 string characters out of 6133350
- 108111 words of memory out of 5000000
- 6131 multiletter control sequences out of 15000+600000
+ 4114 strings out of 493014
+ 65070 string characters out of 6133350
+ 233665 words of memory out of 5000000
+ 7601 multiletter control sequences out of 15000+600000
  8811 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,32p,587b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,8n,40p,582b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on report.pdf (4 pages, 152517 bytes).
+Output written on report.pdf (4 pages, 204304 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
+ 62 PDF objects out of 1000 (max. 8388607)
  35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
