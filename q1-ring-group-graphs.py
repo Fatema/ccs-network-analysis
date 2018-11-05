@@ -115,6 +115,9 @@ def create_n_degree_distribution_plot(degree_distributions, plot_file_name, plot
     # clears plot
     plt.clf()
 
+    plt.ylim(0,0.25)
+    plt.xlim(0,280)
+
     # plot degree distribution
     plt.xlabel('Degree')
     plt.ylabel('Normalized Rate')
@@ -125,11 +128,10 @@ def create_n_degree_distribution_plot(degree_distributions, plot_file_name, plot
         ydata = []
         for deg in dd:
             xdata += [deg]
-            ydata += [dist[deg]]
-        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label='p = ' + str(p)
-                                                                                                + ', q = ' + str(q))
+            ydata += [dd[deg]]
+        plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label='p = ' + str(p))
         i += 1
-    plt.legend(loc='upper right')
+    plt.legend(loc='upper right', ncol=2)
     plt.savefig('distributions/' + plot_file_name + '.png')
 
 
@@ -205,6 +207,7 @@ def create_n_diameter_p_plot(p_diameter_dists, plot_file_name, plot_name):
         for p in p_diameter:
             xdata += [p]
             ydata += [p_diameter[p]]
+        print(p_diameter)
         plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = '+ str(q))
         i += 1
     plt.legend(loc='upper right')
@@ -219,7 +222,7 @@ def rgg(m,k,p,q):
     total_exp = p_exp + q_exp
     return total_exp, p_exp, q_exp
 
-def main():
+def main_dia():
     m = 50
     k = 20
     q = 0.0001
@@ -228,13 +231,19 @@ def main():
     kGreater_dia = []
 
     for i in range(4):
-        mGreater_dia += [(q, make_p_diameter(25, m, k, q))]
-        kGreater_dia += [(q, make_p_diameter(25, k, m, q))]
+        mGreater_dia += [(q, make_p_diameter(20, m, k, q))]
+        kGreater_dia += [(q, make_p_diameter(20, k, m, q))]
         q *= 10
+        print(mGreater_dia)
+        print(kGreater_dia)
 
     create_n_diameter_p_plot(mGreater_dia, 'q1/diameter/' + str(m) + '-' + str(k), 'Ring Group Graph')
     create_n_diameter_p_plot(kGreater_dia, 'q1/diameter/' + str(k) + '-' + str(m), 'Ring Group Graph')
 
+
+def main_dd():
+    m = 6
+    k = 100
     q = 0.0001
 
     for i in range(4):
@@ -242,7 +251,7 @@ def main():
         mGreater_dd = []
         kGreater_dd = []
 
-        for j in range(5, int(round(100 - q*100)), 10):
+        for j in range(20, int(round(100 - q*100)), 15):
             p = round(q + j / 100, 7)
             val1 = average_normalized_degree_distribution(25, m, k, p, q)
             if val1 is not -1:
@@ -257,32 +266,32 @@ def main():
 
         q *= 10
 
-    q = 0.001
+    # q = 0.001
+    #
+    # for i in range(3):
+    #     # rgg_dict = {}
+    #     mGreater_dd = []
+    #     kGreater_dd = []
+    #
+    #     p = round(0.5 - q, 3)
+    #     temp_q = round(q, 3)
+    #
+    #     while p > temp_q:
+    #         val1 = average_normalized_degree_distribution(25, m, k, p, temp_q)
+    #         if val1 is not -1:
+    #             mGreater_dd += [(m, k, p, temp_q, val1)]
+    #         val2 = average_normalized_degree_distribution(25, k, m, p, temp_q)
+    #         if val2 is not -1:
+    #             kGreater_dd += [(m, k, p, temp_q, val2)]
+    #
+    #         temp_q = round(temp_q + 0.05, 3)
+    #         p = round(0.5 - temp_q, 3)
+    #         print(i,p,temp_q)
+    #
+    #     create_n_degree_distribution_plot(kGreater_dd, 'q1/' + str(k) + '-' + str(m) + '-' + str(q), 'Ring Group Graph')
+    #     create_n_degree_distribution_plot(mGreater_dd, 'q1/' + str(m) + '-' + str(k) + '-' + str(q), 'Ring Group Graph')
+    #
+    #     q *= 10
 
-    for i in range(3):
-        # rgg_dict = {}
-        mGreater_dd = []
-        kGreater_dd = []
 
-        p = 0.5 - q
-        temp_q = q
-
-        while p > temp_q:
-            val1 = average_normalized_degree_distribution(25, m, k, p, temp_q)
-            if val1 is not -1:
-                mGreater_dd += [(m, k, p, temp_q, val1)]
-            val2 = average_normalized_degree_distribution(25, k, m, p, temp_q)
-            if val2 is not -1:
-                kGreater_dd += [(m, k, p, temp_q, val2)]
-
-            temp_q += 0.05
-            p = 0.5 - temp_q
-            print(i,p,temp_q)
-
-        create_n_degree_distribution_plot(kGreater_dd, 'q1/' + str(k) + '-' + str(m), 'Ring Group Graph')
-        create_n_degree_distribution_plot(mGreater_dd, 'q1/' + str(m) + '-' + str(k), 'Ring Group Graph')
-
-        q *= 10
-
-
-main()
+main_dd()

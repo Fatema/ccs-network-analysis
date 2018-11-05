@@ -4,13 +4,15 @@
     \usepackage{algorithm}
     \usepackage{algpseudocode}
     \usepackage{graphicx}
-    \graphicspath{ {./distributions/} }
 
     \title{CCS - Network Analysis Assignment}
     \author{Fatema Alkhanaizi}
     \date{\today}
 
 \begin{document}
+
+\graphicspath{ {../distributions/q2/} }
+
 \maketitle
 
 \noindent
@@ -54,12 +56,11 @@ The vertex brilliance was caluculated based on a similar approach to calculate t
     4. return the length of the dictionary 
 This is essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
 \subsubsection*{Co-authorship Graph}
-\includegraphics{q2/coauthorship-vertex-brilliance}
-
+\includegraphics[width=14.5cm]{coauthorship-vertex-brilliance.png}
 \subsubsection*{PA Graph}
-\includegraphics{q2/pa_graph-1559-30-vertex-brilliance}
+\includegraphics[width=14.5cm]{pa_graph-1559-30-brilliance.png}
 \subsubsection*{Ring Group Graph}
-\includegraphics{q2/ring_group_graph-60-26-0.22-0.03-brilliance}
+\includegraphics[width=14.5cm]{{ring_group_graph-60-26-0.22-0.03-brilliance}.png}
 
 \section*{Question 3}
 The search time for a given start and target is the total number of queries made in reaching the target from the start (the number of intermediate vertices is not counted). The search time for a graph is the average search time over all pairs of start and target vertices. Clearly these times depend on the algorithm used for deciding when to query, when to move to a new vertex and how to decide which vertex to move to. The aim is that the search time is as small as possible.\\ \\

@@ -491,7 +491,7 @@ def plot_n_search_time_p(p_search_time_dists, plot_file_name, plot_name):
             ydata += [p_search_time[p]]
         plt.plot(xdata, ydata, marker='.', linestyle='-', color=colours[i % num_colours], label='q = ' + str(q))
         i += 1
-    plt.legend(loc='upper right')
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
 
 
@@ -517,12 +517,13 @@ def plot_n_search_time_num_instances(all_times, plot_file_name, plot_name):
             ydata += [search_time_ins[search_time]]
         plt.plot(xdata, ydata, marker='.', linestyle='None', color=colours[i % num_colours], label= 'params = ' + str(param))
         i += 1
-    plt.legend(loc='upper right')
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.savefig('distributions/q3/' + plot_file_name + '.png')
 
 
 def run_search_ring_group_graph():
     params = [(20,50,0.45,0.01), (20,50,0.45,0.001), (20,50,0.45,0.0001)]
+    # params = [(50,20,0.45,0.01), (50,20,0.45,0.001), (50,20,0.45,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
@@ -578,14 +579,14 @@ def run_search_ring_group_graph():
         all_times += [(param, search_time_dist)]
         search_time_q[q] = sum(avg_search_time.values()) / t3
 
-    plot_n_search_time_num_instances(all_times, 'ring_group_graph-search_time_v1', 'Ring Group Graph')
-    plot_search_time_q(search_time_q, 'ring_group_graph-search_time-q_v1', 'Ring Group Graph')
+    plot_n_search_time_num_instances(all_times, 'ring_group_graph-search_time_v1-kGreater', 'Ring Group Graph')
+    plot_search_time_q(search_time_q, 'ring_group_graph-search_time-q_v1-kGreater', 'Ring Group Graph')
     return all_times
 
 
 def run_search_ring_group_graph_p():
-    # params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
-    params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
+    params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+    # params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
@@ -644,7 +645,7 @@ def run_search_ring_group_graph_p():
 
         search_time_p_dists += [(q,search_time_p)]
 
-    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time_v2-p-mGreater', 'Ring Group Graph')
+    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time_v2-p-kGreater', 'Ring Group Graph')
 
     return search_time_p_dists
 
@@ -703,7 +704,7 @@ def run_search_random_graph():
     return ins_avg_search_time, ins_avg_search_time_v3
 
 
-run_search_ring_group_graph_p()
+run_search_ring_group_graph()
 
 
 
