@@ -266,9 +266,12 @@ def search_ring_group_graph_v2(graph, m, k, p, q, v, t):
 
     t_group = t // k
 
+    prob_close = p
+
     # make it less likely to more to a node if p is more 0.5 as the graph is more connected
     if p > 0.5:
         p = 1 - p
+
 
     while True:
         # find the group label of the vertex
@@ -297,6 +300,8 @@ def search_ring_group_graph_v2(graph, m, k, p, q, v, t):
             u = neighbours[i]
             u_group = u // k
 
+            rand_num = random.random()
+
             search_time += 1
 
             if t == u:
@@ -307,7 +312,7 @@ def search_ring_group_graph_v2(graph, m, k, p, q, v, t):
             # check if t is adjacent to one of the neighbours
             elif u_group == t_group or abs(u_group - t_group) == 0 or abs(u_group-t_group) == m - 1:
                 # if v is not in adjacent group, u could be connected to t with probability p
-                if not adjacent_groups and random.random() < p:
+                if not adjacent_groups and rand_num < p:
                     v = u
                     moved = True
                     break
@@ -327,8 +332,12 @@ def search_ring_group_graph_v2(graph, m, k, p, q, v, t):
                 # as this is a ring both sides must be considered
                 if diff_u_t < diff_v_t:
                     closest_not_adjacent_v = u
+                    if rand_num < prob_close and adjacent_neighbour == -1:
+                        v = u
+                        moved = True
+                        break
 
-                if random.random() < q:
+                if rand_num < q:
                     v = u
                     moved = True
                     break
@@ -478,7 +487,7 @@ def plot_n_search_time_p(p_search_time_dists, plot_file_name, plot_name):
     i = 0
     num_colours = len(colours)
 
-    plt.ylim(150,1700)
+    plt.ylim(0,2125)
 
     # plot degree distribution
     plt.xlabel('p')
@@ -587,13 +596,13 @@ def run_search_ring_group_graph():
 
 
 def run_search_ring_group_graph_p():
-    # params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
-    params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
+    params = [(20,50,0.01), (20,50,0.001), (20,50,0.0001)]
+    # params = [(50,20,0.01), (50,20,0.001), (50,20,0.0001)]
 
     # sample of 50 pair of vertices
     t1 = 50
     # number of iterations for searching in one pair of vertices
-    t2 = 10
+    t2 = 20
     # number of graph instances
     t3 = 20
 
@@ -633,7 +642,7 @@ def run_search_ring_group_graph_p():
                     avg_search_time_v1 = 0
 
                     for j in range(t2):
-                        avg_search_time_v1 += search_ring_group_graph(graph,m,k,p,q,start_v,target_u)
+                        avg_search_time_v1 += search_ring_group_graph_v2(graph,m,k,p,q,start_v,target_u)
 
                     search_time_v1[(start_v,target_u,i)] = avg_search_time_v1 / t2
 
@@ -647,7 +656,7 @@ def run_search_ring_group_graph_p():
 
         search_time_p_dists += [(q,search_time_p)]
 
-    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time-p-mGreater', 'Ring Group Graph')
+    plot_n_search_time_p(search_time_p_dists, 'ring_group_graph-search_time_v2-p-kGreater', 'Ring Group Graph')
 
     return search_time_p_dists
 
