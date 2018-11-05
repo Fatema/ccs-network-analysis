@@ -1,12 +1,12 @@
 # Fdb version 3
-["pdflatex"] 1541452892 "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" "report.pdf" "report" 1541452894
+["pdflatex"] 1541459349 "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" "report.pdf" "report" 1541459350
   "../distributions/q2/coauthorship-vertex-brilliance.png" 1541447901 23922 c2eeb515a78d520f996f12c17b89debd ""
   "../distributions/q2/coauthorship-vertex-degree.png" 1541447845 23848 8398809e193507513785d17208a990e8 ""
   "../distributions/q2/pa_graph-1559-30-brilliance.png" 1541351235 24814 f4b021178a6bcfca4f5077962b13a3bc ""
   "../distributions/q2/pa_graph-1559-30-degree.png" 1541351235 23368 e39baa972b28c2f1d877610d42127901 ""
   "../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png" 1541356547 22547 250031ed7a3f03f4e56f9fd85072203c ""
   "../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png" 1541356547 22417 bccf1c535ebf35be84834b2a3419b61a ""
-  "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" 1541452892 8761 8a0cdcf01ff3150c2b8fa25c112d60fa ""
+  "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" 1541459348 9417 3d8f55793113e6c59e58b08e42329ab4 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -71,9 +71,9 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1480246516 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1480246552 3873398 95537fc27d949865190528796909ef46 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "report.aux" 1541452893 419 cd8697e681523a6e9cfc18ab98c8c987 ""
-  "report.tex" 1541452892 8761 8a0cdcf01ff3150c2b8fa25c112d60fa ""
+  "report.aux" 1541459350 562 bb9eb5e0a813bd352a6c88a0ec07d9bd ""
+  "report.tex" 1541459348 9417 3d8f55793113e6c59e58b08e42329ab4 ""
   (generated)
   "report.pdf"
-  "report.log"
   "report.aux"
+  "report.log"

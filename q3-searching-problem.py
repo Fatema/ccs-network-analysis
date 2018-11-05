@@ -487,7 +487,7 @@ def plot_n_search_time_p(p_search_time_dists, plot_file_name, plot_name):
     i = 0
     num_colours = len(colours)
 
-    plt.ylim(0,2125)
+    plt.ylim(0,1000)
 
     # plot degree distribution
     plt.xlabel('p')

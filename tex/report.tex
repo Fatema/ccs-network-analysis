@@ -29,7 +29,18 @@ Clearly document what you have done. For each question you should report on what
     \item You should report on how the structure changes as p and q vary and whether the same effects are found for different values of m and k.
     \item Use plots to illustrate your observations.
 \end{itemize}
-
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{coauthorship-vertex-degree.png}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{coauthorship-vertex-brilliance.png}
+    \end{minipage} \hfill
+    \caption{Loaded Co-authorship Graph including vertices with no edges}
+\end{figure}
  
 \subsection*{Diameter of Ring Group Graph and $p$ (for a fixed $q$, $p > q$)}
 \begin{itemize}
@@ -63,7 +74,7 @@ This is essentially an algorithm to get the maximum independent set of sub-graph
 
 \subsection*{Vertex Brilliance Results}
 \subsubsection*{Co-authorship Graph}
-I loaded the graph following the code from the lectures  
+The co-authorship graph was loaded by following code provided from the lectures; it was just basic file-reading and making sure that the edges were undirected. The following figures are the degree distribution (in blue) and the vertex brilliance distribution (in red) of the graph:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
