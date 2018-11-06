@@ -71,10 +71,11 @@ The vertex brilliance was caluculated based on a similar approach to calculate t
     4. return the length of the dictionary 
 This is essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
 \subsubsection*{Creating Vertex Brilliance Distribution}
+For each generated graphs (PA graph and Ring Group graph), the vertex brilliance distribution was averaged and normalized over 100 instances. The distribution was created following the same code as the degree distribution.
 
 \subsection*{Vertex Brilliance Results}
 \subsubsection*{Co-authorship Graph}
-The co-authorship graph was loaded by following code provided from the lectures; it was just basic file-reading and making sure that the edges were undirected. The following figures are the degree distribution (in blue) and the vertex brilliance distribution (in red) of the graph:
+The co-authorship graph was loaded by following code provided in the lectures; it was just basic file-reading and making sure that the edges were undirected. The following figures are the degree distribution (in blue) and the vertex brilliance distribution (in red) of the graph:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -87,12 +88,13 @@ The co-authorship graph was loaded by following code provided from the lectures;
     \end{minipage} \hfill
     \caption{Loaded Co-authorship Graph including vertices with no edges}
 \end{figure}
+The general shape of both graphs is skewed to the right.
 
 \subsubsection*{PA Graph}
 As the implementation of the PA Graph that we used in the lectures was directed, I modified networkx implementation and matched it to the PA Graph specifications provided in lecture:
 \begin{itemize}
     \item I made the first 1 to m vertices fully connected and repeated each vertex m times in a list for selecting the new edges for the remaining vertices
-    \item For remaining m + 1 to n vertices, I randomly picked a vertices from the previous list m times. Then, I added the new vertex m times in the selection list and all of its neighbours 
+    \item For the remaining m + 1 to n vertices, I randomly picked a vertex from the previous list m times (created an edge). For each iteration until n is reached, I added the new vertex m times in the selection list along with its neighbours.
 \end{itemize} 
 \begin{figure}[H]
     \centering
@@ -106,10 +108,10 @@ As the implementation of the PA Graph that we used in the lectures was directed,
     \end{minipage} \hfill
     \caption{PA Graph parameters: m = 1559, m = 30}
 \end{figure}
-Both distributions has been averaged over 100 instances of the PA graph. 
+Both distributions has been averaged over 100 instances of the PA graph. The resulted graphs for both degree and vertex brilliance distributions are skewed to the right. The co-authorship graph strongly resembles the PA graph based on the distributions. 
 
 \subsubsection*{Ring Group Graph}
-To get approximately the same number of edges and nodes as the co-authorship graph, the 
+To get approximately the same number of edges and nodes as the co-authorship graph, the following parameters were used: m = 60, k = 26, p = 0.22, q = 0.03; there are other possible parameters but their distributions are similar to the distributions with the paramaters used here (in terms of shape). 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -122,6 +124,24 @@ To get approximately the same number of edges and nodes as the co-authorship gra
     \end{minipage} \hfill
     \caption{Ring Group Graph parameters: m = 60, k = 26, p = 0.22, q = 0.03}
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-120-13-0.26-0.04-degree}.png}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-120-13-0.26-0.04-brilliance}.png}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: m = 120, k = 13, p = 0.26, q = 0.04}
+\end{figure}
+Both distributions are bell shaped (binomial distribution).
+\\ \\
+Based on the previous graphs, it can be concluded that the vertex distribution has the same shape as the degree distribution and the co-authorship graph closely resembles the PA graph. 
+
+
+
 
 \section*{Question 3}
 The search time for a given start and target is the total number of queries made in reaching the target from the start (the number of intermediate vertices is not counted). The search time for a graph is the average search time over all pairs of start and target vertices. Clearly these times depend on the algorithm used for deciding when to query, when to move to a new vertex and how to decide which vertex to move to. The aim is that the search time is as small as possible.

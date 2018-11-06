@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  5 NOV 2018 23:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  6 NOV 2018 10:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -276,53 +276,68 @@ Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../distributions/q2/coauthorship-vertex-degree.png> <../distributions/q2/coauthorship-vertex-brilliance.png>]
 File: ../distributions/q2/coauthorship-vertex-degree.png Graphic file (type png)
  <use ../distributions/q2/coauthorship-vertex-degree.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-degree.png used on input line 82.
+Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-degree.png used on input line 83.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
 File: ../distributions/q2/coauthorship-vertex-brilliance.png Graphic file (type png)
  <use ../distributions/q2/coauthorship-vertex-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 86.
+Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 87.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
  [2] <../distributions/q2/pa_graph-1559-30-degree.png, id=21, 462.528pt x 346.896pt>
 File: ../distributions/q2/pa_graph-1559-30-degree.png Graphic file (type png)
  <use ../distributions/q2/pa_graph-1559-30-degree.png>
-Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-degree.png used on input line 101.
+Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-degree.png used on input line 103.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
  <../distributions/q2/pa_graph-1559-30-brilliance.png, id=22, 462.528pt x 346.896pt>
 File: ../distributions/q2/pa_graph-1559-30-brilliance.png Graphic file (type png)
  <use ../distributions/q2/pa_graph-1559-30-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-brilliance.png used on input line 105.
+Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-brilliance.png used on input line 107.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
  <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png, id=23, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png used on input line 117.
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png used on input line 119.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
  <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png, id=24, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png used on input line 121.
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png used on input line 123.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- [3 <../distributions/q2/pa_graph-1559-30-degree.png> <../distributions/q2/pa_graph-1559-30-brilliance.png>]
+ [3 <../distributions/q2/pa_graph-1559-30-degree.png> <../distributions/q2/pa_graph-1559-30-brilliance.png>] <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png, id=30, 462.528pt x 346.896pt>
+File: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png Graphic file (type png)
+ <use ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png>
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png used on input line 131.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png, id=31, 462.528pt x 346.896pt>
+File: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png Graphic file (type png)
+ <use ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png>
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png used on input line 135.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--142
+
+ []
+
+[4 <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png>]
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
- [4 <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png>] [5] (./report.aux) ) 
+ [5] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 4114 strings out of 493014
- 65070 string characters out of 6133350
+ 4124 strings out of 493014
+ 65728 string characters out of 6133350
  231665 words of memory out of 5000000
- 7601 multiletter control sequences out of 15000+600000
+ 7609 multiletter control sequences out of 15000+600000
  8811 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,8n,40p,582b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on report.pdf (5 pages, 205048 bytes).
+Output written on report.pdf (5 pages, 238189 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 69 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

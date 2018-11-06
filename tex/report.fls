@@ -125,6 +125,12 @@ INPUT ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png
 INPUT ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png
 INPUT ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png
 INPUT ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png
+INPUT ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png
+INPUT ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png
+INPUT ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png
+INPUT ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png
+INPUT ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png
+INPUT ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png
 INPUT report.aux
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
