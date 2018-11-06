@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  6 NOV 2018 10:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  6 NOV 2018 16:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -149,21 +149,75 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count119
 \c@blind@pangramcount=\count120
 \c@blind@pangrammax=\count121
-)) (./report.aux)
+)) (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/10 v2.15b AMS math features
+\@mathmargin=\skip46
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen120
+)) (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen121
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count122
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count123
+\leftroot@=\count124
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count125
+\DOTSCASE@=\count126
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen122
+LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+\macc@depth=\count127
+\c@MaxMatrixCols=\count128
+\dotsspace@=\muskip10
+\c@parentequation=\count129
+\dspbrk@lvl=\count130
+\tag@help=\toks20
+\row@=\count131
+\column@=\count132
+\maxfields@=\count133
+\andhelp@=\toks21
+\eqnshift@=\dimen123
+\alignsep@=\dimen124
+\tagshift@=\dimen125
+\tagwidth@=\dimen126
+\totwidth@=\dimen127
+\lineht@=\dimen128
+\@envbody=\toks22
+\multlinegap=\skip47
+\multlinetaggap=\skip48
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2739.
+LaTeX Info: Redefining \] on input line 2740.
+) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -201,17 +255,17 @@ LaTeX Font Info:    ... okay on input line 15.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
-\scratchdimen=\dimen120
-\scratchbox=\box28
-\nofMPsegments=\count123
-\nofMParguments=\count124
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count125
-\MPscratchDim=\dimen121
-\MPnumerator=\count126
-\makeMPintoPDFobject=\count127
-\everyMPtoPDFconversion=\toks20
+\scratchcounter=\count134
+\scratchdimen=\dimen129
+\scratchbox=\box30
+\nofMPsegments=\count135
+\nofMParguments=\count136
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count137
+\MPscratchDim=\dimen130
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
+\everyMPtoPDFconversion=\toks25
 ) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO)
  (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
@@ -247,97 +301,125 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 19.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 19.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 19.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 28.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
- <../distributions/q2/coauthorship-vertex-degree.png, id=1, 462.528pt x 346.896pt>
-File: ../distributions/q2/coauthorship-vertex-degree.png Graphic file (type png)
- <use ../distributions/q2/coauthorship-vertex-degree.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-degree.png used on input line 36.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+ <../distributions/q1/50-20-0.01.png, id=1, 462.528pt x 346.896pt>
+File: ../distributions/q1/50-20-0.01.png Graphic file (type png)
+ <use ../distributions/q1/50-20-0.01.png>
+Package pdftex.def Info: ../distributions/q1/50-20-0.01.png used on input line 37.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 37.
- <../distributions/q2/coauthorship-vertex-brilliance.png, id=3, 462.528pt x 346.896pt>
-File: ../distributions/q2/coauthorship-vertex-brilliance.png Graphic file (type png)
- <use ../distributions/q2/coauthorship-vertex-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 40.
+ <../distributions/q1/20-50-0.01.png, id=3, 462.528pt x 346.896pt>
+File: ../distributions/q1/20-50-0.01.png Graphic file (type png)
+ <use ../distributions/q1/20-50-0.01.png>
+Package pdftex.def Info: ../distributions/q1/20-50-0.01.png used on input line 43.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q1/6-100-0.01.png, id=4, 462.528pt x 346.896pt>
+File: ../distributions/q1/6-100-0.01.png Graphic file (type png)
+ <use ../distributions/q1/6-100-0.01.png>
+Package pdftex.def Info: ../distributions/q1/6-100-0.01.png used on input line 49.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q1/4-100-0.1.png, id=5, 462.528pt x 346.896pt>
+File: ../distributions/q1/4-100-0.1.png Graphic file (type png)
+ <use ../distributions/q1/4-100-0.1.png>
+Package pdftex.def Info: ../distributions/q1/4-100-0.1.png used on input line 55.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
  [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../distributions/q2/coauthorship-vertex-degree.png> <../distributions/q2/coauthorship-vertex-brilliance.png>]
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <../distributions/q1/prob-p/50-20-0.01.png, id=17, 462.528pt x 346.896pt>
+File: ../distributions/q1/prob-p/50-20-0.01.png Graphic file (type png)
+ <use ../distributions/q1/prob-p/50-20-0.01.png>
+Package pdftex.def Info: ../distributions/q1/prob-p/50-20-0.01.png used on input line 72.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q1/prob-p/20-50-0.01.png, id=18, 462.528pt x 346.896pt>
+File: ../distributions/q1/prob-p/20-50-0.01.png Graphic file (type png)
+ <use ../distributions/q1/prob-p/20-50-0.01.png>
+Package pdftex.def Info: ../distributions/q1/prob-p/20-50-0.01.png used on input line 77.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q1/prob-p/6-100-0.01.png, id=19, 462.528pt x 346.896pt>
+File: ../distributions/q1/prob-p/6-100-0.01.png Graphic file (type png)
+ <use ../distributions/q1/prob-p/6-100-0.01.png>
+Package pdftex.def Info: ../distributions/q1/prob-p/6-100-0.01.png used on input line 82.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ [2 <../distributions/q1/50-20-0.01.png> <../distributions/q1/20-50-0.01.png> <../distributions/q1/6-100-0.01.png> <../distributions/q1/4-100-0.1.png>] <../distributions/q1/diameter/50-20.png, id=28, 462.528pt x 346.896pt>
+File: ../distributions/q1/diameter/50-20.png Graphic file (type png)
+ <use ../distributions/q1/diameter/50-20.png>
+Package pdftex.def Info: ../distributions/q1/diameter/50-20.png used on input line 96.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q1/diameter/20-50.png, id=29, 462.528pt x 346.896pt>
+File: ../distributions/q1/diameter/20-50.png Graphic file (type png)
+ <use ../distributions/q1/diameter/20-50.png>
+Package pdftex.def Info: ../distributions/q1/diameter/20-50.png used on input line 101.
+(pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ [3 <../distributions/q1/prob-p/50-20-0.01.png> <../distributions/q1/prob-p/20-50-0.01.png> <../distributions/q1/prob-p/6-100-0.01.png> <../distributions/q1/diameter/50-20.png> <../distributions/q1/diameter/20-50.png>] <../distributions/q2/coauthorship-vertex-degree.png, id=38, 462.528pt x 346.896pt>
 File: ../distributions/q2/coauthorship-vertex-degree.png Graphic file (type png)
  <use ../distributions/q2/coauthorship-vertex-degree.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-degree.png used on input line 83.
+Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-degree.png used on input line 140.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
+ <../distributions/q2/coauthorship-vertex-brilliance.png, id=39, 462.528pt x 346.896pt>
 File: ../distributions/q2/coauthorship-vertex-brilliance.png Graphic file (type png)
  <use ../distributions/q2/coauthorship-vertex-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 87.
+Package pdftex.def Info: ../distributions/q2/coauthorship-vertex-brilliance.png used on input line 144.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- [2] <../distributions/q2/pa_graph-1559-30-degree.png, id=21, 462.528pt x 346.896pt>
+ [4] <../distributions/q2/pa_graph-1559-30-degree.png, id=44, 462.528pt x 346.896pt>
 File: ../distributions/q2/pa_graph-1559-30-degree.png Graphic file (type png)
  <use ../distributions/q2/pa_graph-1559-30-degree.png>
-Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-degree.png used on input line 103.
+Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-degree.png used on input line 160.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- <../distributions/q2/pa_graph-1559-30-brilliance.png, id=22, 462.528pt x 346.896pt>
+ <../distributions/q2/pa_graph-1559-30-brilliance.png, id=45, 462.528pt x 346.896pt>
 File: ../distributions/q2/pa_graph-1559-30-brilliance.png Graphic file (type png)
  <use ../distributions/q2/pa_graph-1559-30-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-brilliance.png used on input line 107.
+Package pdftex.def Info: ../distributions/q2/pa_graph-1559-30-brilliance.png used on input line 164.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png, id=23, 462.528pt x 346.896pt>
+ <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png, id=46, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png used on input line 119.
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png used on input line 176.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png, id=24, 462.528pt x 346.896pt>
+ <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png, id=47, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png used on input line 123.
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png used on input line 180.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- [3 <../distributions/q2/pa_graph-1559-30-degree.png> <../distributions/q2/pa_graph-1559-30-brilliance.png>] <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png, id=30, 462.528pt x 346.896pt>
+ [5 <../distributions/q2/coauthorship-vertex-degree.png> <../distributions/q2/coauthorship-vertex-brilliance.png> <../distributions/q2/pa_graph-1559-30-degree.png> <../distributions/q2/pa_graph-1559-30-brilliance.png>] <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png, id=55, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png used on input line 131.
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png used on input line 188.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png, id=31, 462.528pt x 346.896pt>
+ <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png, id=56, 462.528pt x 346.896pt>
 File: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png Graphic file (type png)
  <use ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png>
-Package pdftex.def Info: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png used on input line 135.
+Package pdftex.def Info: ../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png used on input line 192.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--142
+Underfull \hbox (badness 10000) in paragraph at lines 196--199
 
  []
 
-[4 <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png>]
+[6 <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png>]
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
- [5] (./report.aux) ) 
+ [7] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 4124 strings out of 493014
- 65728 string characters out of 6133350
- 231665 words of memory out of 5000000
- 7609 multiletter control sequences out of 15000+600000
- 8811 words of font info for 31 fonts, out of 8000000 for 9000
+ 4791 strings out of 493014
+ 74601 string characters out of 6133350
+ 242234 words of memory out of 5000000
+ 8245 multiletter control sequences out of 15000+600000
+ 9709 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,40p,582b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,8n,40p,582b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on report.pdf (5 pages, 238189 bytes).
+Output written on report.pdf (7 pages, 451680 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,6 +6,7 @@
     \usepackage{graphicx}
     \usepackage{subcaption}
     \usepackage{mwe}
+    \usepackage{amsmath}
     \usepackage{float}
 
     \title{CCS - Network Analysis Assignment}
@@ -14,7 +15,7 @@
 
 \begin{document}
 
-\graphicspath{ {../distributions/q2/} }
+\graphicspath{ {../distributions/q2/} {../distributions/q1/} {../distributions/q3/} }
 
 \maketitle
 
@@ -33,19 +34,75 @@ Clearly document what you have done. For each question you should report on what
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{coauthorship-vertex-degree.png}
+        \includegraphics[width=1\textwidth]{{50-20-0.01}.png}
+        \subcaption{m = 50, k = 20}
+        \label{pq0.5:m50k20}
     \end{minipage}
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{coauthorship-vertex-brilliance.png}
-    \end{minipage} \hfill
-    \caption{Loaded Co-authorship Graph including vertices with no edges}
+        \includegraphics[width=1\textwidth]{{20-50-0.01}.png}
+        \subcaption{m = 20, k = 50}
+        \label{pq0.5:m20k50}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{6-100-0.01}.png}
+        \subcaption{m = 6, k = 100}
+        \label{pq0.5:m6k100}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{4-100-0.1}.png}
+        \subcaption{m = 4, k = 100}
+        \label{pq0.5:m4k100}
+    \end{minipage}
+    \caption{Ring Group Graph when $p + q = 0.5$, $p > q$}
+    \label{rgg:pg0.5}
 \end{figure}
- 
+The degree distribution for a Ring Group Graph has a bell shaped distribution. The results of the degree distributions in figure\ref{rgg:pg0.5} can be explained by the following equation:
+\begin{equation} \label{rgg:vad}
+    \text{average\_degree} = p \times (3k - 1) + q \times k \times (m-3) 
+\end{equation} 
+Equation-\ref{rgg:vad} calculates the average degree for a single vertex based on the paramaters (m, k, p, q). A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}. 
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{prob-p/50-20-0.01}.png}
+        \subcaption{m = 50, k = 20, q = 0.01}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{prob-p/20-50-0.01}.png}
+        \subcaption{m = 20, k = 50, q = 0.01}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{prob-p/6-100-0.01}.png}
+        \subcaption{m = 6, k = 100, q = 0.01}
+    \end{minipage}
+    \caption{Ring Group Graph when $p > q$ ($q$ is fixed)}
+\end{figure}
+
 \subsection*{Diameter of Ring Group Graph and $p$ (for a fixed $q$, $p > q$)}
 \begin{itemize}
     \item Investigate the relationship between the diameter of Ring Group Graphs and p (for fixed q, p > q). 
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{diameter/50-20}.png}
+        \subcaption{m = 50, k = 20}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{diameter/20-50}.png}
+        \subcaption{m = 20, k = 50}
+    \end{minipage}
+    \caption{Diameter for Ring Group Graph when $p > q$ ($q$ is fixed)}
+\end{figure}
 
 \section*{Question 2}
 \subsection*{Distribution of Vertex Brilliance}
