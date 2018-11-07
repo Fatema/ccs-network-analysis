@@ -5,6 +5,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import networkx as nx
 from sortedcontainers import SortedDict
+from tqdm import tqdm
 
 
 """
@@ -163,15 +164,13 @@ def make_nx_ring_group_graph(m, k, p, q):
 def average_ring_group_graph_diameter(t,m,k,p,q):
     diameter = 0
     num_instances = t
-    for i in range(t):
-        print('diameter calculations', i, p, q)
+    for i in tqdm(range(t)):
         graph = make_nx_ring_group_graph(m,k,p,q)
         if not nx.is_connected(graph):
             num_instances -= 1
             print('not connected')
             continue
         temp = nx.diameter(graph)
-        print(temp)
         diameter += temp
     if num_instances == 0: return -1
     return round(diameter/num_instances,2)
@@ -184,7 +183,6 @@ def make_p_diameter(t,m,k,q):
         val = average_ring_group_graph_diameter(t,m,k,p,q)
         if val is not -1:
             p_diameter[p] = val
-            print(p,p_diameter[p])
         p = round(p * 1.2,7)
     return p_diameter
 
@@ -228,14 +226,14 @@ def rgg(m,k,p,q):
     return total_exp, p_exp, q_exp
 
 def main_dia():
-    m = 50
-    k = 20
+    m = 6
+    k = 100
     q = 0.0001
 
     mGreater_dia = []
     kGreater_dia = []
 
-    for i in range(4):
+    for i in tqdm(range(4)):
         mGreater_dia += [(q, make_p_diameter(20, m, k, q))]
         kGreater_dia += [(q, make_p_diameter(20, k, m, q))]
         q *= 10
@@ -299,7 +297,7 @@ def main_dd():
         q *= 10
 
 
-main_dd()
+main_dia()
 # m = 50
 # k = 20
 #

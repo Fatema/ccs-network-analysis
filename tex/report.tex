@@ -30,7 +30,19 @@ Clearly document what you have done. For each question you should report on what
     \item You should report on how the structure changes as p and q vary and whether the same effects are found for different values of m and k.
     \item Use plots to illustrate your observations.
 \end{itemize}
-\begin{figure}[H]
+The ring group graph was implemented based on the following steps:
+\begin{enumerate}
+    \item For each vertex from 0 to m * k (outer loop) where m is the number of groups and k is the number of members per group, the group label was calculated by dividing the current vertex id [0,m * k) over k, then truncate the value so only the integer value remains from the division
+    \item The vertex was then iterated over the other vertices (inner loop) starting from the current vertex id plus 1 until m * k. 
+    \item At each iteration of the inner loop, the group was computed again for the inner loop's vertex and checked against the outer loop's group:
+    \begin{itemize}
+        \item if the groups are the same or adjacent (absolute difference is one or absolute difference is m - 1, the group difference for the first and last group), then there is a p probability that an edge exists
+        \item all other cases, there is a q probability that an edge exists
+    \end{itemize}
+\end{enumerate}
+\textbf{networkx} python3 package was used to create the graph and to check that the graph instances used for the degree distribution are fully connected (all unconnected graphs are skipped). It was also used to calculate the diameter of the graph (next section).\\
+The degree distrbution was normalized and averaged over 25 instances of the ring group graph. The following figures are for the case when $p + q = 0.5$, $p > q$:
+\begin{figure}[H] 
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
@@ -57,13 +69,41 @@ Clearly document what you have done. For each question you should report on what
         \label{pq0.5:m4k100}
     \end{minipage}
     \caption{Ring Group Graph when $p + q = 0.5$, $p > q$}
-    \label{rgg:pg0.5}
+    \label{rgg:pq0.5}
 \end{figure}
-The degree distribution for a Ring Group Graph has a bell shaped distribution. The results of the degree distributions in figure\ref{rgg:pg0.5} can be explained by the following equation:
+\noindent
+The degree distribution figures can be explained by this equation:
 \begin{equation} \label{rgg:vad}
-    \text{average\_degree} = p \times (3k - 1) + q \times k \times (m-3) 
+    \text{averageDegree} = p \times (3k - 1) + q \times k \times (m-3) 
 \end{equation} 
-Equation-\ref{rgg:vad} calculates the average degree for a single vertex based on the paramaters (m, k, p, q). A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}. 
+By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the verrex can be conneced to on average with this condition (the subtracted 1 is the vertex itself - no self edges allowed). So, the average for remaining edges is $q \times k \times (m-3)$ (all the vertices substract the vertices connected with p). The general shaped of the degree distribution for a Ring Group Graph is a bell shaped. A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}. 
+% ToDo talk about figures 1c and 1d.
+
+
+\subsection*{Diameter of Ring Group Graph and $p$ (for a fixed $q$, $p > q$)}
+\begin{itemize}
+    \item Investigate the relationship between the diameter of Ring Group Graphs and p (for fixed q, p > q). 
+\end{itemize}
+The diameter was caluculated over 20 instances of the ring group graph and run against multiple fixed q values and tested against two m and k values (20 and 50):
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{diameter/50-20}.png}
+        \subcaption{m = 50, k = 20}
+        \label{dia:m50k20}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{diameter/20-50}.png}
+        \subcaption{m = 20, k = 50}
+        \label{dia:m20k50}
+    \end{minipage}
+    \caption{Diameter for Ring Group Graph when $p > q$ ($q$ is fixed)}
+    \label{rgg:dia}
+\end{figure}
+\noindent
+The picked values for m and k provided a good contrast on how the diameter is affected when m is greater than k and vice versa. As shown in figure-\ref{rgg:dia}, as p increases the diameter decreases and at some point it becomes constant. For various q values the diamter had a similar behaviour, the value of the diameter was generally higher as q decreased which is expected as the probability q essentially creates shortcuts between the groups and without those shortcuts the diameter depends on the value of m and p. 
 
 \begin{figure}[H]
     \centering
@@ -71,39 +111,23 @@ Equation-\ref{rgg:vad} calculates the average degree for a single vertex based o
         \centering
         \includegraphics[width=1\textwidth]{{prob-p/50-20-0.01}.png}
         \subcaption{m = 50, k = 20, q = 0.01}
+        \label{dd:m50k20}
     \end{minipage}
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{{prob-p/20-50-0.01}.png}
         \subcaption{m = 20, k = 50, q = 0.01}
+        \label{dd:m20k50}
     \end{minipage}
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{{prob-p/6-100-0.01}.png}
         \subcaption{m = 6, k = 100, q = 0.01}
+        \label{dd:m6k100}
     \end{minipage}
     \caption{Ring Group Graph when $p > q$ ($q$ is fixed)}
+    \label{rgg:dd}
 \end{figure}
-
-\subsection*{Diameter of Ring Group Graph and $p$ (for a fixed $q$, $p > q$)}
-\begin{itemize}
-    \item Investigate the relationship between the diameter of Ring Group Graphs and p (for fixed q, p > q). 
-\end{itemize}
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{diameter/50-20}.png}
-        \subcaption{m = 50, k = 20}
-    \end{minipage}
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{diameter/20-50}.png}
-        \subcaption{m = 20, k = 50}
-    \end{minipage}
-    \caption{Diameter for Ring Group Graph when $p > q$ ($q$ is fixed)}
-\end{figure}
-
 \section*{Question 2}
 \subsection*{Distribution of Vertex Brilliance}
 \subsubsection*{Calculating Vertex Brilliance}
@@ -117,15 +141,19 @@ Equation-\ref{rgg:vad} calculates the average degree for a single vertex based o
     \end{itemize}
     create examples with approximately the same number of vertices and edges as the graph from coauthorship.txt and investigate the distribution of vertex brilliance. Comment on what you find.
 \end{itemize}
-The vertex brilliance was caluculated based on a similar approach to calculate the diameter by using breadth-first search but by only checking the neighbours of the vertex's neighbours. The algorithm simplified:
-     1. create an empty dictionary < this dictionary will hold the weight vertices for the k-star of the current vertex 
-     2. populate the dictionary with v's neighbours and give each vertex in the dictionary a weight of 0 to begin with < this weight will be used to determine which vertex to exclude to get the maximum k-star, the weight corresponds to how many v's neighbours the vertex is connected to
-     3. repeat until maximum k-star is found
-            - for each vertex in the k-star dictionary go through its neighbours. If one of the vertex neighbour is a key in the k-star dictionary substract 1 from the weight of the vertex (I gave it negative value as just a notion that this is undesired vertex thus a negative affect but it can be calculated with the same manner by adding 1 but then the rest of the code will be modified so it get the maximum value from the k-star values instead of the minimum)
-            - find the minimum weight (value) of the k-star dictionary 
-            - if the minimum value is 0 then stop as this indicates that non of the vertices in the dictionary are adjacent thus it is the maximum k-star set of vertices (ther can be more than one set but we only care about the length so the actual vertices of the maximum set don't have any actual value for us in this case) so stop the loop
-            - else find the vertex with the minumum weight and remove it from the dictionary (this vertex is the most influential as it connects to the most number of vertices and by removing it the rest of vertices will be less adjacent, only the first found vertix will be removed) and reset all the other vertices values to 0 
-    4. return the length of the dictionary 
+The vertex brilliance was caluculated based on a similar approach to calculate the diameter by using breadth-first search but by only doing breadthfirst search at debth of 2; by checking the neighbours of the vertex's neighbours. The algorithm simplified:
+\begin{enumerate}
+    \item create an empty dictionary; this dictionary will hold the weight vertices for the k-star of the current vertex 
+    \item populate the dictionary with v's neighbours and give each vertex in the dictionary a weight of 0 to begin with < this weight will be used to determine which vertex to exclude to get the maximum k-star, the weight corresponds to how many v's neighbours the vertex is connected to
+    \item repeat until maximum k-star is found
+    \begin{itemize}
+        \item for each vertex in the k-star dictionary go through its neighbours. If one of the vertex neighbour is a key in the k-star dictionary substract 1 from the weight of the vertex (I gave it negative value as just a notion that this is undesired vertex thus a negative affect but it can be calculated with the same manner by adding 1 but then the rest of the code will be modified so it get the maximum value from the k-star values instead of the minimum)
+        \item find the minimum weight (value) of the k-star dictionary 
+        \item if the minimum value is 0 then stop as this indicates that non of the vertices in the dictionary are adjacent thus it is the maximum k-star set of vertices (ther can be more than one set but we only care about the length so the actual vertices of the maximum set don't have any actual value for us in this case) so stop the loop
+        \item else find the vertex with the minumum weight and remove it from the dictionary (this vertex is the most influential as it connects to the most number of vertices and by removing it the rest of vertices will be less adjacent, only the first found vertix will be removed) and reset all the other vertices values to 0 
+    \end{itemize}
+    \item return the length of the dictionary 
+\end{enumerate}
 This is essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
 \subsubsection*{Creating Vertex Brilliance Distribution}
 For each generated graphs (PA graph and Ring Group graph), the vertex brilliance distribution was averaged and normalized over 100 instances. The distribution was created following the same code as the degree distribution.
