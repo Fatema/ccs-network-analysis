@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  8 NOV 2018 22:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.27)  8 NOV 2018 23:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -377,7 +377,20 @@ Package pdftex.def Info: ../distributions/q1/4-100-0.1.png used on input line 71
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
  [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <../distributions/q1/diameter/50-20.png, id=19, 462.528pt x 346.896pt>
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `pq0.5:m20k50' on page 2 undefined on input line 84.
+
+
+LaTeX Warning: Reference `pq0.5:m50k20' on page 2 undefined on input line 84.
+
+
+LaTeX Warning: Reference `pq0.5:m20k50' on page 2 undefined on input line 84.
+
+
+LaTeX Warning: Reference `pq0.5:m50k20' on page 2 undefined on input line 84.
+
+<../distributions/q1/diameter/50-20.png, id=19, 462.528pt x 346.896pt>
 File: ../distributions/q1/diameter/50-20.png Graphic file (type png)
  <use ../distributions/q1/diameter/50-20.png>
 Package pdftex.def Info: ../distributions/q1/diameter/50-20.png used on input line 97.
@@ -387,7 +400,11 @@ File: ../distributions/q1/diameter/20-50.png Graphic file (type png)
  <use ../distributions/q1/diameter/20-50.png>
 Package pdftex.def Info: ../distributions/q1/diameter/20-50.png used on input line 103.
 (pdftex.def)             Requested size: 221.95676pt x 166.47113pt.
- [2 <../distributions/q1/50-20-0.01.png> <../distributions/q1/20-50-0.01.png> <../distributions/q1/6-100-0.01.png> <../distributions/q1/4-100-0.1.png>] <../distributions/q1/prob-p/50-20-0.01.png, id=30, 462.528pt x 346.896pt>
+ [2 <../distributions/q1/50-20-0.01.png> <../distributions/q1/20-50-0.01.png> <../distributions/q1/6-100-0.01.png> <../distributions/q1/4-100-0.1.png>]
+
+LaTeX Warning: Reference `rgg:dia' on page 3 undefined on input line 111.
+
+<../distributions/q1/prob-p/50-20-0.01.png, id=30, 462.528pt x 346.896pt>
 File: ../distributions/q1/prob-p/50-20-0.01.png Graphic file (type png)
  <use ../distributions/q1/prob-p/50-20-0.01.png>
 Package pdftex.def Info: ../distributions/q1/prob-p/50-20-0.01.png used on input line 117.
@@ -447,52 +464,177 @@ Underfull \hbox (badness 10000) in paragraph at lines 229--232
 
  []
 
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ” in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ” in font cmr10!
 [7 <../distributions/q2/ring_group_graph-60-26-0.22-0.03-degree.png> <../distributions/q2/ring_group_graph-60-26-0.22-0.03-brilliance.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-degree.png> <../distributions/q2/ring_group_graph-120-13-0.26-0.04-brilliance.png>]
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no ” in font cmr10!
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no ” in font cmr10!
+
+LaTeX Warning: Reference `rg:n1' on page 8 undefined on input line 272.
+
+
+LaTeX Warning: Reference `rg:n2' on page 8 undefined on input line 272.
+
+<../distributions/q3/box/box-random_graph-n-search_time_v1-avg.png, id=70, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-random_graph-n-search_time_v1-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-random_graph-n-search_time_v1-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-random_graph-n-search_time_v1-avg.png used on input line 280.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-random_graph-n-search_time_v2-avg.png, id=71, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-random_graph-n-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-random_graph-n-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-random_graph-n-search_time_v2-avg.png used on input line 286.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
  [8]
-Underfull \hbox (badness 10000) in paragraph at lines 281--283
 
- []
+LaTeX Warning: Reference `rg:n1' on page 9 undefined on input line 294.
 
-[9] <../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png, id=76, 462.528pt x 346.896pt>
+
+LaTeX Warning: Reference `rg:n2' on page 9 undefined on input line 294.
+
+
+LaTeX Warning: Reference `rg:n1' on page 9 undefined on input line 294.
+
+
+LaTeX Warning: Reference `rg:n1' on page 9 undefined on input line 294.
+
+
+LaTeX Warning: Reference `rg:n2' on page 9 undefined on input line 294.
+
+
+LaTeX Warning: File `{box/box-random_graph-p-search_time_v1-avg}.png' not found on input line 298.
+
+
+/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex:298: Package pdftex.def Error: File `box/box-random_graph-p-search_time_v1-avg.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 ...x-random_graph-p-search_time_v1-avg}.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+<../distributions/q3/box/box-random_graph-p-search_time_v2-avg.png, id=75, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-random_graph-p-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-random_graph-p-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-random_graph-p-search_time_v2-avg.png used on input line 304.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+
+
+LaTeX Warning: Reference `rg:p1' on page 9 undefined on input line 312.
+
+
+LaTeX Warning: Reference `rg:p2' on page 9 undefined on input line 312.
+
+[9 <../distributions/q3/box/box-random_graph-n-search_time_v1-avg.png> <../distributions/q3/box/box-random_graph-n-search_time_v2-avg.png> <../distributions/q3/box/box-random_graph-p-search_time_v2-avg.png>]
+
+LaTeX Warning: Reference `rggs:521v1' on page 10 undefined on input line 342.
+
+
+LaTeX Warning: Reference `rggs:521v2' on page 10 undefined on input line 342.
+
+[10] <../distributions/q3/box/box-ring_group_graph-50-20-search_time_v2-avg.png, id=86, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-50-20-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-50-20-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-50-20-search_time_v2-avg.png used on input line 350.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-20-50-search_time_v2-avg.png, id=87, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-20-50-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-20-50-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-20-50-search_time_v2-avg.png used on input line 356.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-50-20-p-search_time_v2-avg.png, id=88, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-50-20-p-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-50-20-p-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-50-20-p-search_time_v2-avg.png used on input line 367.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-20-50-p-search_time_v2-avg.png, id=89, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-20-50-p-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-20-50-p-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-20-50-p-search_time_v2-avg.png used on input line 373.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v1-avg.png, id=90, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v1-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v1-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v1-avg.png used on input line 384.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png, id=91, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png used on input line 390.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-10-20-50-search_time_v2-avg.png, id=92, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-10-20-50-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-10-20-50-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-10-20-50-search_time_v2-avg.png used on input line 401.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+File: ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png used on input line 407.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ [11 <../distributions/q3/box/box-ring_group_graph-50-20-search_time_v2-avg.png> <../distributions/q3/box/box-ring_group_graph-20-50-search_time_v2-avg.png> <../distributions/q3/box/box-ring_group_graph-50-20-p-search_time_v2-avg.png> <../distributions/q3/box/box-ring_group_graph-20-50-p-search_time_v2-avg.png>] <../distributions/q3/box/box-ring_group_graph-6-100-search_time_v2-avg.png, id=100, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-6-100-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-6-100-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-6-100-search_time_v2-avg.png used on input line 418.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+ <../distributions/q3/box/box-ring_group_graph-6-100-p-search_time_v2-avg.png, id=101, 462.528pt x 346.896pt>
+File: ../distributions/q3/box/box-ring_group_graph-6-100-p-search_time_v2-avg.png Graphic file (type png)
+ <use ../distributions/q3/box/box-ring_group_graph-6-100-p-search_time_v2-avg.png>
+Package pdftex.def Info: ../distributions/q3/box/box-ring_group_graph-6-100-p-search_time_v2-avg.png used on input line 424.
+(pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
+
+
+LaTeX Warning: Reference `rggs:mgp' on page 12 undefined on input line 432.
+
+
+LaTeX Warning: Reference `rggs:kgp' on page 12 undefined on input line 432.
+
+[12 <../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v1-avg.png> <../distributions/q3/box/box-ring_group_graph-50-20-10-search_time_v2-avg.png> <../distributions/q3/box/box-ring_group_graph-10-20-50-search_time_v2-avg.png> <../distributions/q3/box/box-ring_group_graph-6-100-search_time_v2-avg.png> <../distributions/q3/box/box-ring_group_graph-6-100-p-search_time_v2-avg.png>] <../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png, id=110, 462.528pt x 346.896pt>
 File: ../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png Graphic file (type png)
  <use ../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png>
-Package pdftex.def Info: ../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png used on input line 327.
+Package pdftex.def Info: ../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png used on input line 439.
 (pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
- <../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png, id=77, 462.528pt x 346.896pt>
+ <../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png, id=111, 462.528pt x 346.896pt>
 File: ../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png Graphic file (type png)
  <use ../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png>
-Package pdftex.def Info: ../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png used on input line 333.
+Package pdftex.def Info: ../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png used on input line 445.
 (pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
- <../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png, id=78, 462.528pt x 346.896pt>
+ <../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png, id=112, 462.528pt x 346.896pt>
 File: ../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png Graphic file (type png)
  <use ../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png>
-Package pdftex.def Info: ../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png used on input line 344.
+Package pdftex.def Info: ../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png used on input line 456.
 (pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
- <../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png, id=79, 462.528pt x 346.896pt>
+ <../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png, id=113, 462.528pt x 346.896pt>
 File: ../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png Graphic file (type png)
  <use ../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png>
-Package pdftex.def Info: ../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png used on input line 350.
+Package pdftex.def Info: ../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png used on input line 462.
 (pdftex.def)             Requested size: 217.42265pt x 163.0676pt.
- [10] [11 <../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png> <../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png> <../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png> <../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png>] (./report.aux) ) 
+ [13 <../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png> <../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png> <../distributions/q3/ring_group_graph-20-50-search_time-p-kGreater.png> <../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png>] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4931 strings out of 493014
- 77773 string characters out of 6133350
- 247867 words of memory out of 5000000
- 8377 multiletter control sequences out of 15000+600000
- 9709 words of font info for 35 fonts, out of 8000000 for 9000
+ 5033 strings out of 493014
+ 82569 string characters out of 6133350
+ 249596 words of memory out of 5000000
+ 8461 multiletter control sequences out of 15000+600000
+ 9877 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,40p,786b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on report.pdf (11 pages, 573216 bytes).
+ 42i,8n,40p,1585b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (13 pages, 781128 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 158 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
 
