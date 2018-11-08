@@ -245,7 +245,7 @@ def main_dia():
 
 
 def main_dd():
-    m = 4
+    m = 6
     k = 100
     # q = 0.0001
 

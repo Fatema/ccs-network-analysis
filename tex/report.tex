@@ -8,6 +8,7 @@
     \usepackage{mwe}
     \usepackage{amsmath}
     \usepackage{float}
+    \usepackage{multicol}
 
     \title{CCS - Network Analysis Assignment}
     \author{Fatema Alkhanaizi}
@@ -23,13 +24,7 @@
 Clearly document what you have done. For each question you should report on what you did and include, as needed, illustrative plots.
 
 \section*{Question 1}
-\subsection*{Ring Group Graph Degree Distribution when $p + q = 0.5$, $p > q$}
-\begin{itemize}
-    \item Investigate the degree distribution of Ring Group Graphs for p + q = 0.5, p > q. 
-    \item Decide which values of m, k, p and q to investigate. 
-    \item You should report on how the structure changes as p and q vary and whether the same effects are found for different values of m and k.
-    \item Use plots to illustrate your observations.
-\end{itemize}
+\subsection*{Ring Group Graph implementation}
 The ring group graph was implemented based on the following steps:
 \begin{enumerate}
     \item For each vertex from 0 to m * k (outer loop) where m is the number of groups and k is the number of members per group, the group label was calculated by dividing the current vertex id [0,m * k) over k, then truncate the value so only the integer value remains from the division
@@ -40,7 +35,16 @@ The ring group graph was implemented based on the following steps:
         \item all other cases, there is a q probability that an edge exists
     \end{itemize}
 \end{enumerate}
-\textbf{networkx} python3 package was used to create the graph and to check that the graph instances used for the degree distribution are fully connected (all unconnected graphs are skipped). It was also used to calculate the diameter of the graph (next section).\\
+\textbf{networkx} python3 package was used to create the graph and to check that the graph instances used for the degree distribution are fully connected (all unconnected graphs were skipped). It was also used to calculate the diameter of the graph (next section).
+
+\subsection*{Ring Group Graph Degree Distribution when $p + q = 0.5$, $p > q$}
+\begin{itemize}
+    \item Investigate the degree distribution of Ring Group Graphs for p + q = 0.5, p > q. 
+    \item Decide which values of m, k, p and q to investigate. 
+    \item You should report on how the structure changes as p and q vary and whether the same effects are found for different values of m and k.
+    \item Use plots to illustrate your observations.
+\end{itemize}
+\noindent
 The degree distrbution was normalized and averaged over 25 instances of the ring group graph. The following figures are for the case when $p + q = 0.5$, $p > q$:
 \begin{figure}[H] 
     \centering
@@ -72,11 +76,12 @@ The degree distrbution was normalized and averaged over 25 instances of the ring
     \label{rgg:pq0.5}
 \end{figure}
 \noindent
-The degree distribution figures can be explained by this equation:
-\begin{equation} \label{rgg:vad}
-    \text{averageDegree} = p \times (3k - 1) + q \times k \times (m-3) 
-\end{equation} 
-By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the verrex can be conneced to on average with this condition (the subtracted 1 is the vertex itself - no self edges allowed). So, the average for remaining edges is $q \times k \times (m-3)$ (all the vertices substract the vertices connected with p). The general shaped of the degree distribution for a Ring Group Graph is a bell shaped. A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}. 
+By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the verrex can be conneced to on average with this condition (the subtracted 1 is the vertex itself - no self edges allowed). So, the average for the remaining edges is $q \times k \times (m-3)$ (the vertices connected with p substracted from all the vertices). So, the degree distribution figures can be explained by these equations:
+\begin{align*} \label{rgg:vad}
+    \mu_{degree} &= p \times (3k - 1) + q \times k \times (m-3) \\
+    \sigma_{degree} &= \sqrt{(1-p) \times p \times (3k - 1)} + \sqrt{(1-q) \times q \times k \times (m-3))}
+\end{align*} 
+ The general shaped of the degree distribution for a Ring Group Graph is a bell shaped. A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}. 
 % ToDo talk about figures 1c and 1d.
 
 
@@ -141,7 +146,7 @@ The picked values for m and k provided a good contrast on how the diameter is af
     \end{itemize}
     create examples with approximately the same number of vertices and edges as the graph from coauthorship.txt and investigate the distribution of vertex brilliance. Comment on what you find.
 \end{itemize}
-The vertex brilliance was caluculated based on a similar approach to calculate the diameter by using breadth-first search but by only doing breadthfirst search at debth of 2; by checking the neighbours of the vertex's neighbours. The algorithm simplified:
+The vertex brilliance was caluculated based on a similar approach to calculate the diameter by using breadth-first search but by only doing breadth-first search at debth of 2; by checking the neighbours of the vertex's neighbours. The algorithm simplified:
 \begin{enumerate}
     \item create an empty dictionary; this dictionary will hold the weight vertices for the k-star of the current vertex 
     \item populate the dictionary with v's neighbours and give each vertex in the dictionary a weight of 0 to begin with < this weight will be used to determine which vertex to exclude to get the maximum k-star, the weight corresponds to how many v's neighbours the vertex is connected to
@@ -243,21 +248,102 @@ Note that the array of neighbours of a vertex should not be considered ordered. 
 \end{itemize}
 
 \subsection*{Search Random Graph}
-for Random Graphs, each vertex is labelled with a unique integer between 1 and n.
-\subsubsection*{Algorithm}
+\subsubsection*{Search Algorithm}
+The search in a Random Graph was implemented as follow:
+\begin{itemize}
+    \item Inputs:
+    \begin{itemize}
+        \item The graph
+        \item The graph parameters - (n, p)
+        \item The start vertex id - (numerical id)
+        \item The target vertex id - (numerical id)
+    \end{itemize}
+    \item Initialize a variable for search time and set it to 0
+    \item Calculate the average number of neighbours based on the number of nodes and p
+    \item start an infinite loop until the target vertex is found:
+    \begin{itemize}
+        \item shuffle the current vertex's neighbours list (at the beginning it is the start vertex)
+        \item check if then number of neighbours is more than average if so then set the number of iterations up until the average
+        \item Iterate over the neighbours list:
+        \begin{itemize}
+            \item increment the search time by 1 for every iteration that happens
+            \item if the neighbour's id matches the target's id then stop, break out of the loop and return the search time
+            \item else move to the neighbour with a probability p (the probability of the random graph)
+        \end{itemize}
+        \item if no moves were made move to last queried neighbour
+    \end{itemize}
+\end{itemize}
+\subsubsection*{Search Time Distribution}
 
-\begin{algorithmic}
-    \If {$i\geq maxval$}
-        \State $i\gets 0$
-    \Else
-        \If {$i+k\leq maxval$}
-            \State $i\gets i+k$
-        \EndIf
-    \EndIf
-\end{algorithmic}
 
 \subsection*{Search Ring Group Graph}
-for Ring Group Graphs, each vertex is assigned a unique integer and the label of its group (see
-Question 1)
+\subsubsection*{Search Algorithm}
+The search in a Ring Group Graph was implemented as follows:
+\begin{itemize}
+    \item Inputs:
+    \begin{itemize}
+        \item The graph
+        \item The graph parameters - (m, k, p, q)
+        \item The start vertex id - (numerical id, group)
+        \item The target vertex id - (numerical id, group)
+    \end{itemize}
+    \item Initialize a variable for search time and set it to 0
+    \item Create a variable for the probability to move to a vertex that is closer to the target's group than the current vertex and set it to be equal to p call ot prob\_close. This value was determined through trial and error and proved to provide the best results. the higher the p value, the less relevent the q value for the algorithm becomes as evident from Figure-\ref{rggs:mgpv2} and Figure-\ref{rggs:kgpv2} where the search time average of 20 graph instances over 50 pair of vertices each ran 10 times plotted against a fixed q and an increasing p (same conditions as the diameter plot)
+    \item check if p is greater than 0.5, if it is then set p to 1 - p; this check is to make it less likely to move to another vertex in the group to find the target vertex as the high probability indicates that it is very likely that the target vertex is connected to the current vertex
+    \item start an infinite loop until the target vertex is found:
+    \begin{itemize}
+        \item shuffle the current vertex's neighbours list (at the beginning it is the start vertex)
+        \item Iterate over the neighbours list:
+        \begin{itemize}
+            \item increment the search time by 1 for every iteration that happens
+            \item if the neighbour's id matches the target's id then stop, break out of the loop and return the search time
+            \item else if the neighbour's group is the same as the traget's group then move to that neighbour with a probability p (the probability for vertices in adjacent groups to have an edge), otherwise keep track of this neighbour in adjacent\_neighbour variable (only one neighbour is stored at a time so if another neighbour with the same condition is encountered that neighbour will be stored instead and as the neighbours list is shuffled with every move it is less likely this neighbour will be the same if the current vertex is returned to at some point)
+            \item else if the neighbour's group is closer to the target than the current vertex move to that neighbour with the probability that we set at the beginning of this algorithm (prob\_close) otherwise keep track of this neighbour - closest\_not\_adjacent\_v - the same way as the previous condition
+            \item else move to this neighbour with a probability of q (probability of an edge )
+        \end{itemize}
+        \item if no moves has been made check if adjacent\_neighbour has been assigned and move to it, otherwise check if closest\_not\_adjacent\_v has been assigned and move to it, else move to the last queried neighbour
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Search Time Distribution}
+To insure that the graph instance was connected, networkx package was used for both creating the graph using networkx graph structure and then checking if it's connected (all nodes have an edge between them). The following plots are the search time against the number of instances that achieve that time evaluated for 50,000 randomly picked pairs of vertices each searched for 5 times and averaged and ran over 10 instances of the ring group graph and averaged again:
+\noindent
+The paramaters picked for the ring group graph instances tested here were based on the results in Figure-\ref{rggs:mgp} and Figure-\ref{rggs:kgp}. The figures demonstrate the effictiveness of the algorithm by looking into relationship between the search time and the probability p (groups are more connected) tested over low q probabilities (less chance of shortcuts appearing the graph). The algorithm performs better with greater m values and greater p values. 
+
+\section*{Appendix}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-50-20-search_time-p-mGreater}.png}
+        \subcaption{without the probability to move to a closer neighbour nor reset p value when p is more than 0.5}
+        \label{rggs:mgpv1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-50-20-search_time_v2-p-mGreater}.png}
+        \subcaption{with the probability to move to a closer neighbour set to p and reset p value when p is more than 0.5}
+        \label{rggs:mgpv2}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: m = 50, k = 20}
+    \label{rggs:mgp}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-20-50-search_time-p-kGreater}.png}
+        \subcaption{without the probability to move to a closer neighbour nor reset p value when p is more than 0.5}
+        \label{rggs:kgpv1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{ring_group_graph-20-50-search_time_v2-p-kGreater}.png}
+        \subcaption{with the probability to move to a closer neighbour set to p and reset p value when p is more than 0.5}
+        \label{rggs:kgpv2}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: m = 20, k = 50}
+    \label{rggs:kgp}
+\end{figure}
 
 \end{document}
