@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1541687456 "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" "report.pdf" "report" 1541687458
+["pdflatex"] 1541716071 "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" "report.pdf" "report" 1541716073
   "../distributions/q1/20-50-0.01.png" 1541433030 40579 ef10440c974f3faa6d6a6960d85b670a ""
   "../distributions/q1/4-100-0.1.png" 1541508134 29380 6187d7a66443e51c37aab83b9ee8edcc ""
   "../distributions/q1/50-20-0.01.png" 1541433030 40345 76828c21cd69dca31ab4aa558b35bb1a ""
@@ -21,7 +21,7 @@
   "../distributions/q3/ring_group_graph-20-50-search_time_v2-p-kGreater.png" 1541459116 26181 0f8eb3ba46fd4afcfd4b4575bfeaeac3 ""
   "../distributions/q3/ring_group_graph-50-20-search_time-p-mGreater.png" 1541457914 32832 9d83ef455e3f0bb45e855c9b70071e6e ""
   "../distributions/q3/ring_group_graph-50-20-search_time_v2-p-mGreater.png" 1541457954 30241 14fc302fa55393283abe885b8365454c ""
-  "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" 1541687454 22798 8d43766c32da83df5fd96600845f1465 ""
+  "/Users/FatemaK/Desktop/3rd year/CCS/Network Analysis/Assignment/ccs-network-analysis/tex/report.tex" 1541716067 24823 07a9e227c03253c961a9b54238afa8d5 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -97,9 +97,9 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1480246516 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1480246552 3873398 95537fc27d949865190528796909ef46 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "report.aux" 1541687458 2287 909d8059740f34d826187f79fb2f3d57 ""
-  "report.tex" 1541687454 22798 8d43766c32da83df5fd96600845f1465 ""
+  "report.aux" 1541716073 2287 ef6118f26d2ca42a1467fe7e45f13c83 ""
+  "report.tex" 1541716067 24823 07a9e227c03253c961a9b54238afa8d5 ""
   (generated)
+  "report.aux"
   "report.pdf"
   "report.log"
-  "report.aux"

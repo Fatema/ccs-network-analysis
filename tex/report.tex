@@ -264,21 +264,29 @@ The search in a Random Graph was implemented as follow:
     \begin{itemize}
         \item shuffle the current vertex's neighbours list (at the beginning it is the start vertex)
         \item check if then number of neighbours is more than average if so then set the number of iterations up until the average
-        \item Iterate over the neighbours list:
+        \item Iterate over the neighbours' list:
         \begin{itemize}
             \item increment the search time by 1 for every iteration that happens
             \item if the neighbour's id matches the target's id then stop, break out of the loop and return the search time
             \item else move to the neighbour with a probability p (the probability of the random graph)
         \end{itemize}
-        \item if no moves were made move to last queried neighbour
+        \item if no moves were made move to the last queried neighbour
     \end{itemize}
 \end{itemize}
-\subsubsection*{Search Time Distribution}
+The algorithm above made use of the general knowledge of the graph i.e. total number of nodes (n) and the probability (p) that an edge exists between each pair of nodes in addition to the local knowledge i.e. vertex id and number of its neighbours to better find the target vertex (t). Every vertex has the same probability to be connected to t, so there is no need to iterate over all the neighbours and going until the average number (extrapolated from the general knowledge) should suffice. This is evident from the search time distribution in figure- and figure-; going only until the average number of neighbours slightly improves the search espcially for bigger values of n.  
 
+\subsubsection*{Search Time Distribution}
+The search time distribution was created by searching 30,000 random pairs of vertices normalized and averaged over 10 random graph instances. The plots below were created to look into the search time distribution for a random graph and how it was affected by the total number of nodes (n) and probability p:
+
+\noindent
+Figure- and figure- had a constant probability p and an increasing n. As n increased the search time increased as well which is an expected behaviour as more edges and vertices will be iterated over. \\
+
+\noindent
+On the other hand, figure- and figure- had a constant n and an increasing p. As p increased the search time increased as well which is an expected behaviour as more edges and vertices will be iterated over. 
 
 \subsection*{Search Ring Group Graph}
 \subsubsection*{Search Algorithm}
-The search in a Ring Group Graph was implemented as follows:
+By definition all vertices in Ring Group graph are part of a group and adjacent groups have higher probability (p) of having an edge between their vertices than other groups which have a lower probability (q). So, the most basic strategy for searching is to move to the closest group or if possible to a group adjacent to the target vertex and look for the target in that group because of the higher probability. Unlike Random graph not all vertices are connected with the same probability and the group number is part of the vertex id so it helps narrow the search significantly. Based on that the search in a Ring Group graph was implemented as follows:
 \begin{itemize}
     \item Inputs:
     \begin{itemize}
@@ -288,7 +296,7 @@ The search in a Ring Group Graph was implemented as follows:
         \item The target vertex id - (numerical id, group)
     \end{itemize}
     \item Initialize a variable for search time and set it to 0
-    \item Create a variable for the probability to move to a vertex that is closer to the target's group than the current vertex and set it to be equal to p call ot prob\_close. This value was determined through trial and error and proved to provide the best results. the higher the p value, the less relevent the q value for the algorithm becomes as evident from Figure-\ref{rggs:mgpv2} and Figure-\ref{rggs:kgpv2} where the search time average of 20 graph instances over 50 pair of vertices each ran 10 times plotted against a fixed q and an increasing p (same conditions as the diameter plot)
+    \item Create a variable for the probability to move to a vertex that is closer to the target's group than the current vertex and set it to be equal to p; call it prob\_close. This value was determined through trial and error and proved to provide the best results. The higher the p value, the less relevent the q value for the algorithm becomes as evident from Figure-\ref{rggs:mgpv2} and Figure-\ref{rggs:kgpv2} where the search time average of 20 graph instances over 50 pair of vertices each ran 10 times plotted against a fixed q and an increasing p (same conditions as the diameter plot)
     \item check if p is greater than 0.5, if it is then set p to 1 - p; this check is to make it less likely to move to another vertex in the group to find the target vertex as the high probability indicates that it is very likely that the target vertex is connected to the current vertex
     \item start an infinite loop until the target vertex is found:
     \begin{itemize}
@@ -305,10 +313,11 @@ The search in a Ring Group Graph was implemented as follows:
     \end{itemize}
 \end{itemize}
 
+
 \subsubsection*{Search Time Distribution}
 To insure that the graph instance was connected, networkx package was used for both creating the graph using networkx graph structure and then checking if it's connected (all nodes have an edge between them). The following plots are the search time against the number of instances that achieve that time evaluated for 50,000 randomly picked pairs of vertices each searched for 5 times and averaged and ran over 10 instances of the ring group graph and averaged again:
 \noindent
-The paramaters picked for the ring group graph instances tested here were based on the results in Figure-\ref{rggs:mgp} and Figure-\ref{rggs:kgp}. The figures demonstrate the effictiveness of the algorithm by looking into relationship between the search time and the probability p (groups are more connected) tested over low q probabilities (less chance of shortcuts appearing the graph). The algorithm performs better with greater m values and greater p values. 
+The paramaters picked for the ring group graph instances tested here were based on the results in Figure-\ref{rggs:mgp} and Figure-\ref{rggs:kgp}. The figures demonstrate the effictiveness of the algorithm by looking into relationship between the search time and the probability p (groups are more connected) tested over low q probabilities (less chance of shortcuts appearing the graph). The algorithm performs better with greater m values and greater p values.
 
 \section*{Appendix}
 \begin{figure}[H]
