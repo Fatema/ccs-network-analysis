@@ -579,12 +579,15 @@ def run_search_ring_group_graph():
 
                 start_v, target_u = all_vertices_pairs[i]
 
+                avg_search_time_v1[i] = 0
+                
                 # avg_search_time_v1 = []
                 # avg_search_time_v3 = 0
 
                 for j in range(t2):
-                    avg_search_time_v1[i] = search_ring_group_graph_v2(graph,m,k,p,q,start_v,target_u)
+                    avg_search_time_v1[i] += search_ring_group_graph_v2(graph,m,k,p,q,start_v,target_u)
                     # avg_search_time_v3 += search_ring_group_graph_v3(graph,m,k,p,q,start_v,target_u)
+                avg_search_time_v1[i] = avg_search_time_v1[i] / t2
 
             search_time_dist = search_time_distribution(avg_search_time_v1)
             plot_search_time_num_instances(search_time_dist, 'ring_group_graph-' + str(m) + '-'
@@ -594,7 +597,7 @@ def run_search_ring_group_graph():
                 # search_time_v3[(start_v,target_u,i)] = avg_search_time_v3 / t2
             all_times += [(param, search_time_dist)]
 
-            print(avg_search_time_v1.values()/t2)
+            print(sum(avg_search_time_v1.values())/len(all_vertices_pairs))
 
             # avg_search_time[l] = int(round(sum(search_time_v3.values())/ t1))
             # avg_search_time[l] = int(round(sum(search_time_v1.values())/ t1))
