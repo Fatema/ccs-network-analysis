@@ -375,10 +375,8 @@ To insure that the graph instance was connected, networkx package was used for b
     \caption{Search Time Distribution for Ring Group Graph when m = 50, k = 20, p = 0.45 and q = 0.01}
     \label{rgg:n}
 \end{figure}
-\noindent
 Figure-\ref{rgg:nd} is an example of a search distribution for a ring group graph when the graph parameters are m = 50, k = 20, p = 0.45 and q = 0.01. Similarly to the search distribution for random graph, the box-plot will be used to represent the distribution as it is much simpler to interupt like figure-\ref{rgg:bx}; some of the outlier values might not be included, those outliers have a low number of occurance so they were discarded in the box-plot and only the main distribution was included. In this case, the distrbution was slightly skewed to the right with a lot of outlier values. The shape of the distribution was more defined than the distribution for random graph and the median was closer to the middle of the inter-quartile range in the box-plot \ref{rgg:bx}. There were more nodes in this graph to search than the random graph and still the range of the search time values was much lower than the random graph searches. Around $50\%$ of the instances had a search time that was around 100 and majority of the instances had a search time less than 300. \\
 
-\noindent
 Before invesitigating the effect of paramater changes to the search in a ring group graph, the following plot demonstrates the benefit of introducing the variable prod\_close to the algorithm:
 \begin{figure}[H]
     \centering
@@ -397,9 +395,8 @@ Before invesitigating the effect of paramater changes to the search in a ring gr
     \caption{Ring Group Graph parameters: p = 0.45, p = 0.01, k = 20 and m is decreasing}
     \label{rggs:521}
 \end{figure}
-As shown in figure-\ref{rggs:521v2}, the search time for the ring group graph with the specified paramaters was much lower with prob\_close introduced and set to the value of probability p. Even as the value of m was decreasing the search time was still lower in figure-\ref{rggs:521v2} than figure-\ref{rggs:521v1}. The outlier values were less as well. This proves by making it more likely for the target to move closer to its adjacent group allows for faster search time (dependent on the value of p).\\ 
+As shown in figure-\ref{rggs:521v2}, the search time for the ring group graph with the specified paramaters was much lower with prob\_close introduced and set to the value of probability p. Even as the value of m was decreasing the search time was still lower in figure-\ref{rggs:521v2} than figure-\ref{rggs:521v1}. The outlier values were less as well. This proves by making it more likely for the target to move closer to its adjacent group allows for faster search time (dependent on the value of p). \\
 
-\noindent
 The remaining plots will look into the search time values as the paramater for the ring group graph:
 \begin{figure}[H]
     \centering
@@ -418,8 +415,7 @@ The remaining plots will look into the search time values as the paramater for t
     \caption{Ring Group Graph parameters: p = 0.45, q = 0.01}
     \label{rggs:q01}
 \end{figure}
-\noindent
-In this figure, the total number of the nodes is equal and the same p and q values are applied to m and k. As shown in figure-\ref{rggs:q5245}, the search time was much lower when m was greater than k. The shape of the distribution however was almost identical. Compared to figure-\ref{rggs:q5245}, the search time in figure-\ref{rggs:q2545} was almost twice as much; majority of instances had a search time less than 250 in \ref{rggs:q5245}, in contrast in \ref{rggs:q2545}, around 50\% of instances had a search time between 150 and 400. \\
+In this figure, the total number of the nodes is equal and the same p and q values are applied to m and k. As shown in figure-\ref{rggs:q5245}, the search time was much lower when m was greater than k. The shape of the distribution however was almost identical. Compared to figure-\ref{rggs:q5245}, the search time in figure-\ref{rggs:q2545} was almost twice as much; majority of instances had a search time less than 250 in \ref{rggs:q5245}, in contrast in \ref{rggs:q2545}, around 50\% of instances had a search time between 150 and 400.
 
 \begin{figure}[H]
     \centering
@@ -438,7 +434,6 @@ In this figure, the total number of the nodes is equal and the same p and q valu
     \caption{Ring Group Graph parameters: p = 0.45}
     \label{rggs:q}
 \end{figure}
-\noindent
 This figure extends the comparison made in figure-\ref{rggs:q01}. The value of q was increased to 0.1, this resulted in the search time for both pairs of m and k in \ref{rggs:p25} and \ref{rggs:p52} to significantly increase (more random edges has been introduced) The distribution is also more skewed to the right and the box-plot is similar to the plot for a random graph; the upper quartile covers way more search time values than the lower quartile and the median is slightly further down from the center of the box. 
 
 \begin{figure}[H]
@@ -458,7 +453,6 @@ This figure extends the comparison made in figure-\ref{rggs:q01}. The value of q
     \caption{Ring Group Graph parameters: q = 0.01}
     \label{rggs:p}
 \end{figure}
-\noindent
 On the other hand, when p increaseed and q remained constant, the search time generally decreased as shown in figure-\ref{rggs:p}. The decrease was more noticable when m was greater than k, figure-\ref{rggs:p52}. This indicates that the search algorithm implemented for the ring group graph much favours high p values, low q values and m to be greater than k. This doesn't mean that this algorithm is less effective for the other cases but it is more optimized for the previous conditions. 
 
 \begin{figure}[H]
@@ -478,7 +472,7 @@ On the other hand, when p increaseed and q remained constant, the search time ge
     \caption{Ring Group Graph parameters: p = 0.45, q = 0.01}
     \label{rggs:125}
 \end{figure}
-Figure-\ref{rggs:125} further looks into the changes in the distribution; the value of k decreased as m, p and q remained constant, figure-\ref{rggs:125v2}, and the value of m decreased as k, p and q remained constant, figure-\ref{rggs:521v22}
+Figure-\ref{rggs:125} further looks into the changes in the distribution while the value of k decreased as m, p and q remained constant, figure-\ref{rggs:125v2}, and the value of m decreased as k, p and q remained constant, figure-\ref{rggs:521v22}. Greater search time decrease is apparent as k decreased in \ref{rggs:125v2} than as m decreased in \ref{rggs:521v22}; the search time for when m and k were equal could be used as a reference point in this plot. In \ref{rggs:521v2} when k decreased to 10 that resulted in a much greater difference than in \ref{rggs:521v22} when m decreased to 10; as in the first figure m is greater than k and the other figure k is greater than m.
 
 \begin{figure}[H]
     \centering
@@ -497,7 +491,7 @@ Figure-\ref{rggs:125} further looks into the changes in the distribution; the va
     \caption{Ring Group Graph parameters: m = 6, k = 100}
     \label{rggs:s}
 \end{figure}
-\noindent
-The paramaters picked for the ring group graph instances tested here were based on the results in Figure-\ref{rggs:mgp} and Figure-\ref{rggs:kgp}. The figures demonstrate the effictiveness of the algorithm by looking into relationship between the search time and the probability p (groups are more connected) tested over low q probabilities (less chance of shortcuts appearing the graph). The algorithm performs better with greater m values and greater p values.
+This last figure looks into the special case for the ring group graph when m = 6. k was always greater than m so as mentioned for the previous figure, the changes in the search time is less noticable when k is higher when p is increasing and the search time is generally much higher than the cases where m is greater than k. \\
 
+Search in a ring group graph is much faster than in a random graph and the paramaters of the ring group graph greatly influences the search. The algorithm for searching in a ring group graph is optimized for paramaters where m is greater than k, p is a high probability and q is a low probability. The general distribution was skewed to the right with a lot of outlier values. 
 \end{document}
