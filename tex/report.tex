@@ -25,17 +25,7 @@ Clearly document what you have done. For each question you should report on what
 
 \section*{Question 1}
 \subsection*{Ring Group Graph implementation}
-The ring group graph was implemented based on the following steps:
-\begin{enumerate}
-    \item For each vertex from 0 to m * k (outer loop) where m is the number of groups and k is the number of members per group, the group label was calculated by dividing the current vertex id [0,m * k) over k, then truncate the value so only the integer value remains from the division
-    \item The vertex was then iterated over the other vertices (inner loop) starting from the current vertex id plus 1 until m * k. 
-    \item At each iteration of the inner loop, the group was computed again for the inner loop's vertex and checked against the outer loop's group:
-    \begin{itemize}
-        \item if the groups are the same or adjacent (absolute difference is one or absolute difference is m - 1, the group difference for the first and last group), then there is a p probability that an edge exists
-        \item all other cases, there is a q probability that an edge exists
-    \end{itemize}
-\end{enumerate}
-\textbf{networkx} python3 package was used to create the graph and to check that the graph instances used for the degree distribution are fully connected (all unconnected graphs were skipped). It was also used to calculate the diameter of the graph (next section).
+\textbf{networkx} python3 package was used to create the graph and to check that the graph instances used for the degree distribution are fully connected (all unconnected graphs were skipped). It was also used to calculate the diameter of the graph.
 
 \subsection*{Ring Group Graph Degree Distribution when $p + q = 0.5$, $p > q$}
 \begin{itemize}
@@ -60,6 +50,18 @@ The degree distrbution was normalized and averaged over 25 instances of the ring
         \subcaption{m = 20, k = 50}
         \label{pq0.5:m20k50}
     \end{minipage}
+    \caption{Ring Group Graph when $p + q = 0.5$, $p > q$}
+    \label{rgg:pq0.5}
+\end{figure}
+\noindent
+By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the verrex can be conneced to on average with this condition (the subtracted 1 is the vertex itself - no self edges allowed). So, the average for the remaining edges is $q \times k \times (m-3)$ (the vertices connected with p substracted from all the vertices). So, the degree distribution figures can be explained by these equation:
+\begin{equation*} \label{rgg:vad}
+    \mu_{degree} = p \times (3k - 1) + q \times k \times (m-3) 
+\end{equation*} 
+ The general shaped of the degree distribution for a Ring Group Graph is a bell shaped. A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}.\\
+ The following plots can be considered special cases which can be extrapolated from equation-\ref{rgg:vad}:
+ \begin{figure}[H] 
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{{6-100-0.01}.png}
@@ -72,16 +74,14 @@ The degree distrbution was normalized and averaged over 25 instances of the ring
         \subcaption{m = 4, k = 100}
         \label{pq0.5:m4k100}
     \end{minipage}
-    \caption{Ring Group Graph when $p + q = 0.5$, $p > q$}
-    \label{rgg:pq0.5}
+    \caption{Special cases for Ring Group Graph when $p + q = 0.5$, $p > q$}
+    \label{srgg:pq0.5}
 \end{figure}
 \noindent
-By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the verrex can be conneced to on average with this condition (the subtracted 1 is the vertex itself - no self edges allowed). So, the average for the remaining edges is $q \times k \times (m-3)$ (the vertices connected with p substracted from all the vertices). So, the degree distribution figures can be explained by these equations:
-\begin{align*} \label{rgg:vad}
-    \mu_{degree} &= p \times (3k - 1) + q \times k \times (m-3) \\
-    \sigma_{degree} &= \sqrt{(1-p) \times p \times (3k - 1)} + \sqrt{(1-q) \times q \times k \times (m-3))}
-\end{align*} 
- The general shaped of the degree distribution for a Ring Group Graph is a bell shaped. A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}. 
+For figure-\ref{pq0.5:m6k100}, by equation-\ref{rgg:vad} when m = 6 we get:
+$$ \mu_{degree} = p \times (3k - 1) + q \times 3k $$
+so for this distribution regardless of the value of k combinations of p and q where $p + q = 0.5$ and $p > q$ will result in almost the same average degree across all combinations; hence the overlapped distributions in figure-\ref{pq0.5:m6k100}. 
+
 % ToDo talk about figures 1c and 1d.
 
 
@@ -234,14 +234,6 @@ Based on the previous graphs, it can be concluded that the vertex distribution h
 
 
 \section*{Question 3}
-\begin{itemize}
-    \item describe an algorithm for searching in the graphs. (I expect that you will have different algorithms for the different types of graphs.) 
-    \item You should explain why you believe your strategy might be effective and implement and test it on many instances. You can choose the parameters yourself as long as you are not perverse — for example, the groups in the Ring Group Graph should not be of size 1 or n — and it is acceptable that all your testing for a particular type of graph is on instances generated with the same parameters. 
-    \item As searching on graphs that are not connected can be impossible, you should choose parameters so that the graphs are very likely to be connected. 
-    \item Plot search time against the number of instances that achieve that time. Comment on your plots. It is acceptable to estimate search time by looking at only a sample set of pairs of vertices. 
-    \item Credit will be given for the effectiveness of the algorithm you design, and also, independently, for your explanation of the rationale behind the design.
-\end{itemize}
-
 \subsection*{Search Random Graph}
 \subsubsection*{Search Algorithm}
 The search in a Random Graph was implemented as follow:
@@ -277,6 +269,25 @@ The search time distribution was created by searching 30,000 random pairs of ver
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
+        \includegraphics[width=1\textwidth]{{search-time/random_graph-500-0.1-search_time_v2-avg}.png}
+        \subcaption{Normalized search time distribution}
+        \label{rg:501n}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-random_graph-500-0.1-search_time_v2-avg}.png}
+        \subcaption{Box-plot respresentation of the search time distribution}
+        \label{rg:501b}
+    \end{minipage} \hfill
+    \caption{Search Time Distribution for Random Graph when n = 500 and p = 0.1}
+    \label{rg:501}
+\end{figure}
+\noindent
+Figure-\ref{rg:501n} is an example of a search distribution for a random graph when n is 500 and p is 0.1. The box-plot will be used to represent the distribution as it is much simpler to interupt like figure-\ref{rg:501b}; some of the outlier values might not be included, those outliers have a low number of occurance so they were discarded in the box-plot and only the main distribution was included. In this case, the distrbution was skewed to the right with a lot of outlier values. More than $50\%$ of the instances had a search time that was less than 500. The median search time was roughly around 300 for this graph instance. 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
         \includegraphics[width=1\textwidth]{{box/box-random_graph-n-search_time_v1-avg}.png}
         \subcaption{Only iterate until average number of neighbours}
         \label{rg:n1}
@@ -291,7 +302,8 @@ The search time distribution was created by searching 30,000 random pairs of ver
     \label{rg:n}
 \end{figure}
 \noindent
-Figure-\ref{rg:n1} and figure-\ref{rg:n2} had a constant probability p and an increasing n. As n increased the search time increased which was an expected outcome as more edges and vertices would be iterated over. The performance of the algorithm described in the previous section was the one used in figure-\ref{rg:n1}, it did not significantly improved the search time (the difference if there is any is barely noticable from the box plots in both figures \ref{rg:n1} and \ref{rg:n2}) \begin{figure}[H]
+Figure-\ref{rg:n1} and figure-\ref{rg:n2} had a constant probability p and an increasing n. As n increased the search time increased which was an expected outcome as more edges and vertices would be iterated over. The performance of the algorithm described in the previous section was the one used in figure-\ref{rg:n1}, it did not significantly improved the search time (the difference if there is any is barely noticable from the box plots in both figures \ref{rg:n1} and \ref{rg:n2}). The median search time across all graph instances was slightly more than half of n and the shape of the graph persisted as well.
+\begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
@@ -309,11 +321,14 @@ Figure-\ref{rg:n1} and figure-\ref{rg:n2} had a constant probability p and an in
     \label{rg:p}
 \end{figure}
 \noindent
-Figure-\ref{rg:p1} and figure-\ref{rg:p2} had a constant n and an increasing p. As p increased the search time decreased but only very slightly. 
+Figure-\ref{rg:p1} and figure-\ref{rg:p2} had a constant n and an increasing p. As p increased the search time decreased but only very slightly. \\
+
+\noindent
+Based on the search algorithm, the search time increased as n increased however it slightly decreased as p increased in a random graph. The shape of the distribution remains skewed to the right with a lot of outlier values throughout all the distributions in figures \ref{rg:n} and \ref{rg:p}.
 
 \subsection*{Search Ring Group Graph}
 \subsubsection*{Search Algorithm}
-By definition all vertices in a Ring Group graph are part of a group, and adjacent groups have higher probability (p) of having an edge between their vertices than with other groups which have a lower probability (q). So, the most basic strategy for searching this graph is by moving to the closest group or if possible to a group adjacent to the target vertex and look for the target in that group because of the higher probability. Unlike Random graph not all vertices are connected with the same probability and the group number is part of the vertex id so it helps narrow the search significantly. Based on that the search in a Ring Group graph was implemented as follows:
+By definition all vertices in a Ring Group graph are part of a group, and adjacent groups have higher probability (p) of having an edge between their vertices than with other groups which have a lower probability (q). So, the most basic strategy for searching this graph is by moving to the closest group or if possible to a group adjacent to the target vertex and look for the target in that group because of the higher probability. Unlike Random graph not all vertices are connected with the same probability and the group number is part of the vertex id so it helps narrow the search significantly. Based on this, the search in a Ring Group graph was implemented as follows:
 \begin{itemize}
     \item Inputs:
     \begin{itemize}
@@ -324,7 +339,7 @@ By definition all vertices in a Ring Group graph are part of a group, and adjace
     \end{itemize}
     \item Initialize a variable for search time and set it to 0
     \item Create a variable for the probability to move to a vertex that is closer to the target's group than the current vertex and set it to be equal to p; call it prob\_close. 
-    \item check if p is greater than 0.5, if it is then set p to 1 - p; this check is to make it less likely to move to another vertex in the group to find the target vertex as the high probability indicates that it is very likely that the target vertex is connected to the current vertex
+    \item check if p is greater than 0.5, if it is then set p to 1 - p
     \item start an infinite loop until the target vertex is found:
     \begin{itemize}
         \item shuffle the current vertex's neighbours list (at the beginning it is the start vertex)
@@ -332,14 +347,14 @@ By definition all vertices in a Ring Group graph are part of a group, and adjace
         \begin{itemize}
             \item increment the search time by 1 for every iteration that happens
             \item if the neighbour's id matches the target's id then stop, break out of the loop and return the search time
-            \item else if the neighbour's group is the same as the traget's group then move to that neighbour with a probability p (the probability for vertices in adjacent groups to have an edge), otherwise keep track of this neighbour in adjacent\_neighbour variable (only one neighbour is stored at a time so if another neighbour with the same condition is encountered that neighbour will be stored instead and as the neighbours list is shuffled with every move it is less likely this neighbour will be the same if the current vertex is returned to at some point)
-            \item else if the neighbour's group is closer to the target than the current vertex move to that neighbour with the probability that we set at the beginning of this algorithm (prob\_close) otherwise keep track of this neighbour - closest\_not\_adjacent\_v - the same way as the previous condition
+            \item else if the neighbour's group is the same as the traget's group then move to that neighbour with a probability p (the probability for vertices in adjacent groups to have an edge), otherwise keep track of this neighbour in adjacent\_neighbour variable 
+            \item else if the neighbour's group is closer to the target than the current vertex's move to that neighbour with the probability that we set at the beginning of this algorithm (prob\_close) otherwise keep track of this neighbour - closest\_not\_adjacent\_v - the same way as the previous condition
             \item else move to this neighbour with a probability of q (probability of an edge )
         \end{itemize}
-        \item if no moves has been made check if adjacent\_neighbour has been assigned and move to it, otherwise check if closest\_not\_adjacent\_v has been assigned and move to it, else move to the last queried neighbour
+        \item if no moves has been made check if adjacent\_neighbour has been assigned and move to it, otherwise check if closest\_not\_adjacent\_v has been assigned and move to it. If neither values are assigned move to the last queried neighbour
     \end{itemize}
 \end{itemize}
-The assigned value for prob\_close was determined through trial and error and proved to provide the best results (figure-\ref{rggs:521v1} and figure-\ref{rggs:521v2}). 
+The assigned value for prob\_close was determined through trial and error and proved to provide the best results (figure-\ref{rggs:521v1} and figure-\ref{rggs:521v2}). The condition for when p is more than 0.5 is similar to the one in the random graph, making it less likely to move to another vertex in the group to find the target vertex as the high probability indicates that it is very likely that the target vertex is connected to the current vertex. For adjacent\_neighbour and closest\_not\_adjacent\_v variables, only one neighbour is stored at a time so if another neighbour with the same condition is encountered that neighbour will be stored instead and as the neighbours list is shuffled with every move it is less likely this neighbour will be the same if the current vertex is returned to at some point.
 
 \subsubsection*{Search Time Distribution}
 To insure that the graph instance was connected, networkx package was used for both creating the graph using networkx graph structure and then checking if it's connected (all nodes have an edge between them). The following plots are the search time against the number of instances that achieve that time evaluated for 30,000 randomly picked pairs of vertices normalized and averaged over 10 instances of the ring group graph and averaged again:
@@ -347,36 +362,24 @@ To insure that the graph instance was connected, networkx package was used for b
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-search_time_v2-avg}.png}
-        \subcaption{without the probability to move to a closer neighbour nor reset p value when p is more than 0.5}
-        \label{rggs:q52}
+        \includegraphics[width=1\textwidth]{{search-time/ring_group_graph-50-20-0.45-0.01-search_time_v2-avg}.png}
+        \subcaption{Search time distribution normalized}
+        \label{rgg:nd}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-20-50-search_time_v2-avg}.png}
-        \subcaption{with the probability to move to a closer neighbour set to p and reset p value when p is more than 0.5}
-        \label{rggs:q25}
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-0.45-0.01-search_time_v2-avg}.png}
+        \subcaption{Box-plpot respresentation of the search time distribution}
+        \label{rgg:bx}
     \end{minipage} \hfill
-    \caption{Ring Group Graph parameters: m = 20, k = 50}
-    \label{rggs:q}
+    \caption{Search Time Distribution for Ring Group Graph when m = 50, k = 20, p = 0.45 and q = 0.01}
+    \label{rgg:n}
 \end{figure}
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-p-search_time_v2-avg}.png}
-        \subcaption{Search Time Distribution with changing p}
-        \label{rggs:p52}
-    \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-20-50-p-search_time_v2-avg}.png}
-        \subcaption{Search Time Distribution with changing p}
-        \label{rggs:p25}
-    \end{minipage} \hfill
-    \caption{Ring Group Graph parameters: q = 0.05}
-    \label{rggs:p}
-\end{figure}
+\noindent
+Figure-\ref{rgg:nd} is an example of a search distribution for a ring group graph when the graph parameters are m = 50, k = 20, p = 0.45 and q = 0.01. Similarly to the search distribution for random graph, the box-plot will be used to represent the distribution as it is much simpler to interupt like figure-\ref{rgg:bx}; some of the outlier values might not be included, those outliers have a low number of occurance so they were discarded in the box-plot and only the main distribution was included. In this case, the distrbution was slightly skewed to the right with a lot of outlier values. The shape of the distribution was more defined than the distribution for random graph and the median was closer to the middle of the inter-quartile range in the box-plot \ref{rgg:bx}. There were more nodes in this graph to search than the random graph and still the range of the search time values was much lower than the random graph searches. Around $50\%$ of the instances had a search time that was around 100 and majority of the instances had a search time less than 300. \\
+
+\noindent
+Before invesitigating the effect of paramater changes to the search in a ring group graph, the following plot demonstrates the benefit of introducing the variable prod\_close to the algorithm:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
@@ -391,26 +394,92 @@ To insure that the graph instance was connected, networkx package was used for b
         \subcaption{with the probability to move to a closer neighbour set to p}
         \label{rggs:521v2}
     \end{minipage} \hfill
-    \caption{Ring Group Graph parameters: m = 20, k = 50}
+    \caption{Ring Group Graph parameters: p = 0.45, p = 0.01, k = 20 and m is decreasing}
     \label{rggs:521}
 \end{figure}
+As shown in figure-\ref{rggs:521v2}, the search time for the ring group graph with the specified paramaters was much lower with prob\_close introduced and set to the value of probability p. Even as the value of m was decreasing the search time was still lower in figure-\ref{rggs:521v2} than figure-\ref{rggs:521v1}. The outlier values were less as well. This proves by making it more likely for the target to move closer to its adjacent group allows for faster search time (dependent on the value of p).\\ 
+
+\noindent
+The remaining plots will look into the search time values as the paramater for the ring group graph:
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-0.45-0.01-search_time_v2-avg}.png}
+        \subcaption{Search Time distribution when m is greater than k}
+        \label{rggs:q5245}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-20-50-0.45-0.01-search_time_v2-avg}.png}
+        \subcaption{Search Time distribution when k is greater than m}
+        \label{rggs:q2545}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: p = 0.45, q = 0.01}
+    \label{rggs:q01}
+\end{figure}
+\noindent
+In this figure, the total number of the nodes is equal and the same p and q values are applied to m and k. As shown in figure-\ref{rggs:q5245}, the search time was much lower when m was greater than k. The shape of the distribution however was almost identical. Compared to figure-\ref{rggs:q5245}, the search time in figure-\ref{rggs:q2545} was almost twice as much; majority of instances had a search time less than 250 in \ref{rggs:q5245}, in contrast in \ref{rggs:q2545}, around 50\% of instances had a search time between 150 and 400. \\
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-search_time_v2-avg}.png}
+        \subcaption{Search Time distribution when m is greater than k and q is changing}
+        \label{rggs:q52}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-20-50-search_time_v2-avg}.png}
+        \subcaption{Search Time distribution when k is greater than m and q is changing}
+        \label{rggs:q25}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: p = 0.45}
+    \label{rggs:q}
+\end{figure}
+\noindent
+This figure extends the comparison made in figure-\ref{rggs:q01}. The value of q was increased to 0.1, this resulted in the search time for both pairs of m and k in \ref{rggs:p25} and \ref{rggs:p52} to significantly increase (more random edges has been introduced) The distribution is also more skewed to the right and the box-plot is similar to the plot for a random graph; the upper quartile covers way more search time values than the lower quartile and the median is slightly further down from the center of the box. 
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-p-search_time_v2-avg}.png}
+        \subcaption{Search Time Distribution when m is greater than k and changing p}
+        \label{rggs:p52}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-20-50-p-search_time_v2-avg}.png}
+        \subcaption{Search Time Distribution when k is greater than m and changing p}
+        \label{rggs:p25}
+    \end{minipage} \hfill
+    \caption{Ring Group Graph parameters: q = 0.01}
+    \label{rggs:p}
+\end{figure}
+\noindent
+On the other hand, when p increaseed and q remained constant, the search time generally decreased as shown in figure-\ref{rggs:p}. The decrease was more noticable when m was greater than k, figure-\ref{rggs:p52}. This indicates that the search algorithm implemented for the ring group graph much favours high p values, low q values and m to be greater than k. This doesn't mean that this algorithm is less effective for the other cases but it is more optimized for the previous conditions. 
+
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-10-20-50-search_time_v2-avg}.png}
-        \subcaption{Search Time Distribution with changing k}
+        \subcaption{Search Time Distribution with changing k and m = 20}
         \label{rggs:125v2}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{{box/box-ring_group_graph-50-20-10-search_time_v2-avg}.png}
-        \subcaption{Search Time Distribution with changing m}
+        \subcaption{Search Time Distribution with changing m and k = 20}
         \label{rggs:521v22}
     \end{minipage} \hfill
     \caption{Ring Group Graph parameters: p = 0.45, q = 0.01}
     \label{rggs:125}
 \end{figure}
+Figure-\ref{rggs:125} further looks into the changes in the distribution; the value of k decreased as m, p and q remained constant, figure-\ref{rggs:125v2}, and the value of m decreased as k, p and q remained constant, figure-\ref{rggs:521v22}
+
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
@@ -430,41 +499,5 @@ To insure that the graph instance was connected, networkx package was used for b
 \end{figure}
 \noindent
 The paramaters picked for the ring group graph instances tested here were based on the results in Figure-\ref{rggs:mgp} and Figure-\ref{rggs:kgp}. The figures demonstrate the effictiveness of the algorithm by looking into relationship between the search time and the probability p (groups are more connected) tested over low q probabilities (less chance of shortcuts appearing the graph). The algorithm performs better with greater m values and greater p values.
-
-\section*{Appendix}
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{ring_group_graph-50-20-search_time-p-mGreater}.png}
-        \subcaption{without the probability to move to a closer neighbour nor reset p value when p is more than 0.5}
-        \label{rggs:mgpv1}
-    \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{ring_group_graph-50-20-search_time_v2-p-mGreater}.png}
-        \subcaption{with the probability to move to a closer neighbour set to p and reset p value when p is more than 0.5}
-        \label{rggs:mgpv2}
-    \end{minipage} \hfill
-    \caption{Ring Group Graph parameters: m = 50, k = 20}
-    \label{rggs:mgp}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{ring_group_graph-20-50-search_time-p-kGreater}.png}
-        \subcaption{without the probability to move to a closer neighbour nor reset p value when p is more than 0.5}
-        \label{rggs:kgpv1}
-    \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{ring_group_graph-20-50-search_time_v2-p-kGreater}.png}
-        \subcaption{with the probability to move to a closer neighbour set to p and reset p value when p is more than 0.5}
-        \label{rggs:kgpv2}
-    \end{minipage} \hfill
-    \caption{Ring Group Graph parameters: m = 20, k = 50}
-    \label{rggs:kgp}
-\end{figure}
 
 \end{document}
