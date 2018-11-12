@@ -11,7 +11,7 @@
     \usepackage{multicol}
 
     \title{CCS - Network Analysis Assignment}
-    \author{Fatema Alkhanaizi}
+    \author{Fatema Alkhanaizi - mmgw12}
     \date{\today}
 
 \begin{document}
@@ -20,22 +20,12 @@
 
 \maketitle
 
-\noindent
-Clearly document what you have done. For each question you should report on what you did and include, as needed, illustrative plots.
-
 \section*{Question 1}
 \subsection*{Ring Group Graph implementation}
-\textbf{networkx} python3 package was used to create the graph and to check that the graph instances used for the degree distribution are fully connected (all unconnected graphs were skipped). It was also used to calculate the diameter of the graph.
+The ring group graph was created by using \textbf{networkx} python3 package's graph structure. Networkx was also used to check the continuity of the graph instances used for the degree distribution (all unconnected graphs were skipped). In addition, it was used to calculate the diameter of the graph.
 
 \subsection*{Ring Group Graph Degree Distribution when $p + q = 0.5$, $p > q$}
-\begin{itemize}
-    \item Investigate the degree distribution of Ring Group Graphs for p + q = 0.5, p > q. 
-    \item Decide which values of m, k, p and q to investigate. 
-    \item You should report on how the structure changes as p and q vary and whether the same effects are found for different values of m and k.
-    \item Use plots to illustrate your observations.
-\end{itemize}
-\noindent
-The degree distrbution was normalized and averaged over 25 instances of the ring group graph. The following figures are for the case when $p + q = 0.5$, $p > q$:
+The degree distrbution was normalized and averaged over 25 instances of the ring group graph. The following plots are for the case when $p + q = 0.5$, $p > q$:
 \begin{figure}[H] 
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -53,12 +43,15 @@ The degree distrbution was normalized and averaged over 25 instances of the ring
     \caption{Ring Group Graph when $p + q = 0.5$, $p > q$}
     \label{rgg:pq0.5}
 \end{figure}
-\noindent
-By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the verrex can be conneced to on average with this condition (the subtracted 1 is the vertex itself - no self edges allowed). So, the average for the remaining edges is $q \times k \times (m-3)$ (the vertices connected with p substracted from all the vertices). So, the degree distribution figures can be explained by these equation:
-\begin{equation*} \label{rgg:vad}
+By the Ring Group graph definition each vertex can be linked to 3 groups (two adjacent groups and its own group) and since each group has k members there is $p \times (3k-1)$ edges the vertex can be connected to on average (the subtracted 1 is the edge to the vertex itself - no self edges are allowed). So, the average for the remaining edges is $q \times k \times (m-3)$ (the vertices connected with p substracted from all vertices in the graph). So, the degree distribution plots can be explained by this equation:
+\begin{equation} \label{rgg:vad}
     \mu_{degree} = p \times (3k - 1) + q \times k \times (m-3) 
-\end{equation*} 
- The general shaped of the degree distribution for a Ring Group Graph is a bell shaped. A vertex average degree is heavly infllued by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward greater degree distribution than in figure-\ref{pq0.5:m50k20}.\\
+\end{equation} 
+
+ The general shape of the degree distribution for a Ring Group Graph is bell shaped as shown in figure-\ref{rgg:pq0.5}. As m, k, p and q varied the shape of the distribution remained constant; the mean and variance of the degree distribution however changed. A vertex average degree (mean) is heavly influnced by the value of k which is evident in figure-\ref{pq0.5:m20k50} and figure-\ref{pq0.5:m50k20}; for the same number of nodes, p and q values, the distribution in figure-\ref{pq0.5:m20k50} is shifted toward a greater degree distribution than in figure-\ref{pq0.5:m50k20} however this effect decrease as p and q vary. We can make use of equation-\ref{rgg:vad} to prove this as k is part of the computation for both p and q probailities where m only influences the part with q probability. \\
+
+ In addition as the value of p decreases in both figure-\ref{pq0.5:m50k20} and \ref{pq0.5:m20k50} and q increases while maintaining the constraint mentioned previously, the degree distribution flattens out. The variance, the range of degrees increase more than the increase in the mean; m has more influence over the mean the greater q probability increases but as p decreases this increase is penalized (the increase steps are reduced as p decreases). \\
+
  The following plots can be considered special cases which can be extrapolated from equation-\ref{rgg:vad}:
  \begin{figure}[H] 
     \centering
@@ -77,19 +70,16 @@ By the Ring Group graph definition each vertex can be linked to 3 groups (two ad
     \caption{Special cases for Ring Group Graph when $p + q = 0.5$, $p > q$}
     \label{srgg:pq0.5}
 \end{figure}
-\noindent
 For figure-\ref{pq0.5:m6k100}, by equation-\ref{rgg:vad} when m = 6 we get:
 $$ \mu_{degree} = p \times (3k - 1) + q \times 3k $$
-so for this distribution regardless of the value of k combinations of p and q where $p + q = 0.5$ and $p > q$ will result in almost the same average degree across all combinations; hence the overlapped distributions in figure-\ref{pq0.5:m6k100}. 
+so for this distribution regardless of the value of k, combinations of p and q where $p + q = 0.5$ and $p > q$ will result in almost the same average degree across all combinations for that k; hence the overlapped distributions in figure-\ref{pq0.5:m6k100}. \\
 
-% ToDo talk about figures 1c and 1d.
-
+For figure-\ref{pq0.5:m4k100}, by equation-\ref{rgg:vad} when m = 4 we get:
+$$ \mu_{degree} = p \times (3k - 1) + q \times k $$
+In this case, the probability p has a greater influence over the mean (3 times more than the probability of q) so as p decrease the mean decreases as well. This explains why for the values p = 0.3 and q = 0.2, the distribution is on the right side of the distribution for when p = 0.4 and q = 0.1; Compared to the distributions in figure-\ref{rgg:pq0.5} where the degree distribution was always shifting to the right as p was decreasing and q increasing which can be contributed to the value of m.
 
 \subsection*{Diameter of Ring Group Graph and $p$ (for a fixed $q$, $p > q$)}
-\begin{itemize}
-    \item Investigate the relationship between the diameter of Ring Group Graphs and p (for fixed q, p > q). 
-\end{itemize}
-The diameter was caluculated over 20 instances of the ring group graph and run against multiple fixed q values and tested against two m and k values (20 and 50):
+To invesitgate the relationship between the diameter and the probability p, the diameter was caluculated and averaged over 20 instances of the ring group graph and run against multiple fixed q values then tested against two m and k values (20 and 50):
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -107,9 +97,9 @@ The diameter was caluculated over 20 instances of the ring group graph and run a
     \caption{Diameter for Ring Group Graph when $p > q$ ($q$ is fixed)}
     \label{rgg:dia}
 \end{figure}
-\noindent
-The picked values for m and k provided a good contrast on how the diameter is affected when m is greater than k and vice versa. As shown in figure-\ref{rgg:dia}, as p increases the diameter decreases and at some point it becomes constant. For various q values the diamter had a similar behaviour, the value of the diameter was generally higher as q decreased which is expected as the probability q essentially creates shortcuts between the groups and without those shortcuts the diameter depends on the value of m and p. 
+The picked values for m and k provided a good contrast on how the diameter is affected when m is greater than k and vice versa. As shown in figure-\ref{rgg:dia}, as p increases the diameter decreases and at some point it becomes constant. For various q values the diamter had a similar behaviour, the value of the diameter was generally higher as q decreased which is expected as the probability q essentially creates shortcuts between the groups and without those shortcuts the diameter depends on the value of m and p. The decrease in the diameter wasn't however constant or followed a certain pattern as p and q varied. \\
 
+Figure-\ref{rgg:dd} contains the degree distribution plots for when q = 0.01 to investigate how the degree distribution affects the diameter:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -124,48 +114,22 @@ The picked values for m and k provided a good contrast on how the diameter is af
         \subcaption{m = 20, k = 50, q = 0.01}
         \label{dd:m20k50}
     \end{minipage}
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{{prob-p/6-100-0.01}.png}
-        \subcaption{m = 6, k = 100, q = 0.01}
-        \label{dd:m6k100}
-    \end{minipage}
     \caption{Ring Group Graph when $p > q$ ($q$ is fixed)}
     \label{rgg:dd}
 \end{figure}
+As the degree distribution shifts to higher degrees, the diameter decreases (which is expected). In figure-\ref{dd:m50k20}, the degree distribution as p varied only shifted by a minor margin compared to figure-\ref{dd:m20k50}. The convergances of the diameter in figure-\ref{dia:m50k20} and figure-\ref{dia:m20k50} can be linked to the changes in the degree distribution as p varied. For figure-\ref{dia:m20k50} the diameter seemed to converge as p was between 0.2 and 0.3; figure-\ref{dd:m20k50} has the degree distribution for when p = 0.21 and p = 0.36 to be between 40 to 60. On the other hand, the diamter seems to reach a converged value when p is close to 0.7; the degree distribution in figure-\ref{dd:m50k20} for when p = 0.66 and p = 0.81 had a mean range from 48 to 57. Based on those values, the diameter converged for q = 0.01 when the mean degree distribution was around 40 to 60 in this case. 
+
 \section*{Question 2}
 \subsection*{Distribution of Vertex Brilliance}
 \subsubsection*{Calculating Vertex Brilliance}
-\begin{itemize}
-    \item Construct the undirected graph defined in coauthorship.txt. Ignore edge weights.
-    \item For the graph from coauthorship.txt, investigate the distribution of vertex brilliance. 
-    \item For each of the following types of graph
-    \begin{itemize}
-    \item PA Graphs
-    \item Ring Group Graphs 
-    \end{itemize}
-    create examples with approximately the same number of vertices and edges as the graph from coauthorship.txt and investigate the distribution of vertex brilliance. Comment on what you find.
-\end{itemize}
-The vertex brilliance was caluculated based on a similar approach to calculate the diameter by using breadth-first search but by only doing breadth-first search at debth of 2; by checking the neighbours of the vertex's neighbours. The algorithm simplified:
-\begin{enumerate}
-    \item create an empty dictionary; this dictionary will hold the weight vertices for the k-star of the current vertex 
-    \item populate the dictionary with v's neighbours and give each vertex in the dictionary a weight of 0 to begin with < this weight will be used to determine which vertex to exclude to get the maximum k-star, the weight corresponds to how many v's neighbours the vertex is connected to
-    \item repeat until maximum k-star is found
-    \begin{itemize}
-        \item for each vertex in the k-star dictionary go through its neighbours. If one of the vertex neighbour is a key in the k-star dictionary substract 1 from the weight of the vertex (I gave it negative value as just a notion that this is undesired vertex thus a negative affect but it can be calculated with the same manner by adding 1 but then the rest of the code will be modified so it get the maximum value from the k-star values instead of the minimum)
-        \item find the minimum weight (value) of the k-star dictionary 
-        \item if the minimum value is 0 then stop as this indicates that non of the vertices in the dictionary are adjacent thus it is the maximum k-star set of vertices (ther can be more than one set but we only care about the length so the actual vertices of the maximum set don't have any actual value for us in this case) so stop the loop
-        \item else find the vertex with the minumum weight and remove it from the dictionary (this vertex is the most influential as it connects to the most number of vertices and by removing it the rest of vertices will be less adjacent, only the first found vertix will be removed) and reset all the other vertices values to 0 
-    \end{itemize}
-    \item return the length of the dictionary 
-\end{enumerate}
-This is essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
+The vertex brilliance was caluculated based on a similar approach to calculating the diameter; by using breadth-first search but by only doing breadth-first search at debth of 2 -  checking the neighbours of the vertex's neighbours. Complete description of the algorithm used can be found the appendex-\ref{vba}. It was essentially an algorithm to get the maximum independent set of sub-graph that only contains v and it's neighbours. I opted to using my own algorithm instead of using networkx's implementation. 
+
 \subsubsection*{Creating Vertex Brilliance Distribution}
 For each generated graphs (PA graph and Ring Group graph), the vertex brilliance distribution was averaged and normalized over 100 instances. The distribution was created following the same code as the degree distribution.
 
 \subsection*{Vertex Brilliance Results}
 \subsubsection*{Co-authorship Graph}
-The co-authorship graph was loaded by following code provided in the lectures; it was just basic file-reading and making sure that the edges were undirected. The following figures are the degree distribution (in blue) and the vertex brilliance distribution (in red) of the graph:
+The co-authorship graph was loaded by following code provided in the lectures; it was just basic file-reading and making sure that the edges were undirected. The following plots are the degree distribution (in blue) and the vertex brilliance distribution (in red) of the graph:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -178,14 +142,15 @@ The co-authorship graph was loaded by following code provided in the lectures; i
     \end{minipage} \hfill
     \caption{Loaded Co-authorship Graph including vertices with no edges}
 \end{figure}
-The general shape of both graphs is skewed to the right.
+The general shape of both graphs is skewed to the right. With the degree distribution ranging from 0 to around 460, compared to the vertex brilliance ranging from 0 to less than 160. The vertex distrbution appears to be the same as the degree distribution but factorized by 0.3 in the x-axis.
 
 \subsubsection*{PA Graph}
-As the implementation of the PA Graph that we used in the lectures was directed, I modified networkx implementation and matched it to the PA Graph specifications provided in lecture:
+As the implementation of the PA Graph that we used in the lectures was directed, networkx implementation was modified and matched to the PA Graph specifications provided in lecture:
 \begin{itemize}
-    \item I made the first 1 to m vertices fully connected and repeated each vertex m times in a list for selecting the new edges for the remaining vertices
-    \item For the remaining m + 1 to n vertices, I randomly picked a vertex from the previous list m times (created an edge). For each iteration until n is reached, I added the new vertex m times in the selection list along with its neighbours.
+    \item The first 1 to m vertices must be fully connected and  each vertex repeated m times in a list for selecting the new edges for the remaining vertices
+    \item For the remaining m + 1 to n vertices, a vertex was  randomly picked from the previous list m times (to create an edge). For each iteration until n is reached, the new vertex was added m times in the selection list along with its neighbours.
 \end{itemize} 
+The following plots are the degree distribution and vertex distribution of the PA graph:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -198,10 +163,10 @@ As the implementation of the PA Graph that we used in the lectures was directed,
     \end{minipage} \hfill
     \caption{PA Graph parameters: m = 1559, m = 30}
 \end{figure}
-Both distributions has been averaged over 100 instances of the PA graph. The resulted graphs for both degree and vertex brilliance distributions are skewed to the right. The co-authorship graph strongly resembles the PA graph based on the distributions. 
+The paramaters for the PA graph were set so that they match the number of vertices and edges of the co-authorship graph (n = 1559 and p = 30). Both distributions had been averaged over 100 instances of the PA graph. Similar observation as the co-authorship graph, the resulted graphs for both degree and vertex brilliance distributions were skewed to the right with different ranges; the degree distribution ranged from around 10 to 400 while the vertex distribution ranged from around 10 to less than 120. The normalized rate over the number of instances (y-axis) for the distribution slightly increased compared to the degree distrbution. The co-authorship graph strongly resembled the PA graph based on both distributions.
 
 \subsubsection*{Ring Group Graph}
-To get approximately the same number of edges and nodes as the co-authorship graph, the following parameters were used: m = 60, k = 26, p = 0.22, q = 0.03; there are other possible parameters but their distributions are similar to the distributions with the paramaters used here (in terms of shape). 
+To get approximately the same number of edges and nodes as the co-authorship graph, the following parameters were used: m = 60, k = 26, p = 0.22, q = 0.03. There are other possible parameters but their distributions were similar to the distributions with the paramaters used here (in terms of shape) look at figure-\ref{vb:rgga} and figure-\ref{vb:rggb}. 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -213,6 +178,7 @@ To get approximately the same number of edges and nodes as the co-authorship gra
         \includegraphics[width=1\textwidth]{{ring_group_graph-60-26-0.22-0.03-brilliance}.png}
     \end{minipage} \hfill
     \caption{Ring Group Graph parameters: m = 60, k = 26, p = 0.22, q = 0.03}
+    \label{vb:rgga}
 \end{figure}
 \begin{figure}[H]
     \centering
@@ -225,10 +191,11 @@ To get approximately the same number of edges and nodes as the co-authorship gra
         \includegraphics[width=1\textwidth]{{ring_group_graph-120-13-0.26-0.04-brilliance}.png}
     \end{minipage} \hfill
     \caption{Ring Group Graph parameters: m = 120, k = 13, p = 0.26, q = 0.04}
+    \label{vb:rggb}
 \end{figure}
-Both distributions are bell shaped (binomial distribution).
+Both figures had bell shaped distributions (binomial distribution). The vertex brilliance distribution differed from the degree distribution by a factor of approximately 0.5 in the x-axis and normalized rate over the number of instances (y-axis)for the distribution approximately doubled compared to the degree distrbution. 
 \\ \\
-Based on the previous graphs, it can be concluded that the vertex distribution has the same shape as the degree distribution and the co-authorship graph closely resembles the PA graph. 
+Based on the previous plots, it can be concluded that the vertex distribution has the same shape as the degree distribution and the co-authorship graph closely resembles the PA graph. 
 
 
 
@@ -324,7 +291,7 @@ Figure-\ref{rg:n1} and figure-\ref{rg:n2} had a constant probability p and an in
 Figure-\ref{rg:p1} and figure-\ref{rg:p2} had a constant n and an increasing p. As p increased the search time decreased but only very slightly. \\
 
 \noindent
-Based on the search algorithm, the search time increased as n increased however it slightly decreased as p increased in a random graph. The shape of the distribution remains skewed to the right with a lot of outlier values throughout all the distributions in figures \ref{rg:n} and \ref{rg:p}.
+Based on the search algorithm, the search time increased as n increased however it slightly decreased as p increased in a random graph. The shape of the distribution remained skewed to the right with a lot of outlier values throughout all the distributions in figures \ref{rg:n} and \ref{rg:p}.
 
 \subsection*{Search Ring Group Graph}
 \subsubsection*{Search Algorithm}
@@ -494,4 +461,20 @@ Figure-\ref{rggs:125} further looks into the changes in the distribution while t
 This last figure looks into the special case for the ring group graph when m = 6. k was always greater than m so as mentioned for the previous figure, the changes in the search time is less noticable when k is higher when p is increasing and the search time is generally much higher than the cases where m is greater than k. \\
 
 Search in a ring group graph is much faster than in a random graph and the paramaters of the ring group graph greatly influences the search. The algorithm for searching in a ring group graph is optimized for paramaters where m is greater than k, p is a high probability and q is a low probability. The general distribution was skewed to the right with a lot of outlier values. 
+
+\section*{Appendix}
+\subsection{Vertex Brilliance Algorithm} \label{vba}
+The algorithm simplified:
+\begin{enumerate}
+    \item create an empty dictionary; this dictionary will hold the weight vertices for the k-star of the current vertex 
+    \item populate the dictionary with v's neighbours and give each vertex in the dictionary a weight of 0 to begin with < this weight will be used to determine which vertex to exclude to get the maximum k-star, the weight corresponds to how many v's neighbours the vertex is connected to
+    \item repeat until maximum k-star is found
+    \begin{itemize}
+        \item for each vertex in the k-star dictionary go through its neighbours. If one of the vertex neighbour is a key in the k-star dictionary substract 1 from the weight of the vertex (I gave it negative value as just a notion that this is undesired vertex thus a negative affect but it can be calculated with the same manner by adding 1 but then the rest of the code will be modified so it get the maximum value from the k-star values instead of the minimum)
+        \item find the minimum weight (value) of the k-star dictionary 
+        \item if the minimum value is 0 then stop as this indicates that non of the vertices in the dictionary are adjacent thus it is the maximum k-star set of vertices (ther can be more than one set but we only care about the length so the actual vertices of the maximum set don't have any actual value for us in this case) so stop the loop
+        \item else find the vertex with the minumum weight and remove it from the dictionary (this vertex is the most influential as it connects to the most number of vertices and by removing it the rest of vertices will be less adjacent, only the first found vertix will be removed) and reset all the other vertices values to 0 
+    \end{itemize}
+    \item return the length of the dictionary 
+\end{enumerate}
 \end{document}
